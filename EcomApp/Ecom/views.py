@@ -16,3 +16,4 @@ def products(request,category):
     products=models.Product.objects.filter(category=category_obj)
     return render(request,'products.html',{'categories':categories,'products':products})
 
+hi i am tanvi
