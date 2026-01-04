@@ -62,6 +62,7 @@ def searchaccounts():
         row=cur.fetchone()
         return render_template("searchaccounts.html",row=row)
     
+    
 @app.route("/deposit",methods=['get','post'])
 def deposit():
     if request.method=='GET':
