@@ -206,14 +206,31 @@ body{
     margin-bottom:14px;
 }
 
-.product button{
+/* ================= BUTTONS ================= */
+.product-actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
     margin-bottom:18px;
-    padding:10px 22px;
+}
+
+.product-actions button{
+    padding:10px 18px;
     border:none;
     border-radius:20px;
-    background:linear-gradient(90deg,#1e88e5,#0f4c81);
     color:white;
     cursor:pointer;
+    font-size:14px;
+}
+
+/* Add to Cart */
+.cart-btn{
+    background:linear-gradient(90deg,#1e88e5,#0f4c81);
+}
+
+/* Buy Now */
+.buy-btn{
+    background:linear-gradient(90deg,#ff7043,#e53935);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -234,12 +251,13 @@ body{
         <li><a href="#">Home</a></li>
 
         {% for item in categories %}
-            <li>
-                <a href="{% url 'products' item.name %}">
-                    {{item.name}}
-                </a>
-            </li>
+        <li>
+            <a href="{% url 'products' item.name %}">
+                {{ item.name }}
+            </a>
+        </li>
         {% endfor %}
+
         <li><a href="/cart/">Cart</a></li>
         <li><a href="/logout/">Logout</a></li>
     </ul>
@@ -283,7 +301,11 @@ body{
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
         <h2>{{ product.name }}</h2>
         <p>₹ {{ product.price }}</p>
-        <button>Add to Cart</button>
+
+        <div class="product-actions">
+            <button class="cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy Now</button>
+        </div>
     </div>
 {% endfor %}
 </div>
