@@ -3,115 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <title>All Accounts</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <style>
         /* ----------- Global Styles ----------- */
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-            color: #2c3e50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2c3e50;
         }
+
+        /* ----------- Glass Container ----------- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 40px;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: fadeUp 0.7s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ----------- Heading ----------- */
         h1 {
             text-align: center;
-            margin-top: 40px;
-            font-size: 2.2rem;
-            color: #1e3d58;
-            letter-spacing: 1px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d2671;
+            margin-bottom: 8px;
         }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
         hr {
-            width: 80%;
             border: none;
-            height: 3px;
-            background: linear-gradient(to right, #3498db, #2980b9);
-            border-radius: 5px;
-            margin-bottom: 30px;
+            height: 4px;
+            width: 60%;
+            margin: 0 auto 30px;
+            background: linear-gradient(to right, #1d2671, #c33764);
+            border-radius: 10px;
         }
 
         /* ----------- Table Styling ----------- */
         table {
-            width: 85%;
+            width: 100%;
             border-collapse: collapse;
-            background: #ffffff;
-            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 50px;
+            border-radius: 14px;
+        }
+
+        thead th {
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: #ffffff;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        tbody td {
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #34495e;
+        }
+
+        tbody tr {
+            background-color: #f9fafb;
             transition: all 0.3s ease;
         }
 
-        th, td {
-            padding: 14px 20px;
-            text-align: left;
+        tbody tr:nth-child(even) {
+            background-color: #f1f4f9;
         }
 
-        th {
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: #ffffff;
+        tbody tr:hover {
+            background-color: #e9f0ff;
+            transform: scale(1.01);
+        }
+
+        /* ----------- Balance Highlight ----------- */
+        .balance {
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: #16a085;
         }
 
-        td {
-            color: #34495e;
-            font-size: 15px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f8faff;
-        }
-
-        tr:hover {
-            background-color: #e9f5ff;
-            transition: background-color 0.3s ease;
-        }
-
-        /* ----------- Card-like effect on hover ----------- */
-        table:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        /* ----------- Responsive Design ----------- */
+        /* ----------- Responsive ----------- */
         @media (max-width: 768px) {
-            table {
-                width: 95%;
-                font-size: 14px;
-            }
-
-            th, td {
-                padding: 10px;
+            .container {
+                padding: 25px 20px;
             }
 
             h1 {
                 font-size: 1.6rem;
             }
+
+            table {
+                font-size: 14px;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tbody tr {
+                display: block;
+                margin-bottom: 15px;
+                border-radius: 12px;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            }
+
+            tbody td {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px;
+            }
+
+            tbody td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1d2671;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>All Accounts</h1>
+
+<div class="container">
+    <h1><i class="fa-solid fa-users"></i> All Accounts</h1>
+    <p class="subtitle">Complete list of registered bank accounts</p>
     <hr>
+
     <table>
-        <tr>
-            <th>Acc No</th>
-            <th>Name</th>
-            <th>Account Type</th>
-            <th>Balance</th>
-        </tr>
-        {% for row in rows %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[6] }}</td>
-            <td>{{ row[7] }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Acc No</th>
+                <th>Name</th>
+                <th>Account Type</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td data-label="Acc No">{{ row[0] }}</td>
+                <td data-label="Name">{{ row[1] }}</td>
+                <td data-label="Account Type">{{ row[6] }}</td>
+                <td data-label="Balance" class="balance">₹ {{ row[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
+</div>
+
 </body>
 </html>
-
