@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Bank Management System Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <style>
-        /* ---------- Global Styles ---------- */
+        /* ---------- Global ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
         body {
             display: flex;
-            height: 100vh;
-            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
             color: #2c3e50;
         }
 
         /* ---------- Sidebar ---------- */
         .sidebar {
-            width: 250px;
-            background: linear-gradient(180deg, #2c3e50, #34495e);
-            color: white;
+            width: 260px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 30px;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h1 {
+            color: #fff;
             font-size: 22px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 35px;
             letter-spacing: 1px;
-            color: #ecf0f1;
         }
 
         .sidebar ul {
@@ -43,89 +51,91 @@
             width: 100%;
         }
 
-        .sidebar ul li {
-            width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         .sidebar ul li a {
-            display: block;
-            padding: 14px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 30px;
             text-decoration: none;
             color: #ecf0f1;
             font-size: 15px;
-            letter-spacing: 0.5px;
             transition: all 0.3s ease;
         }
 
         .sidebar ul li a:hover {
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: #fff;
-            padding-left: 30px;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            padding-left: 38px;
         }
 
         /* ---------- Main Content ---------- */
         .main-content {
             flex: 1;
             padding: 50px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px 0 0 30px;
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.25);
         }
 
         .main-content h2 {
             font-size: 26px;
-            color: #1e3d58;
-            margin-bottom: 15px;
+            font-weight: 700;
+            color: #1d2671;
+            margin-bottom: 10px;
         }
 
         hr {
-            height: 3px;
-            width: 100px;
+            width: 110px;
+            height: 4px;
             border: none;
-            border-radius: 5px;
-            background: linear-gradient(to right, #3498db, #2c80b4);
+            border-radius: 10px;
+            background: linear-gradient(to right, #1d2671, #c33764);
             margin-bottom: 25px;
         }
 
         .main-content p {
-            font-size: 16px;
             color: #555;
-            line-height: 1.6;
+            font-size: 16px;
+            max-width: 700px;
+            line-height: 1.7;
         }
 
-        /* ---------- Dashboard Card Style ---------- */
+        /* ---------- Dashboard Cards ---------- */
         .dashboard-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
 
         .card {
             background: #ffffff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            padding: 30px 25px;
+            border-radius: 18px;
             text-align: center;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #c33764;
         }
 
         .card h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
             font-size: 18px;
+            margin-bottom: 8px;
+            color: #2c3e50;
         }
 
         .card p {
-            color: #666;
             font-size: 14px;
+            color: #666;
         }
 
         /* ---------- Responsive ---------- */
@@ -139,26 +149,24 @@
                 flex-direction: row;
                 justify-content: space-around;
                 padding: 15px 0;
-                box-shadow: none;
+            }
+
+            .sidebar h1 {
+                display: none;
             }
 
             .sidebar ul {
                 display: flex;
-                justify-content: center;
-                gap: 10px;
-                border: none;
-            }
-
-            .sidebar ul li {
-                border: none;
+                gap: 5px;
             }
 
             .sidebar ul li a {
-                padding: 10px 15px;
+                padding: 10px 14px;
                 font-size: 13px;
             }
 
             .main-content {
+                border-radius: 0;
                 padding: 30px 20px;
             }
 
@@ -170,47 +178,55 @@
 </head>
 <body>
 
+    <!-- Sidebar -->
     <div class="sidebar">
-        <h1>Bank Dashboard</h1>
+        <h1>🏦 Bank Panel</h1>
         <ul>
-            <li><a href="{{url_for('openaccount')}}">Open Account</a></li>
-            <li><a href="{{url_for('allaccounts')}}">All Accounts</a></li>
-            <li><a href="{{url_for('searchaccounts')}}">Search Account</a></li>
-            <li><a href="{{url_for('deposit')}}">Deposit Amount</a></li>
-            <li><a href="{{url_for('withdraw')}}">Withdraw Amount</a></li>
-            <li><a href="{{url_for('statements')}}">Account Statement</a></li>
-            <li><a href="{{url_for('logout')}}">Logout</a></li>
+            <li><a href="{{url_for('openaccount')}}"><i class="fa-solid fa-user-plus"></i> Open Account</a></li>
+            <li><a href="{{url_for('allaccounts')}}"><i class="fa-solid fa-users"></i> All Accounts</a></li>
+            <li><a href="{{url_for('searchaccounts')}}"><i class="fa-solid fa-magnifying-glass"></i> Search Account</a></li>
+            <li><a href="{{url_for('deposit')}}"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a></li>
+            <li><a href="{{url_for('withdraw')}}"><i class="fa-solid fa-hand-holding-dollar"></i> Withdraw</a></li>
+            <li><a href="{{url_for('statements')}}"><i class="fa-solid fa-file-invoice"></i> Statement</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
         </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
         <h2>Welcome to the Bank Management System</h2>
         <hr>
         <p>
-            Manage all your banking operations from one secure and easy-to-use dashboard.
-            Use the side menu to open accounts, view statements, and manage deposits or withdrawals.
+            Manage all your banking operations from one secure and user-friendly dashboard.
+            Open accounts, manage transactions, and view statements with ease.
         </p>
 
         <div class="dashboard-cards">
             <div class="card">
+                <i class="fa-solid fa-user-plus"></i>
                 <h3>Open Account</h3>
-                <p>Create a new customer account quickly and easily.</p>
+                <p>Create a new customer account quickly and securely.</p>
             </div>
+
             <div class="card">
+                <i class="fa-solid fa-users"></i>
                 <h3>View Accounts</h3>
-                <p>Access all active customer accounts in one place.</p>
+                <p>Access and manage all customer accounts in one place.</p>
             </div>
+
             <div class="card">
+                <i class="fa-solid fa-money-bill-transfer"></i>
                 <h3>Deposit / Withdraw</h3>
-                <p>Perform transactions securely and instantly.</p>
+                <p>Perform secure transactions instantly.</p>
             </div>
+
             <div class="card">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
                 <h3>Account Statements</h3>
-                <p>Check recent transactions and account activity.</p>
+                <p>Review recent transactions and account history.</p>
             </div>
         </div>
     </div>
 
 </body>
 </html>
-
