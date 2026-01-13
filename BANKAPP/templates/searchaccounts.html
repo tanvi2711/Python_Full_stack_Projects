@@ -2,181 +2,208 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Search Accounts</title>
+    <title>Search Account</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <style>
         /* ---------- Global Reset ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
-        /* ---------- Page Layout ---------- */
+
         body {
-            background: linear-gradient(135deg, #3498db, #2c80b4);
             min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
-            color: #2c3e50;
         }
 
         /* ---------- Heading ---------- */
         h1 {
             color: #ffffff;
-            margin-bottom: 10px;
             font-size: 2rem;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-        hr {
-            width: 80px;
-            height: 3px;
-            border: none;
-            border-radius: 5px;
-            background: #ffffff;
-            margin: 18px 0 30px;
-        }
-        /* ---------- Search Form ---------- */
-        form {
-            background-color: #ffffff;
-            padding: 35px 40px;
-            border-radius: 15px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-            max-width: 500px;
-            width: 100%;
-            margin-bottom: 40px;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        form:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+        .subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            margin-bottom: 18px;
         }
+
+        hr {
+            width: 90px;
+            height: 4px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        /* ---------- Search Card ---------- */
+        form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 40px;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.6s ease;
+            margin-bottom: 35px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         label {
-            display: block;
+            font-size: 14px;
             font-weight: 600;
             color: #34495e;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transform: translateY(-50%);
+            color: #6c757d;
             font-size: 15px;
         }
+
         input[type="search"] {
             width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d9e6;
-            border-radius: 8px;
+            padding: 12px 14px 12px 42px;
+            border-radius: 10px;
+            border: 1px solid #dcdde1;
+            background: #f9fafb;
             font-size: 15px;
-            background-color: #f9fbfc;
-            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
         input[type="search"]:focus {
-            border-color: #3498db;
-            background-color: #ffffff;
-            box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
             outline: none;
+            border-color: #1d2671;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(29, 38, 113, 0.15);
         }
+
+        /* ---------- Submit Button ---------- */
         input[type="submit"] {
             width: 100%;
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: white;
+            padding: 14px;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: white;
             font-size: 16px;
             font-weight: 600;
-            letter-spacing: 0.3px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         input[type="submit"]:hover {
-            background: linear-gradient(135deg, #2980b9, #2471a3);
-            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(195, 55, 100, 0.35);
         }
 
-        /* ---------- Table Styling ---------- */
+        /* ---------- Result Card ---------- */
         table {
             width: 100%;
             max-width: 650px;
-            border-collapse: collapse;
-            background-color: #ffffff;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 0.6s ease;
-        }
-
-        th, td {
-            padding: 14px 20px;
-            text-align: left;
-        }
-        th {
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: #ffffff;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 0.3px;
-        }
-        td {
-            color: #34495e;
-            border-bottom: 1px solid #ecf0f1;
-            font-size: 15px;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr:hover td {
-            background-color: #f7fbff;
-        }
-
-        /* ---------- No Account Message ---------- */
-        h3 {
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.15);
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             animation: fadeIn 0.6s ease;
         }
 
-        /* ---------- Animations ---------- */
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            width: 35%;
+        }
+
+        td {
+            color: #34495e;
+            font-size: 15px;
+            background: #f9fafb;
+        }
+
+        tr:nth-child(even) td {
+            background: #f1f4f9;
+        }
+
+        /* ---------- No Result ---------- */
+        .no-result {
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            animation: fadeIn 0.6s ease;
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ---------- Responsive Design ---------- */
+        /* ---------- Responsive ---------- */
         @media (max-width: 600px) {
             form {
-                padding: 25px 20px;
-                border-radius: 10px;
+                padding: 30px 25px;
             }
+
             table {
                 font-size: 14px;
             }
-            input[type="submit"] {
-                font-size: 15px;
-                padding: 10px;
+
+            h1 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Search Accounts</h1>
+
+    <h1>🔍 Search Account</h1>
+    <p class="subtitle">Find account details using account number</p>
     <hr>
 
     <form action="{{url_for('searchaccounts')}}" method="post">
-        <label for="search">Enter Account Number</label>
-        <input type="search" name="search" id="search" placeholder="e.g. 1234567890" required>
+        <label>Account Number</label>
+        <div class="input-group">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" name="search" placeholder="Enter account number" required>
+        </div>
         <input type="submit" value="Search Account">
     </form>
 
@@ -208,9 +235,8 @@
             </tr>
         </table>
     {% else %}
-        <h3>No Account Found</h3>
+        <div class="no-result">No Account Found</div>
     {% endif %}
+
 </body>
 </html>
-
-
