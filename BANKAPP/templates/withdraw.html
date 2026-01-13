@@ -3,97 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <title>Withdraw Amount</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <style>
         /* ---------- Global Reset ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* ---------- Page Layout ---------- */
         body {
-            background: linear-gradient(135deg, #3498db, #2c80b4);
             min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
             display: flex;
             justify-content: center;
             align-items: center;
             color: #2c3e50;
         }
 
-        /* ---------- Form Container ---------- */
+        /* ---------- Glass Form Card ---------- */
         form {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
             padding: 45px 50px;
-            border-radius: 15px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+            border-radius: 22px;
             width: 100%;
             max-width: 420px;
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.6s ease;
         }
 
-        form:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ---------- Heading ---------- */
         h1 {
             text-align: center;
-            color: #1e3d58;
             font-size: 1.9rem;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: #1d2671;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 20px;
         }
 
         hr {
             border: none;
-            height: 3px;
-            width: 80px;
-            background: linear-gradient(to right, #3498db, #2c80b4);
-            border-radius: 5px;
-            margin: 0 auto 25px;
+            height: 4px;
+            width: 90px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #1d2671, #c33764);
+            margin: 0 auto 30px;
         }
 
-        /* ---------- Labels ---------- */
+        /* ---------- Input Group ---------- */
+        .input-group {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
         label {
             display: block;
-            color: #34495e;
+            font-size: 14px;
             font-weight: 600;
-            font-size: 15px;
-            margin-bottom: 8px;
+            color: #34495e;
+            margin-bottom: 6px;
         }
 
-        /* ---------- Inputs ---------- */
+        .input-group i {
+            position: absolute;
+            top: 42px;
+            left: 14px;
+            color: #6c757d;
+            font-size: 15px;
+        }
+
         input[type="text"],
         input[type="number"] {
             width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d9e6;
-            border-radius: 8px;
+            padding: 12px 14px 12px 42px;
+            border-radius: 10px;
+            border: 1px solid #dcdde1;
+            background: #f9fafb;
             font-size: 15px;
-            background-color: #f9fbfc;
-            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus,
-        input[type="number"]:focus {
-            border-color: #3498db;
-            background-color: #ffffff;
-            box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+        input:focus {
             outline: none;
+            border-color: #1d2671;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(29, 38, 113, 0.15);
         }
 
         /* ---------- Submit Button ---------- */
         input[type="submit"] {
             width: 100%;
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: white;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: white;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -102,31 +125,30 @@
         }
 
         input[type="submit"]:hover {
-            background: linear-gradient(135deg, #2980b9, #2471a3);
-            box-shadow: 0 6px 14px rgba(52, 152, 219, 0.3);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(195, 55, 100, 0.35);
         }
 
         /* ---------- Message Box ---------- */
         #message {
             margin-top: 25px;
-            padding: 12px 15px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
-            font-weight: 500;
             font-size: 15px;
+            font-weight: 500;
             animation: fadeIn 0.5s ease;
         }
 
         .success {
-            background-color: #e8f8f5;
-            color: #1abc9c;
+            background-color: #e9f9f1;
+            color: #16a085;
             border: 1px solid #a3e4d7;
         }
 
         .error {
             background-color: #fdecea;
-            color: #e74c3c;
+            color: #c0392b;
             border: 1px solid #f5b7b1;
         }
 
@@ -135,11 +157,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ---------- Responsive Design ---------- */
+        /* ---------- Responsive ---------- */
         @media (max-width: 500px) {
             form {
                 padding: 35px 25px;
-                border-radius: 12px;
             }
 
             h1 {
@@ -149,20 +170,32 @@
     </style>
 </head>
 <body>
+
     <form action="" method="post">
-        <h1>Withdraw Amount</h1>
+        <h1>💸 Withdraw Amount</h1>
+        <p class="subtitle">Secure withdrawal from customer account</p>
         <hr>
-        <label for="accno">Enter Account Number</label>
-        <input type="text" name="accno" id="accno" placeholder="e.g. 1234567890" required>
-        <label for="amount">Enter Amount</label>
-        <input type="number" name="amount" id="amount" placeholder="Enter withdrawal amount" min="1" required>
+
+        <div class="input-group">
+            <label>Account Number</label>
+            <i class="fa-solid fa-building-columns"></i>
+            <input type="text" name="accno" placeholder="Enter account number" required>
+        </div>
+
+        <div class="input-group">
+            <label>Withdrawal Amount</label>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <input type="number" name="amount" placeholder="Enter amount" min="1" required>
+        </div>
+
         <input type="submit" value="Withdraw">
     </form>
+
     {% if msg %}
     <div id="message" class="{{msg_type}}">
         {{msg}}
     </div>
     {% endif %}
+
 </body>
 </html>
-
