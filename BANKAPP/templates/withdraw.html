@@ -152,16 +152,12 @@
     <form action="" method="post">
         <h1>Withdraw Amount</h1>
         <hr>
-
         <label for="accno">Enter Account Number</label>
         <input type="text" name="accno" id="accno" placeholder="e.g. 1234567890" required>
-
         <label for="amount">Enter Amount</label>
         <input type="number" name="amount" id="amount" placeholder="Enter withdrawal amount" min="1" required>
-
         <input type="submit" value="Withdraw">
     </form>
-
     {% if msg %}
     <div id="message" class="{{msg_type}}">
         {{msg}}
@@ -169,3 +165,4 @@
     {% endif %}
 </body>
 </html>
+
