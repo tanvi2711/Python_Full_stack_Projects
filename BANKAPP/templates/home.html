@@ -100,7 +100,43 @@
         }
 
         /* ---------- Dashboard Cards ---------- */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
 
+        .card {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #c33764;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
  /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
             body {
@@ -194,6 +230,7 @@
 
 </body>
 </html>
+
 
 
 
