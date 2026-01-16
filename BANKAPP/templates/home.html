@@ -137,7 +137,42 @@
             font-size: 14px;
             color: #666;
         }
+ /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
 
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 15px 0;
+            }
+
+            .sidebar h1 {
+                display: none;
+            }
+
+            .sidebar ul {
+                display: flex;
+                gap: 5px;
+            }
+
+            .sidebar ul li a {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+
+            .main-content {
+                border-radius: 0;
+                padding: 30px 20px;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
        
     </style>
 </head>
@@ -195,6 +230,7 @@
 
 </body>
 </html>
+
 
 
 
