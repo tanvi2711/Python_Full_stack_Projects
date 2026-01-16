@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Management System | Login</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* ---------- Global Reset ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2c3e50;
+        }
+
+        /* ---------- Glass Login Card ---------- */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 45px 45px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.7s ease;
+            text-align: center;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(35px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------- Heading ---------- */
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #1d2671;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: none;
+            height: 4px;
+            width: 90px;
+            background: linear-gradient(to right, #1d2671, #c33764);
+            border-radius: 10px;
+            margin: 0 auto 30px;
+        }
+
+        /* ---------- Input Group ---------- */
+        .input-group {
+            position: relative;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 42px;
+            left: 14px;
+            color: #6c757d;
+            font-size: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border-radius: 10px;
+            border: 1px solid #dcdde1;
+            background: #f9fafb;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #1d2671;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(29, 38, 113, 0.15);
+        }
+
+        /* ---------- Submit Button ---------- */
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(195, 55, 100, 0.35);
+        }
+
+        /* ---------- Footer ---------- */
+        .footer-text {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-text a {
+            color: #1d2671;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 500px) {
+            .login-container {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>🏦 Bank Management System</h1>
+        <p class="subtitle">Secure admin login</p>
+        <hr>
+
+        <form action="{{ url_for('checklogin') }}" method="post">
+
+            <div class="input-group">
+                <label>User ID</label>
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="userid" placeholder="Enter your User ID" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your Password" required>
+            </div>
+
+            <input type="submit" value="Login Securely">
+        </form>
+        <p class="footer-text">
+            © 2025 SecureBank • <a href="#">Privacy Policy</a>
+        </p>
+    </div>
+
+</body>
+</html>
+
+
+
