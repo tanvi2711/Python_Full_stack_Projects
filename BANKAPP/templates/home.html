@@ -179,8 +179,18 @@
 <body>
 
     <!-- Sidebar -->
-   
-
+ <div class="sidebar">
+        <h1>🏦 Bank Panel</h1>
+        <ul>
+            <li><a href="{{url_for('openaccount')}}"><i class="fa-solid fa-user-plus"></i> Open Account</a></li>
+            <li><a href="{{url_for('allaccounts')}}"><i class="fa-solid fa-users"></i> All Accounts</a></li>
+            <li><a href="{{url_for('searchaccounts')}}"><i class="fa-solid fa-magnifying-glass"></i> Search Account</a></li>
+            <li><a href="{{url_for('deposit')}}"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a></li>
+            <li><a href="{{url_for('withdraw')}}"><i class="fa-solid fa-hand-holding-dollar"></i> Withdraw</a></li>
+            <li><a href="{{url_for('statements')}}"><i class="fa-solid fa-file-invoice"></i> Statement</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </div>
     <!-- Main Content -->
     <div class="main-content">
         <h2>Welcome to the Bank Management System</h2>
@@ -219,6 +229,7 @@
 
 </body>
 </html>
+
 
 
 
