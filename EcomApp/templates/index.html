@@ -94,6 +94,15 @@ body{
     height:100%;
     object-fit:cover;
 }
+    
+.slide::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to right,rgba(0,0,0,0.55),rgba(0,0,0,0.15));
+}
+
+
 
 /* ================= CAPTION ================= */
 .caption{
@@ -316,6 +325,7 @@ setInterval(next,4000);
 
 </body>
 </html>
+
 
 
 
