@@ -126,3 +126,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = BASE_DIR/'upload'
+
+
+
+
+
+
+

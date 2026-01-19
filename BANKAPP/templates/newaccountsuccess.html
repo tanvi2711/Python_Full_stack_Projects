@@ -49,7 +49,7 @@
             animation: fadeInDown 0.6s ease;
         }
 
-        /* ---------- Message Text ---------- */
+       /* ---------- Message Text ---------- */
         .container p {
             font-size: 1.1rem;
             color: #555;
@@ -57,7 +57,7 @@
             animation: fadeInUp 0.6s ease;
         }
 
-        /* ---------- Button Styling ---------- */
+       /* ---------- Button Styling ---------- */
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, #3498db, #2c80b4);
@@ -70,14 +70,14 @@
             letter-spacing: 0.3px;
             transition: all 0.3s ease;
         }
-
+        
         .btn:hover {
             background: linear-gradient(135deg, #2980b9, #2471a3);
             transform: translateY(-2px);
             box-shadow: 0 6px 14px rgba(52, 152, 219, 0.3);
         }
 
-        /* ---------- Success Icon Animation ---------- */
+       /* ---------- Success Icon Animation ---------- */
         .icon {
             font-size: 3rem;
             color: #2ecc71;
@@ -85,7 +85,7 @@
             animation: bounceIn 0.8s ease;
         }
 
-        /* ---------- Animations ---------- */
+       /* ---------- Animations ---------- */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -102,21 +102,29 @@
             100% { transform: scale(1); }
         }
 
-        /* ---------- Responsive Design ---------- */
+       /* ---------- Responsive Design ---------- */
         @media (max-width: 500px) {
             .container {
                 padding: 40px 25px;
                 border-radius: 12px;
             }
-
             .container h1 {
                 font-size: 1.6rem;
             }
-
             .btn {
                 padding: 10px 25px;
                 font-size: 15px;
             }
         }
+        
     </style>
 </head>
+<body>
+    <div class="container">
+        <div class="icon">✅</div>
+        <h1>Account Created Successfully!</h1>
+        <p>Your account has been created and is now active. You can now view or manage your account details.</p>
+        <a href="{{url_for('allaccounts')}}" class="btn">View All Accounts</a>
+    </div>
+</body>
+</html>
