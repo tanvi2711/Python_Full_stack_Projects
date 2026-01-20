@@ -506,7 +506,8 @@ body{
 </ul>
 <div class="d-flex gap-3">
 
-  <button class="btn btn-login">Login</button>
+  {% comment %} <button class="btn btn-login">Login</button> {% endcomment %}
+  <a href="{% url 'login' %}" class="btn btn-login">Login</a>
 
 </div>
 
