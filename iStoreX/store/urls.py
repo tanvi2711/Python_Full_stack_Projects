@@ -1,5 +1,6 @@
 from django.urls import *
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',views.storeIndexView,name='storeIndex'),
