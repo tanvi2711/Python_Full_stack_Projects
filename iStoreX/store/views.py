@@ -34,6 +34,31 @@ def login_view(request):
     return render(request, "login.html")
 
 def signup_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        if password1 != password2:
+            return render(request, "signup.html", {
+                "error": "Passwords do not match"
+            })
+
+        if User.objects.filter(username=username).exists():
+            return render(request, "signup.html", {
+                "error": "Username already exists"
+            })
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password1
+        )
+
+        login(request, user)
+        return redirect("storeIndex")
+
     return render(request, "signup.html")
 
 def forgot_password_view(request):
