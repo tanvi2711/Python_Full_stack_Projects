@@ -30,5 +30,7 @@ def login_view(request):
                 "error": "Invalid username or password"
             })
 
-
     return render(request, "login.html")
+
+def signup_view(request):
+    return render(request, "signup.html")
