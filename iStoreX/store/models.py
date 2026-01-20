@@ -13,8 +13,8 @@ class ProductModelClass(Model):
     id=AutoField(primary_key=True) 
     name=CharField(max_length=100)
     image=FileField(upload_to='uploads/')
-    price=TextField(max_length=100)
+    price=CharField(max_length=100)
     category=ForeignKey(CategoryModelClass,CASCADE,related_name='Products')
-    description=CharField(max_length=300)
+    description=TextField(max_length=300)
 
     
