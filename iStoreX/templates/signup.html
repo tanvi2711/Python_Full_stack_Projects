@@ -105,27 +105,57 @@ body::before{
   <h1 class="auth-title">Create Account</h1>
   <p class="auth-sub">Join iStoreX</p>
 
-  <form method="post">
-    {% csrf_token %}
+<form method="post">
+  {% csrf_token %}
 
-    <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Username" required>
-    </div>
+  <div class="mb-3">
+    <input
+      type="text"
+      name="username"
+      class="form-control"
+      placeholder="Username"
+      required
+    >
+  </div>
 
-    <div class="mb-3">
-      <input type="email" class="form-control" placeholder="Email" required>
-    </div>
+  <div class="mb-3">
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      placeholder="Email"
+      required
+    >
+  </div>
 
-    <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Password" required>
-    </div>
+  <div class="mb-3">
+    <input
+      type="password"
+      name="password1"
+      class="form-control"
+      placeholder="Password"
+      required
+    >
+  </div>
 
-    <div class="mb-4">
-      <input type="password" class="form-control" placeholder="Confirm Password" required>
-    </div>
+  <div class="mb-4">
+    <input
+      type="password"
+      name="password2"
+      class="form-control"
+      placeholder="Confirm Password"
+      required
+    >
+  </div>
 
-    <button type="submit" class="btn-auth">Create Account</button>
-  </form>
+  <button type="submit" class="btn-auth">Create Account</button>
+</form>
+
+{% if error %}
+  <p class="text-danger text-center mt-3">{{ error }}</p>
+{% endif %}
+
+
 
   <div class="auth-links">
     <p class="mt-3">
