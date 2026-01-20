@@ -84,10 +84,14 @@ body{
   object-fit:contain;
   margin-bottom:18px;
   filter:drop-shadow(0 50px 90px rgba(0,0,0,.95));
-  animation:float 6s ease-in-out infinite;
   transition:.6s;
 }
 .product-card:hover img{transform:scale(1.08)}
+
+.product-card:hover img{
+  animation: float 4s ease-in-out infinite;
+}
+
 
 @keyframes float{
   0%{transform:translateY(0)}
@@ -204,7 +208,8 @@ body{
       <div class="col-lg-3 col-md-4 col-sm-6 reveal">
         <div class="product-card">
 
-          <img src="{{ item.image.url }}" alt="{{ item.name }}">
+          <img src="{{ item.image.url }}" alt="{{<img src="{{ item.image.url }}" loading="lazy" alt="{{ item.name }}">
+item.name }}">
 
           <h2>{{ item.name }}</h2>
 
