@@ -199,7 +199,7 @@ body::before{
 <li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
 {% for item in categories %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'storeproductscategory' item.name %}">{{ item.name }}</a>
+  <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
 </li>
 {% endfor %}
 </ul>
@@ -212,7 +212,7 @@ body::before{
 <!-- HEADER -->
 <section class="page-header">
   <div class="container">
-    <h1>{{ category_obj|default:"{{category_obj.name}}" }}</h1>
+    <h1>{{ category_name|default:"All Products" }}</h1>
     <p>Designed to feel like Apple.</p>
   </div>
 </section>
