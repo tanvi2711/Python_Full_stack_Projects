@@ -17,4 +17,6 @@ def storeProductView(request,category):
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
 
 def login_view(request):
-    return render(request, "login.html")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
