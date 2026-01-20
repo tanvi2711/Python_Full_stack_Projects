@@ -1,6 +1,4 @@
-from django.shortcuts import render , redirect
-from django.contrib.messages import info,error
-from . import forms
+from django.shortcuts import render
 from . import models
 from .models import *
 
@@ -8,11 +6,11 @@ from .models import *
 
 def storeIndexView(request):
     categories=CategoryModelClass.objects.all()
-    produts=ProductModelClass.objects.all()[0:1]
-    return render(request,"index.html",{'categories':categories})
+    products=ProductModelClass.objects.all()
+    return render(request,"index.html",{'categories':categories,'products':products})
 
-def storeProductsView(request,category):
+def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
-    product=ProductModelClass.objects.filter(category=category_obj.id)
-    return render(request,'products.html',{'product':product,'categories':categories})
+    products=ProductModelClass.objects.filter(category=category_obj.id)
+    return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
