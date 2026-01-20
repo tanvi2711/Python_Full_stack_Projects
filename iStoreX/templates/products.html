@@ -11,286 +11,252 @@
 <style>
 *{font-family:Poppins,sans-serif}
 
-/* ================= BODY ================= */
 body{
   background:#000;
   color:white;
   overflow-x:hidden;
+  padding-top:76px;
 }
 
-/* Ambient background glow */
+/* BACKGROUND */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.06), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(255,255,255,.04), transparent 45%);
-  pointer-events:none;
-  z-index:-1;
+  background:radial-gradient(circle at top,#0a0a0a,#000);
+  z-index:-2;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar{
+  height:76px;
   backdrop-filter:blur(20px);
-  background:rgba(0,0,0,.75)!important;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.nav-link{color:white!important}
-
-/* ================= SECTION ================= */
-.products-section{
-  padding:140px 0 90px;
+  background:rgba(0,0,0,.78)!important;
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-/* ================= HEADING ================= */
-.section-title{
-  text-align:center;
-  margin-bottom:60px;
-}
-.section-title h1{
-  font-weight:700;
-  letter-spacing:.5px;
-  background:linear-gradient(180deg,#fff,#aaa);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.section-title p{
-  color:rgba(255,255,255,.65);
-}
-
-/* ================= PRODUCT CARD ================= */
-.product-card{
+.nav-link{
+  color:white!important;
   position:relative;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(24px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  padding:26px;
-  text-align:center;
-  transition:.55s ease;
-  height:100%;
-  overflow:hidden;
+  padding-bottom:6px;
 }
-
-/* Glass reflection */
-.product-card::before{
+.nav-link::after{
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:40%;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,.08),
-    transparent);
-  opacity:.15;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#fff,#aaa);
+  transform:translateX(-50%);
+  transition:.35s;
+}
+.nav-link:hover::after{width:100%}
+
+/* PAGE HEADER (APPLE STYLE) */
+.page-header{
+  padding:50px 0 30px;
+  text-align:center;
 }
 
-/* Shine sweep */
-.product-card::after{
+.page-header h1{
+  font-size:2.2rem;
+  font-weight:600;
+}
+
+.page-header p{
+  color:rgba(255,255,255,.6);
+  margin-top:6px;
+}
+
+/* FILTER BAR */
+.filter-bar{
+  margin:30px 0 40px;
+  padding:16px 22px;
+  border-radius:18px;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.filter-pill{
+  padding:8px 18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent;
+  color:white;
+  font-size:14px;
+  transition:.3s;
+}
+.filter-pill:hover{
+  background:rgba(255,255,255,.15);
+}
+
+/* PRODUCT GRID */
+.product{
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  padding:26px;
+  transition:.45s;
+  height:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.product::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg,
+  background:linear-gradient(
+    120deg,
     transparent 45%,
-    rgba(255,255,255,.10) 50%,
-    transparent 55%);
+    rgba(255,255,255,.08) 50%,
+    transparent 55%
+  );
   opacity:0;
-  transition:.6s;
+  transition:.45s;
 }
-.product-card:hover::after{opacity:1}
 
-.product-card:hover{
-  transform:translateY(-16px) scale(1.05);
-  box-shadow:0 35px 80px rgba(0,0,0,.95);
+.product:hover::after{opacity:1}
+
+.product:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 26px 60px rgba(0,0,0,.9);
 }
-/* ================= PRODUCT IMAGE ================= */
-.product-card img{
+
+.product img{
   width:100%;
-  height:240px;
+  height:220px;
   object-fit:contain;
-  margin-bottom:18px;
-  filter:drop-shadow(0 50px 90px rgba(0,0,0,.95));
-  transition:.6s;
+  margin-bottom:14px;
+  filter:drop-shadow(0 35px 70px rgba(0,0,0,.9));
+  transition:.45s;
 }
-.product-card:hover img{
-  transform:scale(1.08);
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-14px)}
-  100%{transform:translateY(0)}
-}
-
-/* ================= TEXT ================= */
-.product-card h2{
-  font-size:1.05rem;
-  font-weight:600;
-  min-height:44px;
-  transition:.3s;
-}
-.product-card:hover h2{
-  letter-spacing:.4px;
-}
+.product:hover img{transform:scale(1.06)}
 
 .price{
-  font-weight:700;
-  font-size:1.05rem;
-  margin:10px 0 18px;
-  background:linear-gradient(90deg,#fff,#bbb);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-weight:600;
+  margin-bottom:14px;
 }
 
-/* ================= BUTTONS ================= */
+/* BUTTONS */
 .btn-glow{
-  position:relative;
   background:linear-gradient(135deg,#111,#000);
   border:none;
   color:white;
-  padding:10px 24px;
+  padding:11px 26px;
   border-radius:40px;
-  box-shadow:0 0 25px rgba(255,255,255,.15);
-  overflow:hidden;
-  transition:.4s;
-  font-size:.9rem;
+  box-shadow:0 0 22px rgba(255,255,255,.15);
+  transition:.35s;
+  width:100%;
 }
-
-.btn-glow::after{
-  content:"";
-  position:absolute;
-  top:-100%;
-  left:-100%;
-  width:200%;
-  height:200%;
-  background:linear-gradient(120deg,
-    transparent 40%,
-    rgba(255,255,255,.25) 50%,
-    transparent 60%);
-  animation:btnShine 6s infinite linear;
-}
-
-@keyframes btnShine{
-  0%{transform:translateX(-50%)}
-  100%{transform:translateX(50%)}
-}
-
 .btn-glow:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 45px rgba(255,255,255,.3);
+  transform:scale(1.06);
+  box-shadow:0 0 40px rgba(255,255,255,.28);
 }
 
-.btn-outline-light{
-  border-radius:40px;
-  padding:10px 22px;
-  font-size:.9rem;
+.btn-outline{
   border:1px solid rgba(255,255,255,.25);
-  transition:.3s;
+  color:white;
+  padding:11px 26px;
+  border-radius:40px;
+  background:transparent;
+  transition:.35s;
+  width:100%;
 }
-.btn-outline-light:hover{
-  background:rgba(255,255,255,.08);
-  box-shadow:0 0 12px rgba(255,255,255,.25);
+.btn-outline:hover{
+  background:rgba(255,255,255,.15);
 }
 
-/* ================= SCROLL REVEAL ================= */
+/* REVEAL */
 .reveal{
   opacity:0;
-  transform:translateY(50px);
-  transition:1s;
+  transform:translateY(30px);
+  transition:.9s ease;
 }
 .reveal.active{
   opacity:1;
   transform:translateY(0);
-}
-@media(max-width:768px){
-  .reveal{
-    opacity:1!important;
-    transform:none!important;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold text-white">iStoreX</a>
+<div class="container">
+<a class="navbar-brand fw-bold text-white">iStoreX</a>
 
-    <div class="collapse navbar-collapse show">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'storeIndex' %}">Home</a>
-        </li>
-        {% for item in categories %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'storeproductscategory' item.name %}">
-            {{ item.name }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      <button class="btn btn-outline-light">Cart</button>
-    </div>
-  </div>
+<div class="collapse navbar-collapse show">
+<ul class="navbar-nav mx-auto">
+<li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
+{% for item in categories %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
+</li>
+{% endfor %}
+</ul>
+
+<button class="btn btn-outline-light">Cart</button>
+</div>
+</div>
 </nav>
 
-<!-- ================= PRODUCTS ================= -->
-<section class="products-section">
+<!-- HEADER -->
+<section class="page-header">
   <div class="container">
-
-    <div class="section-title reveal">
-      <h1 class="display-6">Premium Collection</h1>
-      <p class="fs-6">Designed to impress. Powered by Apple.</p>
-    </div>
-
-    {% if not product %}
-    <div class="text-center text-muted py-5">
-      <h4>No products available</h4>
-      <p>Please check back later</p>
-    </div>
-    {% endif %}
-
-    <div class="row g-4 justify-content-center">
-      {% for item in product %}
-      <div class="col-lg-3 col-md-4 col-sm-6 reveal">
-        <div class="product-card">
-
-          <img src="{{ item.image.url }}" loading="lazy" alt="{{ item.name }}">
-
-          <h2>{{ item.name }}</h2>
-
-          <div class="price">₹ {{ item.price }}</div>
-
-          <div class="d-flex justify-content-center gap-2">
-            <button class="btn btn-outline-light">Add to Cart</button>
-            <button class="btn-glow">Buy Now</button>
-          </div>
-
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
+    <h1>{{ category_name|default:"All Products" }}</h1>
+    <p>Designed to feel like Apple.</p>
   </div>
 </section>
 
+
+<!-- PRODUCTS -->
+<section class="container pb-5">
+<div class="row g-4">
+
+{% for product in products %}
+<div class="col-lg-3 col-md-4 col-sm-6 reveal">
+  <div class="product text-center">
+
+    <img src="{{ product.image.url }}"
+         loading="lazy"
+         decoding="async"
+         alt="{{ product.name }}">
+
+    <h6 class="fw-semibold">{{ product.name }}</h6>
+    <p class="price">₹ {{ product.price }}</p>
+
+    <div class="d-grid gap-3">
+      <button class="btn-glow">Add to Cart</button>
+      <button class="btn-outline">Buy Now</button>
+    </div>
+
+  </div>
+</div>
+{% endfor %}
+
+</div>
+</section>
+
 <script>
-const reveals = document.querySelectorAll(".reveal");
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("active");
-      observer.unobserve(entry.target);
+const revealElements=document.querySelectorAll(".reveal");
+function reveal(){
+  revealElements.forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60){
+      el.classList.add("active");
     }
   });
-},{threshold:0.15});
-reveals.forEach(el=>observer.observe(el));
+}
+window.addEventListener("scroll",reveal);
+window.addEventListener("load",reveal);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
