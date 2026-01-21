@@ -1,6 +1,6 @@
 from django import forms
 
-class ResumeInputForm(forms.Form):
+class ResumeForm(forms.Form):
     full_name = forms.CharField(max_length=100)
     email = forms.EmailField()
     phone = forms.CharField(max_length=20)
