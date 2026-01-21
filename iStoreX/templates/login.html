@@ -130,14 +130,17 @@ body::before{
     {% csrf_token %}
 
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Email or Username">
+      <input type="text" class="form-control"  name="username"  placeholder="Email or Username" required>
     </div>
 
     <div class="mb-4">
-      <input type="password" class="form-control" placeholder="Password">
+      <input type="password" class="form-control" placeholder="Password" required>
     </div>
 
     <button type="submit" class="btn-login">Login</button>
+        {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
   </form>
 
   <div class="login-links">
