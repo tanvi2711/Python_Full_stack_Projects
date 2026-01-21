@@ -20,5 +20,5 @@ class Resume(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
+    def __str__(self):
         return f"{self.user.username} Resume"
