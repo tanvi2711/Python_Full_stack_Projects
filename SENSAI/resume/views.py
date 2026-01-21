@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ResumeForm
 from .models import Resume
 
+
 @login_required
 def create_resume(request):
     if request.method == "POST":
