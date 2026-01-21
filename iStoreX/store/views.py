@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from . import models
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+# from django.contrib.auth import login
 from .models import *
 from django.contrib.auth import authenticate, login
 
@@ -17,6 +17,7 @@ def storeProductView(request,category):
     category_obj=CategoryModelClass.objects.get(name=category)
     products=ProductModelClass.objects.filter(category=category_obj.id)
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
+
 
 def login_view(request):
     if request.method == "POST":
