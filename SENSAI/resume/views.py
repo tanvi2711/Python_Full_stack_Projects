@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-# from .forms import ResumeForm
+from .forms import ResumeForm
 from .models import Resume
+from .forms import ResumeInputForm
+
 
 @login_required
 def create_resume(request):
