@@ -757,7 +757,11 @@ userBtn?.addEventListener("click", (e) => {
   growthMenu.classList.add("hidden");
 });
 
-
+// Close when clicking outside
+document.addEventListener("click", () => {
+  growthMenu?.classList.add("hidden");
+  userMenu?.classList.add("hidden");
+});
 </script> 
 </body>
 </html>
