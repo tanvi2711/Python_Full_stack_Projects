@@ -1,0 +1,767 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SENSAI – AI Career Coach</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ================= GRID BACKGROUND ================= */
+.grid-bg {
+  background:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 65%);
+  background-size: 60px 60px, 60px 60px, 100% 100%;
+}
+
+/* ================= HERO TEXT ================= */
+.hero-title {
+  background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= NAVBAR ================= */
+.nav-blur {
+  backdrop-filter: blur(14px);
+  background: rgba(0,0,0,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ================= BANNER ================= */
+.banner-perspective {
+  perspective: 1400px;
+}
+
+.banner-img {
+  transform-origin: center top;
+  border-radius: 18px;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(255,255,255,0.08);
+  transition: transform 0.1s linear;
+}
+
+/* ================= FEATURE CARDS ================= */
+.feature-card {
+  background: radial-gradient(circle at top, #0f0f0f, #050505);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  border-color: #ffffff;
+  transform: translateY(-6px);
+}
+
+.feature-card .icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+/* ================= STATS STRIP ================= */
+.stats-strip {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+background-color: #26262680;
+  background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10));
+  background-size: 80px 80px, 80px 80px, 100% 100%;
+}
+
+.stats-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.stat-text {
+  font-size: 14px;
+  color: #9ca3af;
+  letter-spacing: 0.02em;
+}
+
+/* ================= HOW IT WORKS ================= */
+.how-it-works {
+  width: 100%;
+  background-color: #000000;
+  padding: 96px 0;
+}
+
+.how-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.how-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 64px;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.how-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.how-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.how-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.how-item p {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  max-width: 260px;
+}
+/* ================= FAQ SECTION (EXACT SIZE) ================= */
+.faq-section {
+  width: 100%;
+  height: 632.36px;            /* EXACT HEIGHT */
+  padding: 96px 0;             /* EXACT PADDING */
+  display: flex;
+  align-items: center;
+
+  background-color: #26262680; /* bg-muted/50 equivalent */
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.faq-container {
+  width: 1373.82px;           /* EXACT WIDTH */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.faq-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 48px;
+}
+
+/* FAQ list */
+.faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.faq-arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-arrow {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  transition: max-height 0.35s ease;
+  padding-right: 24px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 220px;
+  margin-bottom: 16px;
+}
+/* ================= FINAL CTA ================= */
+.final-cta-section {
+  width: 100%;
+  {% comment %} padding: 96px 0; {% endcomment %}
+  background: transparent;
+}
+
+.final-cta-box {
+  width: 1373.82px;
+  height: 392px;
+  margin: 0 auto;
+
+  background: linear-gradient(
+    to bottom,
+    #d1d5db,
+    #e5e7eb 40%,
+    #9ca3af
+  );
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.final-cta-box h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 16px;
+}
+
+.final-cta-box p {
+  font-size: 18px;
+  color: #374151;
+  max-width: 640px;
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  background: #111111;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  background: #000000;
+}
+
+/* ================= FOOTER ================= */
+.final-footer {
+  width: 100%;
+  height: 120px;
+  padding: 48px 0;
+
+  background-color: #26262680;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.final-footer p {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* ================= RESPONSIVE FIXES ================= */
+
+.faq-container,
+.final-cta-box {
+  width: 100%;
+  max-width: 1373.82px;
+  padding: 0 16px;
+}
+
+.faq-section {
+  min-height: 632.36px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .stats-container,
+  .how-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-container,
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .final-cta-box h2 {
+    font-size: 26px;
+  }
+
+  .final-cta-box p {
+    font-size: 16px;
+  }
+}
+.sensai-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* SENS */
+.sensai-text {
+  color: #ffffff;
+}
+
+/* AI */
+.sensai-ai {
+  margin-left: 4px;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Optional glow for dark navbar */
+.sensai-logo {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+</style>
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 left-0 w-full z-50 nav-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- LOGO -->
+    <div class="sensai-logo">
+      <span class="sensai-text">SENS</span>
+      <span class="sensai-ai">AI</span>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="flex items-center gap-4">
+
+      {% if request.user.is_authenticated %}
+
+        <!-- Industry Insights -->
+        <a
+          href="/industry-insights/"
+          class="flex items-center gap-2 bg-black border border-white/10 px-4 py-2 rounded-lg text-sm hover:border-white transition"
+        >
+          ⬛️ Industry Insights
+        </a>
+
+        <!-- Growth Tools -->
+        <div class="relative">
+          <button
+            id="growthBtn"
+            class="flex items-center gap-2 bg-black border border-white/10 px-4 py-2 rounded-lg text-sm hover:border-white transition"
+          >
+            ✨ Growth Tools ▾
+          </button>
+
+          <div
+            id="growthMenu"
+            class="hidden absolute right-0 mt-2 w-48 bg-black border border-white/10 rounded-xl shadow-xl"
+          >
+            <a href="/resume/create/" class="block px-4 py-2 text-sm hover:bg-white/10">📄 Build Resume</a>
+            <a href="/cover-letter/" class="block px-4 py-2 text-sm hover:bg-white/10">✍️ Cover Letter</a>
+            <a href="/interview-prep/" class="block px-4 py-2 text-sm hover:bg-white/10">🎤 Interview Prep</a>
+          </div>
+        </div>
+
+        <!-- User Avatar -->
+        <div class="relative">
+          <button
+            id="userBtn"
+            class="w-9 h-9 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center font-bold"
+          >
+            {{ request.user.first_name|default:request.user.email|slice:":1"|upper }}
+          </button>
+
+          <div
+            id="userMenu"
+            class="hidden absolute right-0 mt-2 w-44 bg-black border border-white/10 rounded-xl shadow-xl"
+          >
+            <div class="px-4 py-2 text-xs text-gray-400">
+              {{ request.user.email }}
+            </div>
+            <a href="/accounts/logout/" class="block px-4 py-2 text-sm hover:bg-white/10">
+              🚪 Logout
+            </a>
+          </div>
+        </div>
+
+      {% else %}
+
+        <a
+          href="{% provider_login_url 'google' %}"
+          class="border border-gray-700 px-4 py-1.5 rounded-lg text-sm hover:border-white transition"
+        >
+          Sign In
+        </a>
+
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="grid-bg min-h-screen flex flex-col justify-center items-center text-center px-4 pt-28">
+  <h1 class="hero-title text-[56px] md:text-[72px] font-extrabold leading-tight max-w-6xl">
+    Your AI Career Coach for<br />Professional Success
+  </h1>
+
+  <p class="text-gray-400 mt-6 max-w-xl text-lg">
+    Advance your career with personalized guidance, interview
+    prep, and AI-powered tools for job success.
+  </p>
+
+  <button class="mt-8 bg-white text-black px-6 py-3 rounded-xl font-medium hover:scale-105 transition">
+    Get Started
+  </button>
+</section>
+
+<!-- ================= BANNER SECTION ================= -->
+<section class="w-full flex justify-center bg-black pb-20 px-3">
+  <div class="banner-perspective w-full max-w-[1280px] px-4">
+    {% comment %} <img
+      src="uploads/banner.png"
+      alt="Dashboard Preview"
+      id="bannerImage"
+      class="w-full banner-img"
+    /> {% endcomment %}
+    <img src="{% static 'images/banner.png' %}" id="bannerImage">
+
+  </div>
+</section>
+
+<!-- ================= FEATURES SECTION ================= -->
+<section class="w-full bg-black pb-28 px-4">
+  <div class="max-w-7xl mx-auto">
+
+    <h2 class="text-center text-3xl md:text-4xl font-semibold mb-16">
+      Powerful Features for Your Career Growth
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="feature-card">
+        <div class="icon">🧠</div>
+        <h3>AI-Powered Career Guidance</h3>
+        <p>Get personalized career advice and insights powered by advanced AI technology.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">💼</div>
+        <h3>Interview Preparation</h3>
+        <p>Practice with role-specific questions and get instant feedback to improve your performance.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h3>Industry Insights</h3>
+        <p>Stay ahead with real-time industry trends, salary data, and market analysis.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">📄</div>
+        <h3>Smart Resume Creation</h3>
+        <p>Generate ATS-optimized resumes with AI assistance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS SECTION ================= -->
+<section class="stats-strip">
+  <div class="stats-container">
+    <div>
+      <div class="stat-number">50+</div>
+      <div class="stat-text">Industries Covered</div>
+    </div>
+    <div>
+      <div class="stat-number">1000+</div>
+      <div class="stat-text">Interview Questions</div>
+    </div>
+    <div>
+      <div class="stat-number">95%</div>
+      <div class="stat-text">Success Rate</div>
+    </div>
+    <div>
+      <div class="stat-number">24/7</div>
+      <div class="stat-text">AI Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how-it-works">
+  <div class="how-container">
+
+    <h2 class="how-title">How It Works</h2>
+    <p class="how-subtitle">
+      Four simple steps to accelerate your career growth
+    </p>
+
+    <div class="how-grid">
+
+      <div class="how-item">
+        <div class="how-icon">👤</div>
+        <h3>Professional Onboarding</h3>
+        <p>
+          Share your industry and expertise for personalized guidance
+        </p>
+      </div>
+
+      <div class="how-item">
+        <div class="how-icon">📄</div>
+        <h3>Craft Your Documents</h3>
+        <p>
+          Create ATS-optimized resumes and compelling cover letters
+        </p>
+      </div>
+
+      <div class="how-item">
+        <div class="how-icon">🎤</div>
+        <h3>Prepare for Interviews</h3>
+        <p>
+          Practice with AI-powered mock interviews tailored to your role
+        </p>
+      </div>
+
+      <div class="how-item">
+        <div class="how-icon">📊</div>
+        <h3>Track Your Progress</h3>
+        <p>
+          Monitor improvements with detailed performance analytics
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ================= FAQ SECTION ================= -->
+<section class="faq-section">
+  <div class="faq-container">
+
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <p class="faq-subtitle">
+      Find answers to common questions about our platform
+    </p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What makes Sensai unique as a career development tool?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Sensai combines AI-powered career guidance, real-time industry insights, and personalized interview preparation in one platform, helping users make smarter career decisions faster.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How does Sensai create tailored content?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Sensai analyzes your role, experience, and career goals to generate customized resumes, interview questions, and learning recommendations tailored specifically to you.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How accurate and up-to-date are Sensai's industry insights?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Sensai continuously updates its data using current market trends, salary benchmarks, and industry reports to ensure insights remain accurate and relevant.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Is my data secure with Sensai?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Yes. Sensai uses secure encryption and follows best practices to protect your personal and professional data at all times.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How can I track my interview preparation progress?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Sensai provides performance analytics, mock interview scores, and progress tracking dashboards so you can clearly see your improvement over time.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I edit the AI-generated content?</span>
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-answer">
+          Absolutely. All AI-generated resumes, answers, and recommendations are fully editable so you can personalize them as needed.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA SECTION ================= -->
+<section class="final-cta-section">
+  <div class="final-cta-box">
+    <h2>Ready to Accelerate Your Career?</h2>
+    <p>
+      Join thousands of professionals who are advancing their
+      careers with AI-powered guidance.
+    </p>
+
+    <button class="cta-btn">
+      Start Your Journey Today →
+    </button>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="final-footer">
+  <p>Made with 💗 by Tanvi Jivatode</p>
+</footer>
+
+
+<!-- ================= JS: BANNER SCROLL ================= -->
+<script>
+const banner = document.getElementById("bannerImage");
+window.addEventListener("scroll", () => {
+  const rect = banner.getBoundingClientRect();
+  const progress = Math.min(
+    Math.max((window.innerHeight - rect.top) / window.innerHeight, 0),
+    1
+  );
+  banner.style.transform = `rotateX(${ -14 + progress * 14 }deg) translateY(${ progress * -40 }px)`;
+});
+</script>
+<script>
+document.querySelectorAll(".faq-question").forEach(button => {
+  button.addEventListener("click", () => {
+    const item = button.parentElement;
+    item.classList.toggle("active");
+  });
+});
+</script>
+
+<script>
+const growthBtn = document.getElementById("growthBtn");
+const growthMenu = document.getElementById("growthMenu");
+const userBtn = document.getElementById("userBtn");
+const userMenu = document.getElementById("userMenu");
+
+growthBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  growthMenu.classList.toggle("hidden");
+  userMenu.classList.add("hidden");
+});
+
+userBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  userMenu.classList.toggle("hidden");
+  growthMenu.classList.add("hidden");
+});
+
+// Close when clicking outside
+document.addEventListener("click", () => {
+  growthMenu?.classList.add("hidden");
+  userMenu?.classList.add("hidden");
+});
+</script> 
+</body>
+</html>
