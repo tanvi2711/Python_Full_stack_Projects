@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ResumeInputForm
 from .models import Resume
-from generativeai
+# from generativeai
 
 
 # @login_required
@@ -30,7 +30,7 @@ def create_resume(request):
     if request.method == "POST":
         form = ResumeInputForm(request.POST)
         if form.is_valid():
-            resume_text = generate_ats_resume(form.cleaned_data)
+            # resume_text = generate_ats_resume(form.cleaned_data)
 
             resume = Resume.objects.create(
                 user=request.user,
