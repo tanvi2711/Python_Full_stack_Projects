@@ -4,6 +4,7 @@ from .forms import ResumeInputForm
 from .models import Resume
 # from generativeai
 
+
 # @login_required
 # def create_resume(request):
 #     if request.method == "POST":
