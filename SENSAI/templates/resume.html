@@ -1,0 +1,41 @@
+<h1>hellow</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ resume.full_name }} - Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #000;
+      line-height: 1.5;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+<h1>{{ resume.full_name }}</h1>
+<p>{{ resume.email }} | {{ resume.phone }}</p>
+
+<h2>Professional Summary</h2>
+<p>{{ resume.summary }}</p>
+
+<h2>Skills</h2>
+<p>{{ resume.skills }}</p>
+
+<h2>Experience</h2>
+<p>{{ resume.experience }}</p>
+
+<h2>Education</h2>
+<p>{{ resume.education }}</p>
+
+{% if resume.projects %}
+<h2>Projects</h2>
+<p>{{ resume.projects }}</p>
+{% endif %}
+
+</body>
+</html>

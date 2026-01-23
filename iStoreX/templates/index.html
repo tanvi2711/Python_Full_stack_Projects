@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>iStoreX — Apple Premium Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* REMOVE LINK STYLING INSIDE CATEGORY CARDS */
+.category a{
+  text-decoration:none;
+  color:white;
+}
+
+.category a:hover{
+  color:white;
+}
+
+*{font-family:Poppins,sans-serif}
+
+body{
+  background:#000000;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.75)!important;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-link{color:white!important}
+/* NAVBAR BASE */
+.nav-link{
+  color:white!important;
+  position:relative;
+  padding-bottom:6px;
+  transition:transform .18s ease;
+  overflow:hidden;
+}
+
+/* HOVER UNDERLINE */
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#ffffff,#aaaaaa);
+  transform:translateX(-50%);
+  transition:width .35s ease;
+  border-radius:2px;
+}
+
+.nav-link:hover::after{
+  width:100%;
+}
+
+/* PRESS SCALE */
+.nav-link:active{
+  transform:scale(0.92);
+}
+
+/* RIPPLE EFFECT */
+.nav-link::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:0;
+  height:0;
+  background:rgba(255,255,255,0.18);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+
+.nav-link:active::before{
+  width:140%;
+  height:140%;
+  opacity:1;
+  transition:
+    width .45s ease,
+    height .45s ease,
+    opacity .6s ease;
+}
+
+
+/* Press down on click */
+.navbar .nav-link:active{
+  transform:scale(0.92);
+}
+
+/* Ripple circle */
+.navbar .nav-link::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:0;
+  height:0;
+  background:rgba(255,255,255,0.15);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+
+/* Ripple animation */
+.navbar .nav-link:active::before{
+  width:120%;
+  height:120%;
+  opacity:1;
+  transition:width .4s ease, height .4s ease, opacity .6s ease;
+}
+
+.navbar .nav-link{
+  position:relative;
+  padding-bottom:6px;
+}
+
+.navbar .nav-link::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#ffffff,#aaaaaa);
+  transition:.35s ease;
+  transform:translateX(-50%);
+  border-radius:2px;
+}
+
+.navbar .nav-link:hover::after{
+  width:100%;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at top,#0a0a0a,#000000);
+  position:relative;
+  overflow:hidden;
+}
+
+/* CINEMATIC LIGHT SWEEPS */
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:120%;
+  top:-10%;
+  left:-10%;
+  background:
+    linear-gradient(120deg,
+      transparent 30%,
+      rgba(255,255,255,0.04) 45%,
+      transparent 60%);
+  animation: lightSweep 12s infinite linear;
+  pointer-events:none;
+}
+
+.hero::after{
+  animation-delay:6s;
+}
+
+@keyframes lightSweep{
+  0%{transform:translateX(-40%)}
+  100%{transform:translateX(40%)}
+}
+
+/* GLASS CARD */
+.glass{
+  position:relative;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(30px);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:26px;
+  padding:55px;
+  overflow:hidden;
+  animation:fadeUp 1.2s ease;
+}
+
+/* GLASS SHINE */
+.glass::after{
+  content:"";
+  position:absolute;
+  top:-100%;
+  left:-100%;
+  width:200%;
+  height:200%;
+  background:
+    linear-gradient(120deg,
+      transparent 40%,
+      rgba(255,255,255,0.08) 50%,
+      transparent 60%);
+  animation: glassShine 8s infinite linear;
+}
+
+@keyframes glassShine{
+  0%{transform:translateX(-50%)}
+  100%{transform:translateX(50%)}
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* PRODUCT SPOTLIGHT */
+.product-spotlight{
+  position: relative;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SOFT FLOOR GLOW */
+.product-spotlight::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  background:
+    radial-gradient(circle,
+      rgba(255,255,255,0.08),
+      transparent 70%);
+  filter: blur(90px);
+  animation: glowPulse 6s infinite alternate;
+}
+
+@keyframes glowPulse{
+  from{transform:scale(1)}
+  to{transform:scale(1.12)}
+}
+
+.spotlight-img{
+  width: 420px;
+  position: relative;
+  z-index: 2;
+  filter:
+    drop-shadow(0 60px 100px rgba(0,0,0,.95));
+  animation: smoothFloat 6s ease-in-out infinite;
+}
+
+/* PRODUCT EDGE SHINE */
+.spotlight-img::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,
+      transparent 45%,
+      rgba(255,255,255,0.15) 50%,
+      transparent 55%);
+}
+
+@keyframes smoothFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+  100%{transform:translateY(0)}
+}
+
+.side-img{
+  position:absolute;
+  width:220px;
+  opacity:.6;
+  filter: drop-shadow(0 40px 70px rgba(0,0,0,.95));
+  animation: sideFloat 7s ease-in-out infinite;
+}
+
+.side-left{left:5%;top:30%}
+.side-right{right:5%;top:35%;animation-delay:2s}
+
+@keyframes sideFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
+
+/* BUTTON */
+.btn-glow{
+  position:relative;
+  background:linear-gradient(135deg,#111111,#000000);
+  border:none;
+  color:white;
+  padding:14px 36px;
+  border-radius:40px;
+  box-shadow:0 0 25px rgba(255,255,255,.15);
+  overflow:hidden;
+  transition:.4s;
+}
+
+/* BUTTON SHINE */
+.btn-glow::after{
+  content:"";
+  position:absolute;
+  top:-100%;
+  left:-100%;
+  width:200%;
+  height:200%;
+  background:
+    linear-gradient(120deg,
+      transparent 40%,
+      rgba(255,255,255,0.25) 50%,
+      transparent 60%);
+  animation: btnShine 6s infinite linear;
+}
+
+@keyframes btnShine{
+  0%{transform:translateX(-50%)}
+  100%{transform:translateX(50%)}
+}
+
+.btn-glow:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 45px rgba(255,255,255,.3);
+}
+
+/* CATEGORY */
+/* APPLE STYLE EXPLORE CARDS */
+.category{
+  height:160px;
+  border-radius:28px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(30px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  transition:.45s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* SOFT INNER GLOW */
+.category::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top,
+      rgba(255,255,255,0.06),
+      transparent 70%);
+  opacity:0;
+  transition:.45s;
+}
+
+.category:hover::before{opacity:1}
+
+.category:hover{
+  transform:translateY(-10px) scale(1.04);
+  box-shadow:0 25px 60px rgba(0,0,0,.8);
+}
+
+/* APPLE PRODUCT LOGOS */
+.category img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.95;
+  transition:.45s ease;
+}
+
+.category:hover img{
+  transform:scale(1.1);
+  opacity:1;
+}
+
+/* PRODUCT */
+.product{
+  position:relative;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:22px;
+  padding:25px;
+  transition:.5s;
+  overflow:hidden;
+}
+/* FEATURED PRODUCT IMAGE FIX */
+.product img{
+  width:100%;
+  height:240px;
+  object-fit:contain;
+  margin-bottom:15px;
+  filter:drop-shadow(0 40px 80px rgba(0,0,0,.9));
+}
+
+/* FORCE EQUAL CARD HEIGHT */
+.product{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* TITLE LOCK */
+.product h6{
+  min-height:44px;
+}
+
+.product::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,
+      transparent 45%,
+      rgba(255,255,255,0.08) 50%,
+      transparent 55%);
+  opacity:0;
+  transition:.5s;
+}
+
+.product:hover::after{opacity:1}
+
+.product:hover{
+  transform:translateY(-14px) scale(1.04);
+  box-shadow:0 30px 70px rgba(0,0,0,.9);
+}
+
+.price{color:#ffffff;font-weight:700}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+.product img{
+  transition:.6s ease;
+}
+
+.product:hover img{
+  transform:scale(1.08);
+}
+/* LOGIN BUTTON - APPLE STYLE */
+.btn-login{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 22px;
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  transition:.35s ease;
+}
+
+/* Hover glow */
+.btn-login:hover{
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 0 18px rgba(255,255,255,0.35);
+  transform:translateY(-1px);
+}
+
+/* Click press */
+.btn-login:active{
+  transform:scale(0.92);
+}
+/* FOOTER COPYRIGHT */
+.footer{
+  border-top:1px solid rgba(255,255,255,0.08);
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(20px);
+  padding:18px 0;
+  margin-top:80px;
+}
+
+.footer p{
+  margin:0;
+  font-size:14px;
+  color:rgba(255,255,255,0.7);
+  letter-spacing:.5px;
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+<a class="navbar-brand fw-bold text-white">iStoreX</a>
+<div class="collapse navbar-collapse show">
+<ul class="navbar-nav mx-auto">
+<li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
+{% for item in categories %}
+<li class="nav-item"><a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a></li>
+{% endfor %}
+</ul>
+<div class="d-flex gap-3">
+
+  <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+
+</div>
+
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+<div class="glass">
+<h1 class="display-5 fw-bold">Think Different. Shop Smarter.</h1>
+<p class="lead mt-3">
+Luxury Apple devices with futuristic shopping experience.
+</p>
+<button class="btn-glow mt-3">Shop Collection</button>
+</div>
+</div>
+
+<div class="col-lg-6">
+  <div class="product-spotlight">
+
+    <img src="https://m.media-amazon.com/images/I/61vFO3R5UNL._SX679_.jpg"
+         class="spotlight-img">
+
+    <img src="https://m.media-amazon.com/images/I/61VuVU94RnL._SX679_.jpg"
+         class="side-img side-left">
+
+    <img src="https://m.media-amazon.com/images/I/81gC7frRJyL._SX679_.jpg"
+     class="side-img side-right">
+
+
+  </div>
+</div>
+
+</div>
+</div>
+</section>
+<!-- EXPLORE APPLE -->
+<section class="py-5">
+  <div class="container text-center">
+
+    <h2 class="fw-bold mb-5 reveal">Explore Apple</h2>
+
+    <div class="row g-4 justify-content-center explore-grid">
+
+      <div class="col-md-3 col-6 reveal">
+        <div class="category">
+          <a href="{% url 'products' 'iPhone' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="iPhone">
+            <h6>iPhone</h6>
+          </a>
+          </div>
+      </div>
+
+      <div class="col-md-3 col-6 reveal">
+        <div class="category">
+          <a href="{% url 'products' 'Mac' %}">
+          <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="MacBook">
+          <h6>MacBook</h6>
+          </a>
+        </div>
+      </div>
+
+       <div class="col-md-3 col-6 reveal">
+        <div class="category">
+          <!-- ✅ FIXED -->
+          <a href="{% url 'products' 'AirPods' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="AirPods">
+            <h6>AirPods</h6>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-6 reveal">
+        <div class="category">
+          <a href="{% url 'products' 'iPad' %}">
+          <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="iPad">
+          <h6>Ipad</h6>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FEATURED PRODUCTS -->
+<section class="pb-5">
+<div class="container">
+<h2 class="fw-bold mb-4 text-center reveal">Featured Products</h2>
+
+<div class="row g-4">
+
+<div class="col-md-3 reveal">
+  <div class="product text-center">
+    <img src="https://m.media-amazon.com/images/I/61VuVU94RnL._SX679_.jpg">
+    <h6 class="mt-3">iPhone 15 Pro</h6>
+    <p class="price">₹1,29,999</p>
+  </div>
+</div>
+
+<div class="col-md-3 reveal">
+  <div class="product text-center">
+    <img src="https://m.media-amazon.com/images/I/61vFO3R5UNL._SX679_.jpg">
+    <h6 class="mt-3">MacBook Air M2</h6>
+    <p class="price">₹1,14,990</p>
+  </div>
+</div>
+
+<div class="col-md-3 reveal">
+  <div class="product text-center">
+    <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._SX679_.jpg">
+    <h6 class="mt-3">AirPods Pro</h6>
+    <p class="price">₹24,999</p>
+  </div>
+</div>
+
+<div class="col-md-3 reveal">
+  <div class="product text-center">
+    <img src="https://m.media-amazon.com/images/I/81gC7frRJyL._SX679_.jpg">
+    <h6 class="mt-3">iPad Pro M2</h6>
+    <p class="price">₹1,12,900</p>
+  </div>
+</div>
+
+
+</div>
+</div>
+</section>
+
+
+<!-- NEW ARRIVALS -->
+<section class="py-5">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-lg-5 reveal">
+  <h2 class="fw-bold display-6">New Arrivals</h2>
+  <p class="lead mt-3">The latest Apple devices. Designed to impress.</p>
+  <button class="btn-glow mt-3">View Collection</button>
+</div>
+
+<div class="col-lg-7">
+
+<div id="arrivalCarousel" class="carousel slide carousel-fade reveal" data-bs-ride="carousel">
+<div class="carousel-inner">
+
+<div class="carousel-item active text-center">
+  <img src="https://m.media-amazon.com/images/I/61vFO3R5UNL._SX679_.jpg"
+       style="height:420px;object-fit:contain;
+       filter:drop-shadow(0 80px 120px rgba(0,0,0,.9));
+       animation:smoothFloat 8s ease-in-out infinite;">
+</div>
+
+<div class="carousel-item text-center">
+  <img src="https://m.media-amazon.com/images/I/61VuVU94RnL._SX679_.jpg"
+       style="height:420px;object-fit:contain;
+       filter:drop-shadow(0 80px 120px rgba(0,0,0,.9));
+       animation:smoothFloat 8s ease-in-out infinite;">
+</div>
+
+<div class="carousel-item text-center">
+  <img src="https://m.media-amazon.com/images/I/61vFO3R5UNL._SX679_.jpg"
+     class="side-img side-right"style="height:420px;object-fit:contain;
+       filter:drop-shadow(0 80px 120px rgba(0,0,0,.9));
+       animation:smoothFloat 8s ease-in-out infinite;">
+      
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container text-center">
+    <p>© 2026 All rights reserved. • Made by Nishant Kadu</p>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("scroll",()=>{
+  document.querySelectorAll(".reveal").forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-100){
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
