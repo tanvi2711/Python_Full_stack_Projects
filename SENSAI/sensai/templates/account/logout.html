@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sign Out · SENSAI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body {
+    background: #000;
+  }
+</style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white">
+
+  <div class="w-full max-w-md rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl p-8 shadow-2xl">
+
+    <!-- LOGO -->
+    <div class="flex justify-center mb-6">
+      <div class="text-2xl font-extrabold tracking-widest">
+        <span class="text-white">SENS</span>
+        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">AI</span>
+      </div>
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="text-2xl font-semibold text-center mb-2">
+      Sign Out
+    </h1>
+
+    <p class="text-center text-gray-400 text-sm mb-8">
+      Are you sure you want to sign out of your account?
+    </p>
+
+    <!-- LOGOUT FORM -->
+    <form method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+
+      <button
+        type="submit"
+        class="w-full bg-white text-black py-3 rounded-xl font-medium hover:scale-[1.02] transition"
+      >
+        Sign Out
+      </button>
+    </form>
+
+    <!-- CANCEL -->
+    <div class="mt-6 text-center">
+      <a
+        href="/career/"
+        class="text-xs text-gray-500 hover:text-white transition"
+      >
+        Cancel & go back
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

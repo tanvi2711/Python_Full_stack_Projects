@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume Preview – SENSAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 py-12">
+
+  <div class="max-w-3xl mx-auto bg-white p-10 text-black shadow-lg">
+
+    <!-- ACTION BUTTONS -->
+    <div class="flex justify-between mb-6">
+      <a href="/career/" class="text-sm text-gray-600 hover:underline">
+        ← Back
+      </a>
+
+      <a
+        href="{% url 'resume_pdf' resume.id %}"
+        class="bg-black text-white px-4 py-2 rounded-lg text-sm"
+      >
+        Download PDF
+      </a>
+    </div>
+
+    <!-- ATS RESUME CONTENT -->
+    <pre class="whitespace-pre-wrap font-sans text-[15px] leading-6">
+{{ resume.content }}
+    </pre>
+
+  </div>
+
+</body>
+</html>
