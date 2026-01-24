@@ -13,5 +13,4 @@ urlpatterns = [
     path("logout/",auth_views.LogoutView.as_view(next_page="storeIndex"),
     name="logout"),
     path("cart/", views.cart_view, name="cart"),
-
 ]
