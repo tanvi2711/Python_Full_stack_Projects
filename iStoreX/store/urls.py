@@ -12,6 +12,6 @@ urlpatterns = [
     path("profile/", views.profile_view, name="profile"),
     path("logout/",auth_views.LogoutView.as_view(next_page="storeIndex"),
     name="logout"),
-    path("cart/<int:product_id>", views.cart_view, name="cart"),
+    path("cart/<int:product.id>", views.cart_view, name="cart"),
 
 ]
