@@ -106,18 +106,6 @@ def cart_view(request):
 
 @login_required
 def removefromcart_view(request, cart_item_id):
-    if request.method == "POST":
-        product = ProductModelClass.objects.get(id=product_id)
-        user = request.user
-
-        # prevent duplicate cart items
-        cart_item, created = CartModelClass.objects.get_or_create(
-            user=user,
-            product=product
-        )
-
-        if not created:
-            cart_item.quantity += 1
-            cart_item.save()
-
+    cart_item = CartModelClass.objects.get(id=cart_item_id)
+    cart_item.delete()
     return redirect("cart")
