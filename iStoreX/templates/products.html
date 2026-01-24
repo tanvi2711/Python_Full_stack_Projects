@@ -18,7 +18,6 @@ body{
   padding-top:76px;
 }
 
-/* BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -40,6 +39,7 @@ body::before{
   position:relative;
   padding-bottom:6px;
 }
+
 .nav-link::after{
   content:"";
   position:absolute;
@@ -51,9 +51,10 @@ body::before{
   transform:translateX(-50%);
   transition:.35s;
 }
+
 .nav-link:hover::after{width:100%}
 
-/* PAGE HEADER (APPLE STYLE) */
+/* PAGE HEADER */
 .page-header{
   padding:50px 0 30px;
   text-align:center;
@@ -66,37 +67,9 @@ body::before{
 
 .page-header p{
   color:rgba(255,255,255,.6);
-  margin-top:6px;
 }
 
-/* FILTER BAR */
-.filter-bar{
-  margin:30px 0 40px;
-  padding:16px 22px;
-  border-radius:18px;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,.12);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-
-.filter-pill{
-  padding:8px 18px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.25);
-  background:transparent;
-  color:white;
-  font-size:14px;
-  transition:.3s;
-}
-.filter-pill:hover{
-  background:rgba(255,255,255,.15);
-}
-
-/* PRODUCT GRID */
+/* PRODUCT CARD */
 .product{
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(18px);
@@ -105,28 +78,10 @@ body::before{
   padding:26px;
   transition:.45s;
   height:100%;
-  overflow:hidden;
-  position:relative;
 }
-
-.product::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    120deg,
-    transparent 45%,
-    rgba(255,255,255,.08) 50%,
-    transparent 55%
-  );
-  opacity:0;
-  transition:.45s;
-}
-
-.product:hover::after{opacity:1}
 
 .product:hover{
-  transform:translateY(-10px) scale(1.03);
+  transform:translateY(-10px);
   box-shadow:0 26px 60px rgba(0,0,0,.9);
 }
 
@@ -136,9 +91,7 @@ body::before{
   object-fit:contain;
   margin-bottom:14px;
   filter:drop-shadow(0 35px 70px rgba(0,0,0,.9));
-  transition:.45s;
 }
-.product:hover img{transform:scale(1.06)}
 
 .price{
   font-weight:600;
@@ -150,36 +103,26 @@ body::before{
   background:linear-gradient(135deg,#111,#000);
   border:none;
   color:white;
-  padding:11px 26px;
+  padding:11px;
   border-radius:40px;
-  box-shadow:0 0 22px rgba(255,255,255,.15);
-  transition:.35s;
   width:100%;
-}
-.btn-glow:hover{
-  transform:scale(1.06);
-  box-shadow:0 0 40px rgba(255,255,255,.28);
 }
 
 .btn-outline{
   border:1px solid rgba(255,255,255,.25);
-  color:white;
-  padding:11px 26px;
-  border-radius:40px;
   background:transparent;
-  transition:.35s;
+  color:white;
+  padding:11px;
+  border-radius:40px;
   width:100%;
 }
-.btn-outline:hover{
-  background:rgba(255,255,255,.15);
-}
 
-/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(30px);
   transition:.9s ease;
 }
+
 .reveal.active{
   opacity:1;
   transform:translateY(0);
@@ -208,16 +151,15 @@ body::before{
   <a href="{% url 'profile' %}" class="text-white me-3 text-decoration-none">
     Hi, {{ user.username }}
   </a>
-  <a href="{% url 'logout' %}" class="btn btn-outline-light">
-    Logout
-  </a>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-light">Logout</button>
+  </form>
 {% else %}
-  <a href="{% url 'login' %}?next={{ request.path }}"
-     class="btn btn-outline-light">
+  <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-light">
     Login
   </a>
 {% endif %}
-
 </div>
 </div>
 </nav>
@@ -225,11 +167,10 @@ body::before{
 <!-- HEADER -->
 <section class="page-header">
   <div class="container">
-    <h1>{{ category_name|default:"All Products" }}</h1>
+    <h1>{{ category_name }}</h1>
     <p>Designed to feel like Apple.</p>
   </div>
 </section>
-
 
 <!-- PRODUCTS -->
 <section class="container pb-5">
@@ -239,17 +180,30 @@ body::before{
 <div class="col-lg-3 col-md-4 col-sm-6 reveal">
   <div class="product text-center">
 
-    <img src="{{ product.image.url }}"
-         loading="lazy"
-         decoding="async"
-         alt="{{ product.name }}">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
 
-    <h6 class="fw-semibold">{{ product.name }}</h6>
+    <h6>{{ product.name }}</h6>
     <p class="price">₹ {{ product.price }}</p>
 
     <div class="d-grid gap-3">
-      <button class="btn-glow" >Add to Cart</button>
-      <button class="btn-outline">Buy Now</button>
+
+      {% if user.is_authenticated %}
+      <!-- ADD TO CART -->
+      <form method="post" action="{% url 'cart' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-glow">Add to Cart</button>
+      </form>
+
+      <!-- BUY NOW -->
+      <a href="{% url 'cart'  %}" class="btn-outline">
+        Buy Now
+      </a>
+      {% else %}
+      <a href="{% url 'login' %}?next={{ request.path }}" class="btn-glow">
+        Login to Add
+      </a>
+      {% endif %}
+
     </div>
 
   </div>
