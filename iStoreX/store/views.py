@@ -10,14 +10,14 @@ from django.contrib.auth.decorators import login_required
 
 def storeIndexView(request):
     categories=CategoryModelClass.objects.all()
-    products=ProductModelClass.objects.all()
+    products=ProductModelCLass.objects.all()
     return render(request,"index.html",{'categories':categories,'products':products})
 
 @login_required
 def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
-    products=ProductModelClass.objects.filter(category=category_obj.id)
+    products=ProductModelCLass.objects.filter(category=category_obj.id)
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
 
 def login_view(request):
@@ -77,14 +77,29 @@ def signup_view(request):
 def profile_view(request):
     return render(request, "profile.html")
 
+@login_required
+def addcart_view(request, product_id):
+    if request.method == "POST":
+        product = ProductModelCLass.objects.get(id=product_id)
+        user = request.user
+
+        # prevent duplicate cart items
+        cart_item, created = CartModelClass.objects.get_or_create(
+            user=user,
+            product=product
+        )
+
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+
+    return redirect("cart")
 
 @login_required
 def cart_view(request):
-    if request.method == "POST":
-        product = ProductModelClass.objects.get(id=product_id)
-        cart_item = CartModelClass.objects.create(user=request.user, product=product)
-        cart_item.save()
-        return redirect("storeIndex")
-    categories=CategoryModelClass.objects.all()
-    products=ProductModelClass.objects.all()
-    return render(request,"cart.html",{'products':products,'categories':categories})
+    user = request.user
+    cart_items = CartModelClass.objects.filter(user=user)
+
+    return render(request, "cart.html", {
+        "cart_items": cart_items
+    })
