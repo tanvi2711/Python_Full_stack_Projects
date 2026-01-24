@@ -80,6 +80,11 @@ def profile_view(request):
 
 @login_required
 def cart_view(request,product_id):
+    if request.method == "POST":
+        product = ProductModelClass.objects.get(id=product_id)
+        cart_item = CartModelClass.objects.create(user=request.user, product=product)
+        cart_item.save()
+        return redirect("storeIndex")
     categories=CategoryModelClass.objects.all()
     products=ProductModelClass.objects.all()
     return render(request,"cart.html",{'products':products,'categories':categories})
