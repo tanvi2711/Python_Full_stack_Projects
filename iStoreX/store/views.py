@@ -114,4 +114,7 @@ def removefromcart_view(request, cart_item_id):
 
 @login_required
 def billing_view(request):
-    pass
+    user=request.user
+    cart_items=CartModelClass.objects.filter(user=user)
+    total_amount=sum(item.product.price * item.quantity for item in cart_items)
+    return render(request,"billing.html",{'cart_items':cart_items,'total_amount':total_amount}) 
