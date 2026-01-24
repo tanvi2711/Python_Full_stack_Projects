@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +14,11 @@
   }
 </style>
 </head>
+
 <body class="min-h-screen flex justify-center py-16 text-white">
+
   <div class="w-full max-w-4xl bg-white text-black rounded-xl shadow-2xl p-10">
-    
+
     <!-- HEADER -->
     <div class="border-b pb-4 mb-6">
       <h1 class="text-3xl font-bold">{{ resume.full_name }}</h1>
@@ -24,7 +27,6 @@
       </p>
     </div>
 
-    
     <!-- SUMMARY -->
     {% if resume.summary %}
     <section class="mb-6">
@@ -55,7 +57,6 @@
     </section>
     {% endif %}
 
-
     <!-- PROJECTS -->
     {% if resume.projects %}
     <section class="mb-6">
@@ -65,7 +66,6 @@
       </p>
     </section>
     {% endif %}
-
 
     <!-- EDUCATION -->
     {% if resume.education %}
@@ -77,7 +77,6 @@
     </section>
     {% endif %}
 
-
     <!-- ACTIONS -->
     <div class="flex justify-between mt-10">
       <a
@@ -86,6 +85,7 @@
       >
         ← Edit Resume
       </a>
+
       <button
         class="bg-black text-white px-6 py-2 rounded-lg hover:opacity-90 transition"
       >
@@ -93,8 +93,7 @@
       </button>
     </div>
 
-
-
   </div>
+
 </body>
 </html>
