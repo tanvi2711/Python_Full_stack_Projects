@@ -109,3 +109,9 @@ def removefromcart_view(request, cart_item_id):
     cart_item = CartModelClass.objects.get(id=cart_item_id)
     cart_item.delete()
     return redirect("cart")
+
+
+
+@login_required
+def billing_view(request):
+    pass
