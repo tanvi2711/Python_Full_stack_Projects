@@ -8,7 +8,7 @@ class CategoryModelClass(models.Model):
     def __str__(self):
         return self.name
 
-class ProductModelCLass(models.Model):
+class ProductModelClass(models.Model):
     id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -24,7 +24,7 @@ class CartModelClass(models.Model):
         on_delete=models.CASCADE
     )
     product = models.ForeignKey(
-        ProductModelCLass,
+        ProductModelClass,
         on_delete=models.CASCADE
     )
     quantity = models.IntegerField(default=1)
