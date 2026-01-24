@@ -17,4 +17,6 @@ class ProductModelClass(Model):
     category=ForeignKey(CategoryModelClass,CASCADE,related_name='Products')
     description=TextField(max_length=300)
 
+class CartModelClass(Model):
+    id=AutoField(primary_key=True) 
     
