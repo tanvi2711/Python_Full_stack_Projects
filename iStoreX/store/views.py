@@ -76,3 +76,8 @@ def signup_view(request):
 @login_required
 def profile_view(request):
     return render(request, "profile.html")
+
+
+@login_required
+def cart_view(request):
+    return render(request, "cart.html")
