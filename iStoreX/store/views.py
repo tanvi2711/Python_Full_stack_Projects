@@ -79,7 +79,7 @@ def profile_view(request):
 
 
 @login_required
-def cart_view(request):
+def cart_view(request, caterory):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
     products=ProductModelClass.objects.filter(category=category_obj.id)
