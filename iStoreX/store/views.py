@@ -79,7 +79,7 @@ def profile_view(request):
 
 
 @login_required
-def cart_view(request,product_id):
+def cart_view(request):
     if request.method == "POST":
         product = ProductModelClass.objects.get(id=product_id)
         cart_item = CartModelClass.objects.create(user=request.user, product=product)
