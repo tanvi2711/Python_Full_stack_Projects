@@ -510,6 +510,12 @@ body{
   <a href="{% url 'profile' %}" class="text-white me-3">
     {{ user.username }}
   </a>
+  <form method="post" action="{% url 'cart' %}" class="d-inline">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-login">
+    cart
+  </button>
+</form>
   <form method="post" action="{% url 'logout' %}" class="d-inline">
   {% csrf_token %}
   <button type="submit" class="btn btn-login">
