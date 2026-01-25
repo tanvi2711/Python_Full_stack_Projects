@@ -128,16 +128,16 @@ def billing_view(request):
     total_amount = (subtotal + gst_amount + delivery_charge).quantize(
         Decimal("0.01")
     )
-    return render(request, "billing.html", {
+    return (render(request, "billing.html", {
         "cart_items": cart_items,
         "subtotal": subtotal,
         "gst_amount": gst_amount,
         "delivery_charge": delivery_charge,
         "total_amount": total_amount,
-    })
+    }),total_amount)
 
-def fake_payment_view(request):
-    final_amount=request.GET.get("amount")
+def fake_payment_view(request,total_amount):
+    final_amount=total_amount
     return render(request, "fake_payment.html")
 
 @login_required
