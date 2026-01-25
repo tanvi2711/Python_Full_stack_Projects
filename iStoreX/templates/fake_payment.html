@@ -98,7 +98,7 @@ body::before{
 
 <div class="payment-card">
   <h2>Secure Payment</h2>
-  <p>Total Payable: ₹ {{ final_amount }}</p>
+  <p>Total Payable: ₹ {{ total_amount }}</p>
 
   <form method="post">
     {% csrf_token %}
@@ -118,9 +118,12 @@ body::before{
 
     <input type="text" class="form-control mb-3" placeholder="Card Holder Name" value="Demo User">
 
-    <button type="submit" class="btn-pay">
-      Pay ₹ {{ final_amount }}
-    </button>
+    <a href="{% url 'payment_success' %}">
+      <button type="button" class="btn-pay">
+        Pay ₹ {{ total_amount }}
+      </button>
+    </a>
+
   </form>
 
   <div class="secure-text">

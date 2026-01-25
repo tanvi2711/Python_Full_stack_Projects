@@ -128,19 +128,57 @@ def billing_view(request):
     total_amount = (subtotal + gst_amount + delivery_charge).quantize(
         Decimal("0.01")
     )
-    return (render(request, "billing.html", {
+
+    return render(request, "billing.html", {
         "cart_items": cart_items,
         "subtotal": subtotal,
         "gst_amount": gst_amount,
         "delivery_charge": delivery_charge,
         "total_amount": total_amount,
-    }),total_amount)
+    })
 
-def fake_payment_view(request,total_amount):
-    final_amount=total_amount
-    return render(request, "fake_payment.html")
+@login_required
+def buy_now_view(request, product_id):
+    product = ProductModelClass.objects.get(id=product_id)
+
+    # Clear existing cart (Buy Now = single product checkout)
+    CartModelClass.objects.filter(user=request.user).delete()
+
+    # Add selected product to cart
+    CartModelClass.objects.create(
+        user=request.user,
+        product=product,
+        quantity=1
+    )
+
+    # Redirect directly to billing page
+    return redirect("billing")
+
+def fake_payment_view(request):
+    user = request.user
+    cart_items = CartModelClass.objects.filter(user=user)
+
+    subtotal = sum(
+        item.product.price * item.quantity
+        for item in cart_items
+    )
+
+    gst_rate = Decimal("0.18")   # 18% GST
+    gst_amount = (subtotal * gst_rate).quantize(Decimal("0.01"))
+
+    delivery_charge = Decimal("99.00") if subtotal > 0 else Decimal("0.00")
+
+    total_amount = (subtotal + gst_amount + delivery_charge).quantize(
+        Decimal("0.01")
+    )
+    return render(request, "fake_payment.html", {
+        "total_amount": total_amount
+    })
 
 @login_required
 def payment_success_view(request):
     CartModelClass.objects.filter(user=request.user).delete()
     return render(request, "payment_success.html")
+
+def collections_view(request):
+    pass
