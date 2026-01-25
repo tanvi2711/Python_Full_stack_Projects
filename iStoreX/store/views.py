@@ -11,13 +11,13 @@ from django.contrib.auth.decorators import login_required
 
 def storeIndexView(request):
     categories=CategoryModelClass.objects.all()
-    products=ProductModelCLass.objects.all()
+    products=ProductModelClass.objects.all()
     return render(request,"index.html",{'categories':categories,'products':products})
 
 def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
-    products=ProductModelCLass.objects.filter(category=category_obj.id)
+    products=ProductModelClass.objects.filter(category=category_obj.id)
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
 
 def login_view(request):
@@ -80,7 +80,7 @@ def profile_view(request):
 @login_required
 def addcart_view(request,product_id):
     if request.method == "POST":
-        product = ProductModelCLass.objects.get(id=product_id)
+        product = ProductModelClass.objects.get(id=product_id)
         user = request.user
 
         # prevent duplicate cart items
