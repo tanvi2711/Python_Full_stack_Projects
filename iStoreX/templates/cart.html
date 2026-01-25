@@ -82,7 +82,6 @@ body::before{
   color:rgba(255,255,255,.7);
 }
 
-/* PRICE */
 .cart-price{
   font-weight:600;
   margin-top:6px;
@@ -104,6 +103,13 @@ body::before{
 .btn-glow:hover{
   transform:scale(1.05);
   box-shadow:0 0 45px rgba(255,255,255,.3);
+}
+
+/* PROCEED BUTTON */
+.btn-proceed{
+  background:linear-gradient(135deg,#1a1a1a,#000);
+  padding:14px 40px;
+  font-size:16px;
 }
 
 /* EMPTY CART */
@@ -145,22 +151,23 @@ body::before{
         <h5>{{ item.product.name }}</h5>
         <p>Quantity: {{ item.quantity }}</p>
         <div class="cart-price">₹ {{ item.product.price }}</div>
-        
-    </div>
-        <a href="{% url 'removefromcart' item.id %}" class="btn-glow">Remove</a>
-    
+      </div>
+
+      <a href="{% url 'removefromcart' item.id %}" class="btn-glow">
+        Remove
+      </a>
     </div>
     {% endfor %}
 
-    <div class="text-center mt-5">
+    <!-- ACTION BUTTONS -->
+    <div class="text-center mt-5 d-flex justify-content-center gap-4 flex-wrap">
       <a href="{% url 'storeIndex' %}" class="btn-glow">
         Continue Shopping
       </a>
-    </div>
 
-    <div class="text-center mt-5">
-      <a href="{% url 'billing' %}" class="btn-glow">
-       Proceed to Buy
+      <!-- ✅ PROCEED TO BUY -->
+      <a href="{% url 'billing' %}" class="btn-glow btn-proceed">
+        Proceed to Buy
       </a>
     </div>
 

@@ -3,6 +3,7 @@ from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from .models import *
+from decimal import Decimal
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -10,14 +11,13 @@ from django.contrib.auth.decorators import login_required
 
 def storeIndexView(request):
     categories=CategoryModelClass.objects.all()
-    products=ProductModelClass.objects.all()
+    products=ProductModelCLass.objects.all()
     return render(request,"index.html",{'categories':categories,'products':products})
 
-@login_required
 def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
-    products=ProductModelClass.objects.filter(category=category_obj.id)
+    products=ProductModelCLass.objects.filter(category=category_obj.id)
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
 
 def login_view(request):
@@ -78,9 +78,9 @@ def profile_view(request):
     return render(request, "profile.html")
 
 @login_required
-def addcart_view(request, product_id):
+def addcart_view(request,product_id):
     if request.method == "POST":
-        product = ProductModelClass.objects.get(id=product_id)
+        product = ProductModelCLass.objects.get(id=product_id)
         user = request.user
 
         # prevent duplicate cart items
@@ -103,18 +103,44 @@ def cart_view(request):
     return render(request, "cart.html", {
         "cart_items": cart_items
     })
-
+    
 @login_required
-def removefromcart_view(request, cart_item_id):
+def removefromcart_view(request,cart_item_id):
     cart_item = CartModelClass.objects.get(id=cart_item_id)
     cart_item.delete()
     return redirect("cart")
 
-
-
 @login_required
 def billing_view(request):
-    user=request.user
-    cart_items=CartModelClass.objects.filter(user=user)
-    total_amount=sum(item.product.price * item.quantity for item in cart_items)
-    return render(request,"billing.html",{'cart_items':cart_items,'total_amount':total_amount}) 
+    user = request.user
+    cart_items = CartModelClass.objects.filter(user=user)
+
+    subtotal = sum(
+        item.product.price * item.quantity
+        for item in cart_items
+    )
+
+    gst_rate = Decimal("0.18")   # 18% GST
+    gst_amount = (subtotal * gst_rate).quantize(Decimal("0.01"))
+
+    delivery_charge = Decimal("99.00") if subtotal > 0 else Decimal("0.00")
+
+    total_amount = (subtotal + gst_amount + delivery_charge).quantize(
+        Decimal("0.01")
+    )
+    return render(request, "billing.html", {
+        "cart_items": cart_items,
+        "subtotal": subtotal,
+        "gst_amount": gst_amount,
+        "delivery_charge": delivery_charge,
+        "total_amount": total_amount,
+    })
+
+def fake_payment_view(request):
+    final_amount=request.GET.get("amount")
+    return render(request, "fake_payment.html")
+
+@login_required
+def payment_success_view(request):
+    CartModelClass.objects.filter(user=request.user).delete()
+    return render(request, "payment_success.html")
