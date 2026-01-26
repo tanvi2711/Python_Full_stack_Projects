@@ -11,6 +11,21 @@
 <style>
   *{font-family:Poppins,sans-serif}
 
+  body{
+  background:#000;
+  color:white;
+  min-height:100vh;
+  padding-top:80px;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#0a0a0a,#000);
+  z-index:-1;
+}
+
 </style>
 </head>
 
