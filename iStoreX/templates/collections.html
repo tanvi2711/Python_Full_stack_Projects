@@ -184,7 +184,7 @@ body::before{
       {% for product in cat.products %}
       <div class="col-lg-3 col-md-4 col-sm-6 reveal">
         <div class="product text-center">
-          <img src="{{ product.image }}">
+          <img src="{{ product.image.url }}">
           <h6 class="mt-3">{{ product.name }}</h6>
           <p class="price">₹ {{ product.price }}</p>
         </div>
