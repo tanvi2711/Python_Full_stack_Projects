@@ -28,7 +28,6 @@ body::before{
 
 /* NAVBAR */
 .navbar{
-  height:76px;
   backdrop-filter:blur(20px);
   background:rgba(0,0,0,.78)!important;
   border-bottom:1px solid rgba(255,255,255,0.08);
@@ -38,6 +37,8 @@ body::before{
   color:white!important;
   position:relative;
   padding-bottom:6px;
+  transition:transform .18s ease;
+  overflow:hidden;
 }
 
 .nav-link::after{
@@ -47,12 +48,60 @@ body::before{
   bottom:0;
   width:0%;
   height:2px;
-  background:linear-gradient(90deg,#fff,#aaa);
+  background:linear-gradient(90deg,#ffffff,#aaaaaa);
   transform:translateX(-50%);
-  transition:.35s;
+  transition:width .35s ease;
+  border-radius:2px;
 }
 
 .nav-link:hover::after{width:100%}
+
+.nav-link:active{
+  transform:scale(0.92);
+}
+
+/* LOGIN BUTTON */
+.btn-login{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 22px;
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  transition:.35s ease;
+}
+
+.btn-login:hover{
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 0 18px rgba(255,255,255,0.35);
+  transform:translateY(-1px);
+}
+
+.btn-login:active{
+  transform:scale(0.92);
+}
+
+/* USER PILL */
+.user-pill{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 18px;
+  border-radius:999px;
+  backdrop-filter:blur(20px);
+  font-size:14px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:.35s ease;
+}
+
+.user-pill:hover{
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 0 18px rgba(255,255,255,0.35);
+  transform:translateY(-1px);
+}
 
 /* PAGE HEADER */
 .page-header{
@@ -134,34 +183,47 @@ body::before{
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
-<div class="container">
-<a class="navbar-brand fw-bold text-white">iStoreX</a>
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white">iStoreX</a>
 
-<div class="collapse navbar-collapse show">
-<ul class="navbar-nav mx-auto">
-<li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
-{% for item in categories %}
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
-</li>
-{% endfor %}
-</ul>
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'storeIndex' %}">Home</a>
+        </li>
 
-{% if user.is_authenticated %}
-  <a href="{% url 'profile' %}" class="text-white me-3 text-decoration-none">
-    Hi, {{ user.username }}
-  </a>
-  <form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-outline-light">Logout</button>
-  </form>
-{% else %}
-  <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-light">
-    Login
-  </a>
-{% endif %}
-</div>
-</div>
+        {% for item in categories %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'products' item.name %}">
+            {{ item.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="d-flex gap-3 align-items-center">
+        {% if user.is_authenticated %}
+          <a href="{% url 'profile' %}" class="user-pill">
+            👤 {{ user.username }}
+          </a>
+
+          <form method="post" action="{% url 'cart' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-login">Cart</button>
+          </form>
+
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-login">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
+            Login
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- HEADER -->
@@ -179,23 +241,18 @@ body::before{
 {% for product in products %}
 <div class="col-lg-3 col-md-4 col-sm-6 reveal">
   <div class="product text-center">
-
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
-
     <h6>{{ product.name }}</h6>
     <p class="price">₹ {{ product.price }}</p>
 
     <div class="d-grid gap-3">
-
       {% if user.is_authenticated %}
-      <!-- ADD TO CART -->
       <form method="post" action="{% url 'addcart' product.id %}">
         {% csrf_token %}
         <button type="submit" class="btn-glow">Add to Cart</button>
       </form>
 
-      <!-- BUY NOW -->
-      <a href="{% url 'cart'  %}" class="btn-outline">
+      <a href="{% url 'buy_now' product.id %}" class="btn-outline">
         Buy Now
       </a>
       {% else %}
@@ -203,9 +260,7 @@ body::before{
         Login to Add
       </a>
       {% endif %}
-
     </div>
-
   </div>
 </div>
 {% endfor %}
