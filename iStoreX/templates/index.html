@@ -474,6 +474,28 @@ body{
 .btn-login:active{
   transform:scale(0.92);
 }
+/* USER NAME PILL */
+.user-pill{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 18px;
+  border-radius:999px;
+  backdrop-filter:blur(20px);
+  font-size:14px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:.35s ease;
+}
+
+.user-pill:hover{
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 0 18px rgba(255,255,255,0.35);
+  transform:translateY(-1px);
+}
+
 /* FOOTER COPYRIGHT */
 .footer{
   border-top:1px solid rgba(255,255,255,0.08);
@@ -500,6 +522,7 @@ body{
 <div class="collapse navbar-collapse show">
 <ul class="navbar-nav mx-auto">
 <li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
+
 {% for item in categories %}
 <li class="nav-item"><a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a></li>
 {% endfor %}
@@ -507,13 +530,14 @@ body{
 <div class="d-flex gap-3">
 
 {% if user.is_authenticated %}
-  <a href="{% url 'profile' %}" class="text-white me-3 p-3">
-    {{ user.username }}
-  </a>
+ <a href="{% url 'profile' %}" class="user-pill">
+  👤 {{ user.username }}
+</a>
+
   <form method="post" action="{% url 'cart' %}" class="d-inline">
   {% csrf_token %}
   <button type="submit" class="btn btn-login">
-    cart
+    Cart
   </button>
 </form>
   <form method="post" action="{% url 'logout' %}" class="d-inline">
@@ -523,12 +547,14 @@ body{
   </button>
 </form>
 
+
 {% else %}
   <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
     Login
   </a>
   {% endif %}
-
+  
+</div>
 </div>
 </div>
 </nav>
@@ -543,7 +569,15 @@ body{
 <p class="lead mt-3">
 Luxury Apple devices with futuristic shopping experience.
 </p>
-<button class="btn-glow mt-3">Shop Collection</button>
+<div>
+
+  <button class="btn-glow mt-3"
+          onclick="window.location.href='{% url 'collections' %}'">
+    View Collection
+  </button>
+</div>
+
+
 </div>
 </div>
 
@@ -604,7 +638,7 @@ Luxury Apple devices with futuristic shopping experience.
 
       <div class="col-md-3 col-6 reveal">
         <div class="category">
-          <a href="{% url 'products' 'Ipad' %}">
+          <a href="{% url 'products' 'iPad' %}">
           <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Ipad">
           <h6>Ipad</h6>
           </a>
@@ -670,7 +704,9 @@ Luxury Apple devices with futuristic shopping experience.
 <div class="col-lg-5 reveal">
   <h2 class="fw-bold display-6">New Arrivals</h2>
   <p class="lead mt-3">The latest Apple devices. Designed to impress.</p>
-  <button class="btn-glow mt-3">View Collection</button>
+  <a href="{% url 'collections' %}">
+    <button class="btn-glow mt-3">View Collection</button>
+  </a>
 </div>
 
 <div class="col-lg-7">
@@ -710,7 +746,7 @@ Luxury Apple devices with futuristic shopping experience.
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container text-center">
-    <p>© 2026 All rights reserved. • Made by Tanvi Jivatode</p>
+    <p>© 2026 All rights reserved. • Made by Nishant Kadu</p>
   </div>
 </footer>
 
