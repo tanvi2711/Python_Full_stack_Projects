@@ -3,12 +3,6 @@
 EcomApp is a Django-based e-commerce web application designed to demonstrate backend development fundamentals, database-driven functionality, and a clean, scalable project architecture aligned with industry best practices.
 ___________________________________________________________________________________________________________________________________________________
 
-🌐 Live Demo
-
-The application is deployed and accessible here:  
--
-___________________________________________________________________________________________________________________________________________________
-
 📌 Overview
 
 This project focuses on building a functional e-commerce system using Django, showcasing real-world backend workflows such as data modeling, URL routing, and server-side template rendering.
