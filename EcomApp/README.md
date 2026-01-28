@@ -47,17 +47,3 @@ pip install -r requirements.txt
 python manage.py migrate
 
 python manage.py runserver
-___________________________________________________________________________________________________________________________________________________
-
-🎯 Purpose
-
-This project is built to demonstrate industry-relevant Django development skills suitable for entry-level Python developer and backend engineering roles.
-___________________________________________________________________________________________________________________________________________________
-
-👩‍💻 Author
-
-Tanvi Jivatode
-
-Python Full Stack Developer
-
-GitHub: https://github.com/tanvi2711

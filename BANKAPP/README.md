@@ -31,21 +31,5 @@ pip install -r requirements.txt
 
 python app.py
 
-
 Application runs at:
 http://127.0.0.1:5000/
-
-___________________________________________________________________________________________________________________________________________________
-
-🎯 Purpose
-
-Designed to demonstrate Flask backend development, CRUD operations, session-based authentication, and real-world business logic, making it suitable for portfolio and entry-level backend roles.
-___________________________________________________________________________________________________________________________________________________
-
-👩‍💻 Author
-
-Tanvi Jivatode
-
-Python | Flask | Django | Web Development
-
-GitHub: https://github.com/tanvi2711
