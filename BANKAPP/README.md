@@ -33,3 +33,10 @@ python app.py
 
 Application runs at:
 http://127.0.0.1:5000/
+
+Default Admin Login:
+
+Username: bank_admin
+
+Password: 12345
+
