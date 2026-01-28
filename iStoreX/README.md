@@ -32,7 +32,6 @@ ________________________________________________________________________________
 
 ▶️ Run Locally
 
-
 git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
 
 cd Python_Full_stack_Projects/iStoreX
