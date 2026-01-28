@@ -22,6 +22,7 @@ Database: SQLite3
 ___________________________________________________________________________________________________________________________________________________
 
 ⚙️ Run Locally
+
 git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
 
 cd Python_Full_stack_Projects/BANKAPP
@@ -44,5 +45,7 @@ ________________________________________________________________________________
 👩‍💻 Author
 
 Tanvi Jivatode
+
 Python | Flask | Django | Web Development
+
 GitHub: https://github.com/tanvi2711
