@@ -3,12 +3,6 @@
 BANKAPP is a Flask-based banking web application that implements core banking workflows, including user authentication, account management, and secure financial transactions. The project follows backend best practices and mirrors real-world banking logic.
 ___________________________________________________________________________________________________________________________________________________
 
-🌐 Live Demo
-
-The application is deployed and accessible here:  
--
-___________________________________________________________________________________________________________________________________________________
-
 🚀 Key Features
 
 * Secure user registration and login using Flask sessions
