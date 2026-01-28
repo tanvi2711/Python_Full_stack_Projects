@@ -44,6 +44,9 @@ ________________________________________________________________________________
  
 ▶️ How to Run Locally
 
+git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
+
+cd Python_Full_stack_Projects/EcomApp
 
 pip install -r requirements.txt
 
