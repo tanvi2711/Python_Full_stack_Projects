@@ -14,6 +14,7 @@ BANKAPP is a Flask-based banking web application that implements core banking wo
 
 
 🛠️ Tech Stack
+
 Backend: Python, Flask
 Frontend: HTML, CSS, Bootstrap
 Database: SQLite3
@@ -32,10 +33,12 @@ http://127.0.0.1:5000/
 
 
 🎯 Purpose
+
 Designed to demonstrate Flask backend development, CRUD operations, session-based authentication, and real-world business logic, making it suitable for portfolio and entry-level backend roles.
 
 
 👩‍💻 Author
+
 Tanvi Jivatode
 Python | Flask | Django | Web Development
 GitHub: https://github.com/tanvi2711
