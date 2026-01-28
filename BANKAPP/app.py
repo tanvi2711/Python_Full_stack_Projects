@@ -14,7 +14,7 @@ def index():
 def checklogin():
     userid=request.form['userid']
     password=request.form['password']
-    if userid=='Tanvi' and password=='1234':
+    if userid=='bank_admin' and password=='12345':
         return redirect("home")
     else:
         return "login Failed"
@@ -124,6 +124,7 @@ def statements():
 @app.route('/logout')
 def logout():
     return render_template('logout.html')
+
 
 
 
