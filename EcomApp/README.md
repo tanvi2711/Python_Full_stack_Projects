@@ -1,21 +1,20 @@
 🛒 EcomApp — Django E-Commerce Application
 
-EcomApp is a Django-based e-commerce web application designed to demonstrate backend development fundamentals, database-driven functionality, and a clean, scalable project architecture aligned with industry best practices.
+EcomApp is a Django-based e-commerce web application demonstrating backend development fundamentals, database-driven functionality, and clean project architecture.
 ___________________________________________________________________________________________________________________________________________________
 
 📌 Overview
 
-This project focuses on building a functional e-commerce system using Django, showcasing real-world backend workflows such as data modeling, URL routing, and server-side template rendering.
+The project showcases real-world Django workflows, including data modeling, URL routing, template rendering, and admin-based data management.
 ___________________________________________________________________________________________________________________________________________________
 
 🧠 Key Features
 
-- Product listing and detail pages
-- Database integration using Django ORM
-- Dynamic page rendering with Django templates
-- Admin panel for managing products and application data
-- Modular and structured Django app design
-- Static and media file handling
+- Product listing and detail pages  
+- Django ORM–based database integration  
+- Dynamic server-side rendering with templates  
+- Admin panel for product management  
+- Modular and structured Django app design 
 ___________________________________________________________________________________________________________________________________________________
 
 🛠️ Tech Stack
@@ -24,16 +23,6 @@ ________________________________________________________________________________
 - Frontend: HTML, CSS, Bootstrap  
 - Database: SQLite  
 - Tools: Git, GitHub  
-___________________________________________________________________________________________________________________________________________________
-
-📁 Project Structure
-
-The project follows Django’s standard architecture, including:
-- Models for database schema design
-- Views for backend business logic
-- URL routing for application navigation
-- Templates for frontend rendering
-- Admin configuration for backend management
 ___________________________________________________________________________________________________________________________________________________
  
 ▶️ How to Run Locally
