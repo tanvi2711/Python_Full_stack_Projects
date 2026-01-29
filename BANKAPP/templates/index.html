@@ -1,155 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Management System | Login</title>
-    <style>
-        /* ---------- Global Reset ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Management System | Login</title>
+<style>
+:root{
+    --primary:#2563eb;
+    --accent:#38bdf8;
+    --glass:rgba(255,255,255,0.75);
+    --shadow:rgba(0,0,0,0.15);
+}
 
-        /* ---------- Body Styling ---------- */
-        body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #2c3e50;
-        }
+/* ---------- GLOBAL RESET ---------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter','Poppins',sans-serif;
+}
 
-        /* ---------- Login Container ---------- */
-        .login-container {
-            background: #ffffff;
-            padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#e0e7ff,#f8fafc);
+}
 
-        .login-container:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-        }
+/* ---------- LOGIN CARD ---------- */
+.login-container{
+    background:var(--glass);
+    backdrop-filter:blur(12px);
+    padding:45px 50px;
+    border-radius:22px;
+    max-width:420px;
+    width:95%;
+    box-shadow:0 20px 40px var(--shadow);
+    transition:0.3s;
+}
 
+.login-container:hover{
+    transform:translateY(-3px);
+    box-shadow:0 28px 50px rgba(0,0,0,.25);
+}
 
-        hr {
-            border: none;
-            height: 3px;
-            width: 80px;
-            background: linear-gradient(to right, #3498db, #2c80b4);
-            border-radius: 5px;
-            margin: 18px auto 25px;
-        }
+.login-container h1{
+    text-align:center;
+    font-size:2rem;
+    color:#1e3d58;
+    margin-bottom:12px;
+    letter-spacing:0.5px;
+}
 
-        /* ---------- Labels ---------- */
-        h3 {
-            color: #34495e;
-            text-align: left;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
+.login-container hr{
+    border:none;
+    height:3px;
+    width:80px;
+    border-radius:5px;
+    background:linear-gradient(to right,var(--primary),var(--accent));
+    margin:15px auto 30px;
+}
 
-        /* ---------- Input Fields ---------- */
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d9e6;
-            border-radius: 8px;
-            font-size: 15px;
-            background: #f9fbfc;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
+/* ---------- FORM ---------- */
+form h3{
+    font-size:15px;
+    font-weight:600;
+    color:#34495e;
+    margin-bottom:6px;
+    text-align:left;
+}
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #3498db;
-            background: #ffffff;
-            box-shadow: 0 0 8px rgba(52, 152, 219, 0.25);
-            outline: none;
-        }
+input[type="text"],
+input[type="password"]{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid #c7d2fe;
+    background:#f9fbfc;
+    margin-bottom:18px;
+    transition:0.3s;
+    font-size:15px;
+}
 
-        /* ---------- Submit Button ---------- */
-        input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+input[type="text"]:focus,
+input[type="password"]:focus{
+    outline:none;
+    border-color:var(--primary);
+    background:#ffffff;
+    box-shadow:0 0 10px rgba(37,99,235,0.2);
+}
 
-        input[type="submit"]:hover {
-            background: linear-gradient(135deg, #2980b9, #2471a3);
-            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
-            transform: translateY(-2px);
-        }
+input[type="submit"]{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-        /* ---------- Footer Text ---------- */
-        .footer-text {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
+input[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 24px rgba(37,99,235,.3);
+}
 
-        .footer-text a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-        }
+/* ---------- FOOTER ---------- */
+.footer-text{
+    margin-top:18px;
+    font-size:14px;
+    color:#555;
+    text-align:center;
+}
 
-        .footer-text a:hover {
-            text-decoration: underline;
-        }
+.footer-text a{
+    color:var(--primary);
+    font-weight:600;
+    text-decoration:none;
+    transition:0.3s;
+}
 
-        /* ---------- Responsive Design ---------- */
-        @media (max-width: 500px) {
-            .login-container {
-                padding: 35px 25px;
-                border-radius: 12px;
-            }
+.footer-text a:hover{
+    text-decoration:underline;
+}
 
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:500px){
+    .login-container{
+        padding:35px 25px;
+        border-radius:16px;
+    }
+
+    .login-container h1{
+        font-size:1.6rem;
+    }
+}
+</style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Bank Management System</h1>
-        <hr>
+<div class="login-container">
+    <h1>Bank Management System</h1>
+    <hr>
 
-        <form action="{{ url_for('checklogin') }}" method="post">
-            <h3>Userid</h3>
-            <input type="text" name="userid" placeholder="Enter your User ID" required>
+    <form action="{{ url_for('checklogin') }}" method="post">
+        <h3>User ID</h3>
+        <input type="text" name="userid" placeholder="Enter your User ID" required>
 
-            <h3>Password</h3>
-            <input type="password" name="password" placeholder="Enter your Password" required>
+        <h3>Password</h3>
+        <input type="password" name="password" placeholder="Enter your Password" required>
 
-            <input type="submit" value="Login">
-        </form>
+        <input type="submit" value="Login">
+    </form>
 
-        <p class="footer-text">
-            © 2025 SecureBank | <a href="#">Privacy Policy</a>
-        </p>
-    </div>
+    <p class="footer-text">
+        © 2026 SecureBank | <a href="#">Privacy Policy</a>
+    </p>
+</div>
 </body>
 </html>
