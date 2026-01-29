@@ -1,167 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Deposit Amount</title>
-    <style>
-        /* ----------- Global Page Style ----------- */
-        body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<meta charset="UTF-8">
+<title>Deposit Amount</title>
 
-        /* ----------- Form Container ----------- */
-        form {
-            background: #ffffff;
-            padding: 40px 50px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+<style>
+:root{
+    --primary:#2563eb;
+    --accent:#38bdf8;
+    --dark:#020617;
+    --glass:rgba(255,255,255,0.75);
+}
 
-        form:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
-        }
+/* ---------- GLOBAL ---------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter','Poppins',sans-serif;
+}
 
-        /* ----------- Heading ----------- */
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            color: #1e3d58;
-            letter-spacing: 0.5px;
-        }
+body{
+    background:linear-gradient(135deg,#e0e7ff,#f8fafc);
+    min-height:100vh;
+}
 
-        hr {
-            border: none;
-            height: 3px;
-            background: linear-gradient(to right, #3498db, #2c80b4);
-            border-radius: 5px;
-            margin-bottom: 25px;
-        }
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+    width:260px;
+    background:linear-gradient(180deg,#020617,#0f172a);
+    color:#e5e7eb;
+    padding:30px 20px;
+    position:fixed;
+    height:100%;
+}
 
-        /* ----------- Labels & Inputs ----------- */
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #34495e;
-            font-weight: 600;
-            font-size: 15px;
-        }
+.sidebar h1{
+    text-align:center;
+    margin-bottom:35px;
+}
 
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d9e6;
-            border-radius: 8px;
-            font-size: 15px;
-            color: #333;
-            transition: all 0.3s ease;
-            background-color: #f9fbfc;
-        }
+.sidebar a{
+    display:block;
+    padding:14px 18px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#cbd5f5;
+    margin-bottom:12px;
+    transition:.3s;
+}
 
-        input[type="text"]:focus,
-        input[type="number"]:focus {
-            border-color: #3498db;
-            background-color: #fff;
-            box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
-            outline: none;
-        }
+.sidebar a:hover,
+.sidebar a.active{
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;
+    transform:translateX(6px);
+}
 
-        /* ----------- Submit Button ----------- */
-        input[type="submit"] {
-            width: 100%;
-            background: linear-gradient(135deg, #3498db, #2c80b4);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+/* ---------- MENU TOGGLE ---------- */
+.menu-toggle{
+    position:fixed;
+    top:22px;
+    left:22px;
+    width:46px;
+    height:46px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;
+    cursor:pointer;
+    z-index:2000;
+}
 
-        input[type="submit"]:hover {
-            background: linear-gradient(135deg, #2980b9, #2471a3);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.25);
-        }
+/* ---------- MAIN ---------- */
+.main{
+    margin-left:260px;
+    padding:40px;
+}
 
-        /* ----------- Message Box ----------- */
-        #message {
-            margin-top: 25px;
-            padding: 12px 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 15px;
-            animation: fadeIn 0.5s ease;
-        }
+/* ---------- TOP BAR ---------- */
+.top-bar{
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:18px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
 
-        .success {
-            background-color: #e8f8f5;
-            color: #1abc9c;
-            border: 1px solid #a3e4d7;
-        }
+/* ---------- FORM CARD ---------- */
+.card{
+    max-width:460px;
+    margin:40px auto;
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    border-radius:22px;
+    padding:35px 40px;
+    box-shadow:0 25px 45px rgba(0,0,0,.12);
+}
 
-        .error {
-            background-color: #fdecea;
-            color: #e74c3c;
-            border: 1px solid #f5b7b1;
-        }
+.card h2{
+    text-align:center;
+    margin-bottom:15px;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ----------- Responsive Design ----------- */
-        @media (max-width: 600px) {
-            form {
-                padding: 30px 25px;
-                max-width: 90%;
-            }
+.card hr{
+    height:3px;
+    border:none;
+    border-radius:5px;
+    background:linear-gradient(to right,var(--primary),var(--accent));
+    margin-bottom:25px;
+}
 
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
+label{
+    display:block;
+    font-weight:600;
+    margin-bottom:6px;
+}
 
-    </style>
+input{
+    width:100%;
+    padding:13px 16px;
+    margin-bottom:18px;
+    border-radius:10px;
+    border:1px solid #c7d2fe;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.2);
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(37,99,235,.35);
+}
+
+/* ---------- MESSAGE ---------- */
+#message{
+    margin-top:18px;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:600;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+    .menu-toggle{display:flex;}
+    .sidebar{left:-280px;transition:.4s;}
+    .sidebar.active{left:0;}
+    .main{margin-left:0;padding:25px 20px;}
+    .top-bar{padding-left:80px;}
+}
+</style>
 </head>
+
 <body>
-    <form action="" method="post">
-        <h1>Deposit Amount</h1>
+
+<div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h1>🏦 Bank Dashboard</h1>
+    <a href="{{url_for('openaccount')}}">Open Account</a>
+    <a href="{{url_for('allaccounts')}}">All Accounts</a>
+    <a href="{{url_for('searchaccounts')}}">Search Account</a>
+    <a href="{{url_for('deposit')}}" class="active">Deposit Amount</a>
+    <a href="{{url_for('withdraw')}}">Withdraw Amount</a>
+    <a href="{{url_for('statements')}}">Account Statement</a>
+    <a href="{{url_for('logout')}}">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="top-bar">
+        <div>
+            <strong>Welcome, Admin</strong><br>
+            <small id="time"></small>
+        </div>
+        <div>🔔 👤</div>
+    </div>
+
+    <div class="card">
+        <h2>Deposit Amount</h2>
         <hr>
 
-        <label for="accno">Enter Account Number</label>
-        <input type="text" name="accno" id="accno" placeholder="e.g. 1234567890" required>
+        <form method="post">
+            <label>Account Number</label>
+            <input type="text" name="accno" required placeholder="Enter account number">
 
-        <label for="amount">Enter Amount</label>
-        <input type="number" name="amount" id="amount" min="1" placeholder="Enter deposit amount" required>
+            <label>Amount</label>
+            <input type="number" name="amount" min="1" required placeholder="Enter deposit amount">
 
-        <input type="submit" value="Deposit">
-    </form>
+            <button type="submit">💰 Deposit</button>
+        </form>
 
-    {% if msg %}
-    <div id="message" class="{{msg_type}}">
-        {{msg}}
+        {% if msg %}
+        <div id="message" class="{{msg_type}}">
+            {{msg}}
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
+
+</div>
+
+<script>
+function toggleSidebar(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+setInterval(()=>{
+    document.getElementById("time").innerText=new Date().toLocaleString();
+},1000);
+</script>
+
 </body>
 </html>
-
-
-
-
