@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Premium Bank Dashboard</title>
+<title>Bank Dashboard</title>
 
 <style>
-/* ---------- ROOT COLORS ---------- */
 :root {
     --primary: #2563eb;
-    --secondary: #0f172a;
     --accent: #38bdf8;
+    --dark: #020617;
     --bg: #f1f5f9;
     --glass: rgba(255,255,255,0.75);
     --border: rgba(255,255,255,0.3);
 }
 
-/* ---------- GLOBAL ---------- */
 * {
     margin: 0;
     padding: 0;
@@ -24,10 +22,10 @@
 }
 
 body {
-    height: 100vh;
     display: flex;
+    height: 100vh;
     background: linear-gradient(135deg, #e0e7ff, #f8fafc);
-    color: #0f172a;
+    color: #020617;
 }
 
 /* ---------- SIDEBAR ---------- */
@@ -36,38 +34,73 @@ body {
     background: linear-gradient(180deg, #020617, #0f172a);
     color: #e5e7eb;
     padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    transition: 0.4s;
+    z-index: 1000;
 }
 
 .sidebar h1 {
-    font-size: 22px;
-    margin-bottom: 40px;
     text-align: center;
-    letter-spacing: 1px;
+    margin-bottom: 35px;
+    font-size: 22px;
 }
 
-.sidebar a {
-    color: #cbd5f5;
-    text-decoration: none;
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 12px;
+}
+
+.sidebar ul li a {
+    display: block;
     padding: 14px 18px;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #cbd5f5;
+    font-size: 15px;
     transition: 0.3s;
 }
 
-.sidebar a:hover,
-.sidebar a.active {
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     color: white;
     transform: translateX(6px);
 }
 
+.sidebar ul li a.logout {
+    background: rgba(239,68,68,0.15);
+    color: #fecaca;
+}
+
+.sidebar ul li a.logout:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ---------- MOBILE TOGGLE ---------- */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+}
+
 /* ---------- MAIN ---------- */
 .main {
     flex: 1;
+    margin-left: 260px;
     padding: 40px;
-    overflow-y: auto;
 }
 
 /* ---------- TOP BAR ---------- */
@@ -83,23 +116,18 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
-.top-bar small {
-    color: #475569;
-}
-
 .top-actions span {
     font-size: 20px;
     margin-left: 20px;
     cursor: pointer;
 }
 
-/* ---------- SECTION TITLE ---------- */
+/* ---------- STATS ---------- */
 .section-title {
     margin: 35px 0 15px;
     font-size: 24px;
 }
 
-/* ---------- STATS ---------- */
 .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -128,10 +156,9 @@ body {
 .stat-card h2 {
     margin-top: 10px;
     font-size: 28px;
-    color: #020617;
 }
 
-/* ---------- ACTION BUTTONS ---------- */
+/* ---------- ACTIONS ---------- */
 .actions {
     display: flex;
     gap: 20px;
@@ -175,46 +202,48 @@ table {
 th, td {
     padding: 14px;
     border-bottom: 1px solid #e5e7eb;
-    text-align: left;
     font-size: 14px;
 }
 
-tr:hover {
-    background: #f1f5f9;
-}
-
-/* ---------- ANIMATION ---------- */
-.fade-in {
-    animation: fade 0.8s ease forwards;
-}
-
-@keyframes fade {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 /* ---------- RESPONSIVE ---------- */
-@media(max-width: 768px) {
-    body { flex-direction: column; }
-    .sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
+@media(max-width: 900px) {
+    .sidebar {
+        left: -280px;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .main {
+        margin-left: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- MENU BUTTON -->
+<div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+
 <!-- SIDEBAR -->
-<div class="sidebar">
-    <h1>🏦 Premium Bank</h1>
-    <a class="active">Dashboard</a>
-    <a href="{{url_for('openaccount')}}">Open Account</a>
-    <a href="{{url_for('deposit')}}">Deposit</a>
-    <a href="{{url_for('withdraw')}}">Withdraw</a>
-    <a href="{{url_for('logout')}}">Logout</a>
+<div class="sidebar" id="sidebar">
+    <h1>🏦 Bank Dashboard</h1>
+    <ul>
+        <li><a href="{{url_for('openaccount')}}">Open Account</a></li>
+        <li><a href="{{url_for('allaccounts')}}">All Accounts</a></li>
+        <li><a href="{{url_for('searchaccounts')}}">Search Account</a></li>
+        <li><a href="{{url_for('deposit')}}">Deposit Amount</a></li>
+        <li><a href="{{url_for('withdraw')}}">Withdraw Amount</a></li>
+        <li><a href="{{url_for('statements')}}">Account Statement</a></li>
+        <li><a href="{{url_for('logout')}}" class="logout">Logout</a></li>
+    </ul>
 </div>
 
 <!-- MAIN -->
-<div class="main fade-in">
+<div class="main">
 
     <div class="top-bar">
         <div>
@@ -229,22 +258,10 @@ tr:hover {
     <h2 class="section-title">Overview</h2>
 
     <div class="stats">
-        <div class="stat-card">
-            <h4>Total Accounts</h4>
-            <h2 id="a1"></h2>
-        </div>
-        <div class="stat-card">
-            <h4>Total Balance</h4>
-            <h2 id="a2"></h2>
-        </div>
-        <div class="stat-card">
-            <h4>Today’s Deposits</h4>
-            <h2 id="a3"></h2>
-        </div>
-        <div class="stat-card">
-            <h4>Today’s Withdrawals</h4>
-            <h2 id="a4"></h2>
-        </div>
+        <div class="stat-card"><h4>Total Accounts</h4><h2 id="a1"></h2></div>
+        <div class="stat-card"><h4>Total Balance</h4><h2 id="a2"></h2></div>
+        <div class="stat-card"><h4>Today’s Deposits</h4><h2 id="a3"></h2></div>
+        <div class="stat-card"><h4>Today’s Withdrawals</h4><h2 id="a4"></h2></div>
     </div>
 
     <div class="actions">
@@ -265,10 +282,21 @@ tr:hover {
 </div>
 
 <script>
+/* Sidebar toggle */
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+/* Active link */
+document.querySelectorAll(".sidebar a").forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add("active");
+    }
+});
+
 /* Time */
 setInterval(() => {
-    document.getElementById("time").innerText =
-        new Date().toLocaleString();
+    document.getElementById("time").innerText = new Date().toLocaleString();
 }, 1000);
 
 /* Stats */
