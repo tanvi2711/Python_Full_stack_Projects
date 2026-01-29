@@ -2,219 +2,280 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bank Management System Dashboard</title>
+<title>Premium Bank Dashboard</title>
 
 <style>
-/* ---------- Global Styles ---------- */
+/* ---------- ROOT COLORS ---------- */
+:root {
+    --primary: #2563eb;
+    --secondary: #0f172a;
+    --accent: #38bdf8;
+    --bg: #f1f5f9;
+    --glass: rgba(255,255,255,0.75);
+    --border: rgba(255,255,255,0.3);
+}
+
+/* ---------- GLOBAL ---------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-body {
-    display: flex;
-    height: 100vh;
-    background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-    color: #2c3e50;
+    font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* ---------- Sidebar ---------- */
+body {
+    height: 100vh;
+    display: flex;
+    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+    color: #0f172a;
+}
+
+/* ---------- SIDEBAR ---------- */
 .sidebar {
-    width: 250px;
-    background: linear-gradient(180deg, #2c3e50, #34495e);
-    color: white;
+    width: 260px;
+    background: linear-gradient(180deg, #020617, #0f172a);
+    color: #e5e7eb;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
 }
+
 .sidebar h1 {
+    font-size: 22px;
     margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 1px;
 }
-.sidebar ul {
-    list-style: none;
-    width: 100%;
-}
-.sidebar ul li a {
-    display: block;
-    padding: 14px 25px;
+
+.sidebar a {
+    color: #cbd5f5;
     text-decoration: none;
-    color: #ecf0f1;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 10px;
     transition: 0.3s;
 }
-.sidebar ul li a.active,
-.sidebar ul li a:hover {
-    background: linear-gradient(135deg, #3498db, #2c80b4);
-    padding-left: 30px;
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    transform: translateX(6px);
 }
 
-/* ---------- Main Content ---------- */
-.main-content {
+/* ---------- MAIN ---------- */
+.main {
     flex: 1;
-    padding: 40px 60px;
+    padding: 40px;
+    overflow-y: auto;
 }
 
-/* ---------- Top Bar ---------- */
+/* ---------- TOP BAR ---------- */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
-    padding: 15px 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    margin-bottom: 30px;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    padding: 18px 28px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
+
+.top-bar small {
+    color: #475569;
+}
+
 .top-actions span {
-    margin-left: 15px;
-    font-size: 18px;
+    font-size: 20px;
+    margin-left: 20px;
     cursor: pointer;
 }
 
-/* ---------- Dashboard Cards ---------- */
-.dashboard-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-.card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    text-align: center;
-    transition: 0.3s;
-}
-.card:hover {
-    transform: translateY(-8px) scale(1.02);
+/* ---------- SECTION TITLE ---------- */
+.section-title {
+    margin: 35px 0 15px;
+    font-size: 24px;
 }
 
-/* ---------- Quick Actions ---------- */
-.quick-actions {
-    margin-top: 40px;
+/* ---------- STATS ---------- */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.stat-card {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+}
+
+.stat-card h4 {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.stat-card h2 {
+    margin-top: 10px;
+    font-size: 28px;
+    color: #020617;
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+.actions {
     display: flex;
     gap: 20px;
-}
-.quick-actions a {
-    flex: 1;
-    padding: 14px;
-    text-align: center;
-    background: linear-gradient(135deg, #3498db, #2c80b4);
-    color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.quick-actions a:hover {
-    transform: translateY(-4px);
+    margin-top: 35px;
 }
 
-/* ---------- Table ---------- */
+.actions a {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 15px 30px rgba(37,99,235,0.35);
+    transition: 0.3s;
+}
+
+.actions a:hover {
+    transform: translateY(-5px);
+}
+
+/* ---------- TABLE ---------- */
+.card {
+    margin-top: 40px;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-}
-table th, table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    margin-top: 15px;
 }
 
-/* ---------- Highlight Animation ---------- */
-.highlight {
-    animation: glow 1s ease-in-out;
-}
-@keyframes glow {
-    0% { background-color: #e3f2fd; }
-    100% { background-color: transparent; }
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    font-size: 14px;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
+tr:hover {
+    background: #f1f5f9;
+}
+
+/* ---------- ANIMATION ---------- */
+.fade-in {
+    animation: fade 0.8s ease forwards;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width: 768px) {
     body { flex-direction: column; }
-    .sidebar { width: 100%; }
-    .quick-actions { flex-direction: column; }
+    .sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Sidebar -->
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <h1>Bank Dashboard</h1>
-    <ul>
-        <li><a href="#" class="active">Dashboard</a></li>
-        <li><a href="{{url_for('openaccount')}}">Open Account</a></li>
-        <li><a href="{{url_for('deposit')}}">Deposit</a></li>
-        <li><a href="{{url_for('withdraw')}}">Withdraw</a></li>
-        <li><a href="{{url_for('logout')}}">Logout</a></li>
-    </ul>
+    <h1>🏦 Premium Bank</h1>
+    <a class="active">Dashboard</a>
+    <a href="{{url_for('openaccount')}}">Open Account</a>
+    <a href="{{url_for('deposit')}}">Deposit</a>
+    <a href="{{url_for('withdraw')}}">Withdraw</a>
+    <a href="{{url_for('logout')}}">Logout</a>
 </div>
 
-<!-- Main -->
-<div class="main-content">
+<!-- MAIN -->
+<div class="main fade-in">
 
-    <!-- Top Bar -->
     <div class="top-bar">
         <div>
             <strong>Welcome, Admin</strong><br>
-            <small id="datetime"></small>
+            <small id="time"></small>
         </div>
         <div class="top-actions">
-            <span onclick="showNotification()">🔔</span>
-            <span>👤</span>
+            🔔 👤
         </div>
     </div>
 
-    <!-- Stats -->
-    <div class="dashboard-cards">
-        <div class="card"><h3>Total Accounts</h3><p id="accCount"></p></div>
-        <div class="card"><h3>Total Balance</h3><p id="totalBalance"></p></div>
-        <div class="card"><h3>Today's Deposits</h3><p id="todayDeposit"></p></div>
-        <div class="card"><h3>Today's Withdrawals</h3><p id="todayWithdraw"></p></div>
+    <h2 class="section-title">Overview</h2>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h4>Total Accounts</h4>
+            <h2 id="a1"></h2>
+        </div>
+        <div class="stat-card">
+            <h4>Total Balance</h4>
+            <h2 id="a2"></h2>
+        </div>
+        <div class="stat-card">
+            <h4>Today’s Deposits</h4>
+            <h2 id="a3"></h2>
+        </div>
+        <div class="stat-card">
+            <h4>Today’s Withdrawals</h4>
+            <h2 id="a4"></h2>
+        </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="quick-actions">
+    <div class="actions">
         <a href="{{url_for('openaccount')}}">➕ Open Account</a>
         <a href="{{url_for('deposit')}}">💰 Deposit</a>
         <a href="{{url_for('withdraw')}}">💸 Withdraw</a>
     </div>
 
-    <!-- Transactions -->
-    <div class="card" style="margin-top:40px;">
+    <div class="card">
         <h3>Recent Transactions</h3>
         <table>
             <tr><th>Account</th><th>Type</th><th>Amount</th></tr>
-            <tr class="highlight"><td>100245</td><td>Deposit</td><td>₹10,000</td></tr>
+            <tr><td>100245</td><td>Deposit</td><td>₹10,000</td></tr>
             <tr><td>100198</td><td>Withdraw</td><td>₹5,000</td></tr>
         </table>
     </div>
 
 </div>
 
-<!-- ---------- JavaScript ---------- -->
 <script>
-/* Live Date & Time */
-function updateTime() {
-    document.getElementById("datetime").innerText =
+/* Time */
+setInterval(() => {
+    document.getElementById("time").innerText =
         new Date().toLocaleString();
-}
-setInterval(updateTime, 1000);
-updateTime();
+}, 1000);
 
-/* Fake Dynamic Stats (Replace with backend later) */
-document.getElementById("accCount").innerText = "1,248";
-document.getElementById("totalBalance").innerText = "₹5,24,80,000";
-document.getElementById("todayDeposit").innerText = "₹2,40,000";
-document.getElementById("todayWithdraw").innerText = "₹1,10,000";
-
-/* Notification */
-function showNotification() {
-    alert("🔔 No new notifications");
-}
+/* Stats */
+a1.innerText = "1,248";
+a2.innerText = "₹5,24,80,000";
+a3.innerText = "₹2,40,000";
+a4.innerText = "₹1,10,000";
 </script>
 
 </body>
