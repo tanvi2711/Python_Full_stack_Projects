@@ -1,26 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>All Accounts</title>
+<meta charset="UTF-8">
+<title>All Accounts</title>
 
+<style>
+:root {
+    --primary: #2563eb;
+    --accent: #38bdf8;
+    --dark: #020617;
+    --glass: rgba(255,255,255,0.75);
+    --border: rgba(255,255,255,0.3);
+}
+
+/* ---------- GLOBAL ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+    color: #020617;
+    min-height: 100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #020617, #0f172a);
+    color: #e5e7eb;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h1 {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #cbd5f5;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    transform: translateX(6px);
+}
+
+/* ---------- MENU TOGGLE ---------- */
+.menu-toggle {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    width: 46px;
+    height: 46px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+/* ---------- MAIN ---------- */
+.main {
+    margin-left: 260px;
+    padding: 40px;
+}
+
+/* ---------- TOP BAR ---------- */
+.top-bar {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.section-title {
+    margin: 30px 0 15px;
+    font-size: 26px;
+}
+
+/* ---------- SEARCH ---------- */
+.search-box {
+    margin: 20px 0;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* ---------- TABLE CARD ---------- */
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+th {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:hover {
+    background: #eef6ff;
+}
+
+tr.active {
+    background: #dbeafe;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+    }
+    .sidebar {
+        left: -280px;
+        transition: 0.4s;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .main {
+        margin-left: 0;
+        padding: 25px 20px;
+    }
+    .top-bar {
+        padding-left: 80px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <h1>All Accounts</h1>
-        <tr>
-            <th>Acc No</th>
-            <th>Name</th>
-            <th>Account Type</th>
-            <th>Balance</th>
-        </tr>
-        {% for row in rows %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[6] }}</td>
-            <td>{{ row[7] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+
+<!-- TOGGLE -->
+<div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h1>🏦 Bank Dashboard</h1>
+    <a href="{{url_for('openaccount')}}">Open Account</a>
+    <a href="{{url_for('allaccounts')}}" class="active">All Accounts</a>
+    <a href="{{url_for('searchaccounts')}}">Search Account</a>
+    <a href="{{url_for('deposit')}}">Deposit Amount</a>
+    <a href="{{url_for('withdraw')}}">Withdraw Amount</a>
+    <a href="{{url_for('statements')}}">Account Statement</a>
+    <a href="{{url_for('logout')}}">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="top-bar">
+        <div>
+            <strong>Welcome, Admin</strong><br>
+            <small id="time"></small>
+        </div>
+        <div>🔔 👤</div>
+    </div>
+
+    <h2 class="section-title">All Accounts</h2>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Search account, name or type...">
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+        <table id="accountTable">
+            <tr>
+                <th>Acc No</th>
+                <th>Name</th>
+                <th>Account Type</th>
+                <th>Balance</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<script>
+/* Sidebar */
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+/* Time */
+setInterval(() => {
+    document.getElementById("time").innerText = new Date().toLocaleString();
+}, 1000);
+
+/* Search Filter */
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#accountTable tr");
+
+    rows.forEach((row, index) => {
+        if (index === 0) return;
+        row.style.display = row.innerText.toLowerCase().includes(filter)
+            ? ""
+            : "none";
+    });
+});
+
+/* Row highlight on click */
+document.querySelectorAll("#accountTable tr").forEach((row, index) => {
+    if (index === 0) return;
+    row.addEventListener("click", () => {
+        document.querySelectorAll("#accountTable tr").forEach(r => r.classList.remove("active"));
+        row.classList.add("active");
+    });
+});
+</script>
+
 </body>
 </html>
