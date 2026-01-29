@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bank Management System Dashboard</title>
+<meta charset="UTF-8">
+<title>Bank Management System Dashboard</title>
 
 <style>
 /* ---------- Global Styles ---------- */
@@ -28,14 +28,9 @@ body {
     flex-direction: column;
     align-items: center;
     padding-top: 30px;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
 }
 .sidebar h1 {
-    font-size: 22px;
     margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #ecf0f1;
 }
 .sidebar ul {
     list-style: none;
@@ -46,9 +41,9 @@ body {
     padding: 14px 25px;
     text-decoration: none;
     color: #ecf0f1;
-    font-size: 15px;
     transition: 0.3s;
 }
+.sidebar ul li a.active,
 .sidebar ul li a:hover {
     background: linear-gradient(135deg, #3498db, #2c80b4);
     padding-left: 30px;
@@ -77,20 +72,6 @@ body {
     cursor: pointer;
 }
 
-/* ---------- Headings ---------- */
-.main-content h2 {
-    font-size: 26px;
-    color: #1e3d58;
-}
-hr {
-    width: 100px;
-    height: 3px;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(to right, #3498db, #2c80b4);
-    margin: 15px 0 25px;
-}
-
 /* ---------- Dashboard Cards ---------- */
 .dashboard-cards {
     display: grid;
@@ -107,15 +88,7 @@ hr {
     transition: 0.3s;
 }
 .card:hover {
-    transform: translateY(-6px);
-}
-.card h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-.card p {
-    color: #666;
-    font-size: 14px;
+    transform: translateY(-8px) scale(1.02);
 }
 
 /* ---------- Quick Actions ---------- */
@@ -126,17 +99,16 @@ hr {
 }
 .quick-actions a {
     flex: 1;
-    text-align: center;
     padding: 14px;
+    text-align: center;
     background: linear-gradient(135deg, #3498db, #2c80b4);
     color: white;
     border-radius: 12px;
     text-decoration: none;
-    font-weight: 500;
     transition: 0.3s;
 }
 .quick-actions a:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }
 
 /* ---------- Table ---------- */
@@ -147,21 +119,22 @@ table {
 table th, table td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    text-align: left;
-    font-size: 14px;
+}
+
+/* ---------- Highlight Animation ---------- */
+.highlight {
+    animation: glow 1s ease-in-out;
+}
+@keyframes glow {
+    0% { background-color: #e3f2fd; }
+    100% { background-color: transparent; }
 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-    }
-    .quick-actions {
-        flex-direction: column;
-    }
+    body { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .quick-actions { flex-direction: column; }
 }
 </style>
 </head>
@@ -172,72 +145,35 @@ table th, table td {
 <div class="sidebar">
     <h1>Bank Dashboard</h1>
     <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
         <li><a href="{{url_for('openaccount')}}">Open Account</a></li>
-        <li><a href="{{url_for('allaccounts')}}">All Accounts</a></li>
-        <li><a href="{{url_for('searchaccounts')}}">Search Account</a></li>
         <li><a href="{{url_for('deposit')}}">Deposit</a></li>
         <li><a href="{{url_for('withdraw')}}">Withdraw</a></li>
-        <li><a href="{{url_for('statements')}}">Statements</a></li>
         <li><a href="{{url_for('logout')}}">Logout</a></li>
     </ul>
 </div>
 
-<!-- Main Content -->
+<!-- Main -->
 <div class="main-content">
 
     <!-- Top Bar -->
     <div class="top-bar">
         <div>
             <strong>Welcome, Admin</strong><br>
-            <small>{{ current_date }}</small>
+            <small id="datetime"></small>
         </div>
         <div class="top-actions">
-            🔔 👤
+            <span onclick="showNotification()">🔔</span>
+            <span>👤</span>
         </div>
     </div>
 
-    <h2>Bank Management System</h2>
-    <hr>
-    <p>Manage accounts, transactions, and customer details securely.</p>
-
-    <!-- Stats Cards -->
+    <!-- Stats -->
     <div class="dashboard-cards">
-        <div class="card">
-            <h3>Total Accounts</h3>
-            <p><strong>1,248</strong></p>
-        </div>
-        <div class="card">
-            <h3>Total Balance</h3>
-            <p><strong>₹5,24,80,000</strong></p>
-        </div>
-        <div class="card">
-            <h3>Today's Deposits</h3>
-            <p><strong>₹2,40,000</strong></p>
-        </div>
-        <div class="card">
-            <h3>Today's Withdrawals</h3>
-            <p><strong>₹1,10,000</strong></p>
-        </div>
-    </div>
-
-    <!-- Feature Cards -->
-    <div class="dashboard-cards">
-        <div class="card">
-            <h3>Open Account</h3>
-            <p>Create new customer accounts.</p>
-        </div>
-        <div class="card">
-            <h3>View Accounts</h3>
-            <p>See all customer accounts.</p>
-        </div>
-        <div class="card">
-            <h3>Deposit / Withdraw</h3>
-            <p>Perform transactions securely.</p>
-        </div>
-        <div class="card">
-            <h3>Statements</h3>
-            <p>Check recent activities.</p>
-        </div>
+        <div class="card"><h3>Total Accounts</h3><p id="accCount"></p></div>
+        <div class="card"><h3>Total Balance</h3><p id="totalBalance"></p></div>
+        <div class="card"><h3>Today's Deposits</h3><p id="todayDeposit"></p></div>
+        <div class="card"><h3>Today's Withdrawals</h3><p id="todayWithdraw"></p></div>
     </div>
 
     <!-- Quick Actions -->
@@ -247,28 +183,39 @@ table th, table td {
         <a href="{{url_for('withdraw')}}">💸 Withdraw</a>
     </div>
 
-    <!-- Recent Transactions -->
+    <!-- Transactions -->
     <div class="card" style="margin-top:40px;">
         <h3>Recent Transactions</h3>
         <table>
-            <tr>
-                <th>Account No</th>
-                <th>Type</th>
-                <th>Amount</th>
-            </tr>
-            <tr>
-                <td>100245</td>
-                <td>Deposit</td>
-                <td>₹10,000</td>
-            </tr>
-            <tr>
-                <td>100198</td>
-                <td>Withdraw</td>
-                <td>₹5,000</td>
-            </tr>
+            <tr><th>Account</th><th>Type</th><th>Amount</th></tr>
+            <tr class="highlight"><td>100245</td><td>Deposit</td><td>₹10,000</td></tr>
+            <tr><td>100198</td><td>Withdraw</td><td>₹5,000</td></tr>
         </table>
     </div>
 
 </div>
+
+<!-- ---------- JavaScript ---------- -->
+<script>
+/* Live Date & Time */
+function updateTime() {
+    document.getElementById("datetime").innerText =
+        new Date().toLocaleString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+/* Fake Dynamic Stats (Replace with backend later) */
+document.getElementById("accCount").innerText = "1,248";
+document.getElementById("totalBalance").innerText = "₹5,24,80,000";
+document.getElementById("todayDeposit").innerText = "₹2,40,000";
+document.getElementById("todayWithdraw").innerText = "₹1,10,000";
+
+/* Notification */
+function showNotification() {
+    alert("🔔 No new notifications");
+}
+</script>
+
 </body>
 </html>
