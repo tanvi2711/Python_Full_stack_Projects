@@ -2,280 +2,334 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open Account | SecureBank</title>
+<title>Smart Bank | Open Account </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-:root {
-    --primary: #2563eb;
-    --accent: #38bdf8;
-    --success: #27ae60;
-    --shadow: rgba(0,0,0,0.15);
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+    overflow-x:hidden;
 }
 
-/* ---------- Global Reset ---------- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ================= SIDEBAR ================= */
+.sidebar{
+    width:270px;
+    min-height:100vh;
+    background:rgba(10,61,98,.95);
+    backdrop-filter:blur(12px);
+    box-shadow:6px 0 30px rgba(0,0,0,.18);
 }
 
-/* ---------- Body Background ---------- */
-body {
-    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow-x: hidden;
+.sidebar h4{
+    color:#fff;
+    text-align:center;
+    padding:26px 12px;
+    border-bottom:1px solid rgba(255,255,255,.2);
 }
 
-/* ---------- Form Container ---------- */
-.form-container {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    padding: 45px 50px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 620px;
-    box-shadow: 0 20px 40px var(--shadow);
-    transition: all 0.3s ease;
-    position: relative;
+.sidebar a{
+    display:block;
+    padding:14px 26px;
+    color:#e2e8f0;
+    text-decoration:none;
+    font-size:14px;
+    transition:.25s;
 }
 
-.form-container:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 28px 50px rgba(0,0,0,0.25);
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    padding-left:32px;
 }
 
-/* ---------- Heading ---------- */
-h1 {
-    text-align: center;
-    color: var(--primary);
-    margin-bottom: 10px;
-    font-size: 2rem;
-    letter-spacing: 0.5px;
-    animation: fadeInDown 0.6s ease;
+/* ================= MAIN ================= */
+.main{
+    padding:40px;
+    flex:1;
 }
 
-hr {
-    margin: 20px auto 30px;
-    width: 80px;
-    height: 3px;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(to right, var(--primary), var(--accent));
+.page-title{
+    font-size:26px;
+    font-weight:600;
+    color:#0a3d62;
 }
 
-/* ---------- Form ---------- */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* ================= FORM CARD ================= */
+.form-card{
+    margin-top:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,.95);
+    box-shadow:0 22px 45px rgba(0,0,0,.14);
+    padding:30px 35px;
 }
 
-label {
-    font-weight: 600;
-    color: #34495e;
-    font-size: 15px;
+.section-title{
+    font-size:16px;
+    font-weight:600;
+    color:#0a3d62;
+    border-left:4px solid #0a3d62;
+    padding-left:10px;
+    margin-bottom:18px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="number"],
-select {
-    padding: 12px 14px;
-    border: 1px solid #d1d9e6;
-    border-radius: 10px;
-    font-size: 15px;
-    width: 100%;
-    background-color: #f9fbfc;
-    transition: all 0.3s ease;
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 22px;
 }
 
-input:focus,
-select:focus {
-    border-color: var(--primary);
-    background-color: #ffffff;
-    box-shadow: 0 0 8px rgba(37, 99, 235, 0.25);
-    outline: none;
+label{
+    font-size:13px;
+    font-weight:500;
+    color:#334155;
 }
 
-/* ---------- Gender Group ---------- */
-.gender-group {
-    display: flex;
-    gap: 25px;
-    align-items: center;
-    margin-top: 5px;
+input,select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #dbeafe;
+    font-size:14px;
 }
 
-.gender-group label {
-    font-weight: 500;
-    color: #555;
-    font-size: 15px;
+input:focus,select:focus{
+    outline:none;
+    border-color:#0a3d62;
 }
 
-input[type="radio"] {
-    accent-color: var(--primary);
-    transform: scale(1.1);
+.full{grid-column:span 2;}
+
+.gender{
+    display:flex;
+    gap:24px;
+    margin-top:6px;
 }
 
-/* ---------- Submit Button ---------- */
-input[type="submit"] {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: #fff;
-    border: none;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 0.3px;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+.action-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:30px;
+    border-top:1px solid #e5e7eb;
+    padding-top:20px;
 }
 
-input[type="submit"]::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.3);
-    top: -100%;
-    left: 0;
-    transform: skewY(-20deg);
-    transition: all 0.5s ease;
+.submit-btn{
+    padding:12px 32px;
+    background:linear-gradient(135deg,#0a3d62,#1e6091);
+    border:none;
+    color:#fff;
+    border-radius:12px;
+    font-size:14px;
+    box-shadow:0 12px 30px rgba(10,61,98,.35);
+    cursor:pointer;
 }
 
-input[type="submit"]:hover::after {
-    top: 0;
+.submit-btn:hover{opacity:.9}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px){
+    .sidebar{
+        width:220px;
+    }
+    .main{
+        padding:30px;
+    }
 }
 
-input[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(52,152,219,0.3);
+/* Mobile */
+@media (max-width: 768px){
+
+    .d-flex{
+        flex-direction:column;
+        min-height:100vh;
+    }
+
+    /* Sidebar becomes top bar */
+    .sidebar{
+        width:100%;
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding-bottom:10px;
+    }
+
+    .sidebar h4{
+        width:100%;
+        padding:18px 10px;
+        font-size:18px;
+    }
+
+    .sidebar a{
+        padding:10px 14px;
+        font-size:13px;
+    }
+
+    .sidebar a:hover{
+        padding-left:14px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .form-card{
+        padding:20px;
+        border-radius:16px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:span 1;
+    }
+
+    .gender{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .action-bar{
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .submit-btn{
+        width:100%;
+        text-align:center;
+    }
 }
 
-/* ---------- Success Message ---------- */
-#msg {
-    text-align: center;
-    padding: 12px 15px;
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 15px;
-    margin-top: 15px;
-    display: none;
-}
+/* Small mobile */
+@media (max-width: 480px){
 
-/* Success & Error styles */
-.success {
-    background-color: #e8f8f5;
-    color: var(--success);
-    border: 1px solid #a3e4d7;
-}
+    .sidebar a{
+        font-size:12px;
+        padding:8px 10px;
+    }
 
-.error {
-    background-color: #fdecea;
-    color: #e74c3c;
-    border: 1px solid #f5b7b1;
-}
+    .page-title{
+        font-size:18px;
+    }
 
-/* ---------- Animations ---------- */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ---------- Responsive Design ---------- */
-@media (max-width: 600px) {
-    .form-container { padding: 35px 25px; border-radius: 16px; }
-    h1 { font-size: 1.6rem; }
-    input[type="submit"] { font-size: 15px; padding: 12px; }
+    input, select{
+        font-size:13px;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<div class="form-container">
-    <h1>Open Account</h1>
-    <hr>
+<div class="d-flex">
 
-    <form id="accountForm">
-        <label for="name">Full Name</label>
-        <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h4>🏦 Smart Bank</h4>
+        <a href="{{url_for('openaccount')}}">Open Account</a>
+        <a href="{{url_for('allaccounts')}}">All Accounts</a>
+        <a href="{{url_for('searchaccounts')}}">Search Account</a>
+        <a href="{{url_for('deposit')}}">Deposit</a>
+        <a href="{{url_for('withdraw')}}">Withdraw</a>
+        <a href="{{url_for('statements')}}">Statements</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </div>
 
-        <label for="email">Email Address</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+    <!-- MAIN -->
+    <div class="main">
 
-        <label for="mobile">Mobile Number</label>
-        <input type="text" name="mobile" id="mobile" placeholder="Enter your mobile number" required>
+        <h2 class="page-title">Open New Account</h2>
+        <p class="text-muted">Create a new customer account securely</p>
 
-        <label>Gender</label>
-        <div class="gender-group">
-            <label><input type="radio" name="gender" value="Male" required> Male</label>
-            <label><input type="radio" name="gender" value="Female" required> Female</label>
+        <div class="form-card">
+            <form action="{{ url_for('openaccountsubmit') }}" method="post">
+
+                <div class="section-title">Personal Details</div>
+
+                <div class="form-grid">
+                    <div class="full">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div>
+                        <label>Mobile</label>
+                        <input type="text" name="mobile" required>
+                    </div>
+
+                    <div class="full">
+                        <label>Gender</label>
+                        <div class="gender">
+                            <label><input type="radio" name="gender" value="Male" required> Male</label>
+                            <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Date of Birth</label>
+                        <input type="date" name="bdate" required>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">Account Details</div>
+
+                <div class="form-grid">
+                    <div>
+                        <label>Account Type</label>
+                        <select name="acctype" required>
+                            <option value="">Select</option>
+                            <option>Saving</option>
+                            <option>Current</option>
+                            <option>FD</option>
+                            <option>PPF</option>
+                            <option>NPS</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Opening Balance (₹)</label>
+                        <input type="number" name="balance" required>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <a href="{{ url_for('home') }}" class="submit-btn" style="text-decoration:none">⬅ Back</a>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </div>
+
+            </form>
         </div>
 
-        <label for="bdate">Date of Birth</label>
-        <input type="date" name="bdate" id="bdate" required>
-
-        <label for="acctype">Account Type</label>
-        <select name="acctype" id="acctype" required>
-            <option value="">Select Account Type</option>
-            <option>Saving</option>
-            <option>Current</option>
-            <option>FD</option>
-            <option>PPF</option>
-            <option>NPS</option>
-        </select>
-
-        <label for="balance">Initial Deposit</label>
-        <input type="number" name="balance" id="balance" placeholder="Enter initial balance" min="0" required>
-
-        <input type="submit" value="Create Account">
-    </form>
-
-    <div id="msg"></div>
+    </div>
 </div>
-
-<script>
-// ---------- JS Form Feedback & Animation ----------
-const form = document.getElementById('accountForm');
-const msgBox = document.getElementById('msg');
-
-form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    // Simple validation example
-    const balance = parseFloat(document.getElementById('balance').value);
-    if(balance < 100){
-        msgBox.textContent = "Minimum initial deposit should be ₹100!";
-        msgBox.className = "error";
-        msgBox.style.display = "block";
-        return;
-    }
-
-    // Success feedback
-    msgBox.textContent = "Account Created Successfully! 🎉";
-    msgBox.className = "success";
-    msgBox.style.display = "block";
-
-    // Optional: reset form after 2s
-    setTimeout(()=>{ 
-        form.reset(); 
-        msgBox.style.display = "none"; 
-    }, 2000);
-});
-</script>
 
 </body>
 </html>
+
+
+
+
+
+
