@@ -2,136 +2,197 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logout Confirmation | SecureBank</title>
+<title>Smart Bank | Logout </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-:root {
-    --primary: #2563eb;
-    --accent: #38bdf8;
-    --danger: #e74c3c;
-    --glass: rgba(255, 255, 255, 0.85);
-    --shadow: rgba(0, 0, 0, 0.15);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
 }
 
-/* ---------- Global Reset ---------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* PAGE */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px;
 }
 
-/* ---------- Body Background ---------- */
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+/* MAIN PANEL */
+.logout-panel{
+    width:100%;
+    max-width:640px;
+    background:rgba(255,255,255,0.97);
+    border-radius:20px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.18);
+    padding:40px 44px;
 }
 
-/* ---------- Logout Container ---------- */
-.logout-box {
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    padding: 50px 40px;
-    border-radius: 22px;
-    max-width: 420px;
-    width: 95%;
-    text-align: center;
-    box-shadow: 0 20px 40px var(--shadow);
-    transition: 0.3s;
+/* HEADER */
+.header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:24px;
 }
 
-.logout-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 28px 50px rgba(0,0,0,0.25);
+.logo{
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#0a3d62,#1e6091);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:26px;
 }
 
-/* ---------- Heading ---------- */
-.logout-box h2 {
-    font-size: 1.6rem;
-    color: #1e3d58;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
+.header h2{
+    font-size:22px;
+    font-weight:600;
+    color:#0a3d62;
 }
 
-hr {
-    width: 70px;
-    height: 3px;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(to right, var(--primary), var(--accent));
-    margin: 15px auto 25px;
+.header span{
+    display:block;
+    font-size:14px;
+    color:#64748b;
+    margin-top:4px;
 }
 
-/* ---------- Buttons ---------- */
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
+/* MESSAGE */
+.message{
+    background:#f1f5f9;
+    border-left:4px solid #0a3d62;
+    padding:18px 20px;
+    border-radius:12px;
+    font-size:14px;
+    color:#334155;
+    margin-bottom:30px;
+    line-height:1.6;
 }
 
-.buttons a {
-    padding: 12px 30px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.3px;
-    text-decoration: none;
-    color: #fff;
-    transition: all 0.3s ease;
+/* ACTIONS */
+.actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:16px;
 }
 
-.buttons .yes {
-    background: linear-gradient(135deg, var(--danger), #c0392b);
+.actions a{
+    padding:12px 26px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    transition:all .25s ease;
 }
 
-.buttons .no {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+/* CANCEL */
+.btn-cancel{
+    background:#ffffff;
+    color:#0a3d62;
+    border:1px solid #cbd5e1;
 }
 
-.buttons a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+.btn-cancel:hover{
+    background:#f1f5f9;
 }
 
-/* ---------- Subtext ---------- */
-.logout-box p {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #555;
+/* LOGOUT */
+.btn-logout{
+    background:linear-gradient(135deg,#dc2626,#b91c1c);
+    color:#ffffff;
+    box-shadow:0 12px 30px rgba(220,38,38,.35);
 }
 
-/* ---------- Responsive ---------- */
-@media(max-width:500px){
-    .logout-box {
-        padding: 40px 25px;
-        border-radius: 16px;
+.btn-logout:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:640px){
+
+    .logout-panel{
+        padding:30px;
     }
 
-    .buttons {
-        flex-direction: column;
-        gap: 15px;
+    .header{
+        flex-direction:column;
+        text-align:center;
     }
 
-    .buttons a {
-        width: 100%;
-        text-align: center;
+    .logo{
+        width:48px;
+        height:48px;
+        font-size:22px;
+    }
+
+    .header h2{
+        font-size:20px;
+    }
+
+    .message{
+        font-size:13px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions a{
+        width:100%;
+        text-align:center;
     }
 }
 </style>
 </head>
+
 <body>
-<div class="logout-box">
-    <h2>Are you sure you want to logout?</h2>
-    <hr>
-    <div class="buttons">
-        <a href="{{ url_for('index') }}" class="yes">Yes, Logout</a>
-        <a href="{{ url_for('home') }}" class="no">Cancel</a>
+
+<div class="logout-panel">
+
+    <div class="header">
+        <div class="logo">🏦 Smart Bank</div>
+        <div>
+            <h2>Confirm Logout</h2>
+            <span>Smart Bank Secure Session</span>
+        </div>
     </div>
-    <p>You can always log back in anytime.</p>
+
+    <div class="message">
+        You are about to log out of your secure banking session.
+        Any active operations will be safely closed.
+        Please confirm to continue.
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('home') }}" class="btn-cancel">
+            Stay Logged In
+        </a>
+        <a href="{{ url_for('index') }}" class="btn-logout">
+            Logout Securely
+        </a>
+    </div>
+
 </div>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
