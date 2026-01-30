@@ -2,173 +2,226 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>All Accounts</title>
+<title>Smart Bank | All Accounts </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary: #2563eb;
-    --accent: #38bdf8;
-    --dark: #020617;
-    --glass: rgba(255,255,255,0.75);
-    --border: rgba(255,255,255,0.3);
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+    overflow-x:hidden;
 }
 
-/* ---------- GLOBAL ---------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', 'Poppins', sans-serif;
+/* ================= SIDEBAR ================= */
+.sidebar{
+    width:270px;
+    min-height:100vh;
+    background:rgba(10,61,98,.95);
+    backdrop-filter:blur(12px);
+    box-shadow:6px 0 30px rgba(0,0,0,.18);
 }
 
-body {
-    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
-    color: #020617;
-    min-height: 100vh;
+.sidebar h4{
+    color:#fff;
+    text-align:center;
+    padding:26px 12px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    font-weight:600;
 }
 
-/* ---------- SIDEBAR ---------- */
-.sidebar {
-    width: 260px;
-    background: linear-gradient(180deg, #020617, #0f172a);
-    color: #e5e7eb;
-    padding: 30px 20px;
-    position: fixed;
-    height: 100%;
+.sidebar a{
+    display:block;
+    padding:14px 26px;
+    color:#e2e8f0;
+    text-decoration:none;
+    font-size:14px;
+    transition:.25s;
 }
 
-.sidebar h1 {
-    text-align: center;
-    margin-bottom: 35px;
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    padding-left:32px;
 }
 
-.sidebar a {
-    display: block;
-    padding: 14px 18px;
-    border-radius: 14px;
-    text-decoration: none;
-    color: #cbd5f5;
-    margin-bottom: 12px;
-    transition: 0.3s;
+/* ================= MAIN ================= */
+.main{
+    padding:40px;
+    flex:1;
 }
 
-.sidebar a:hover,
-.sidebar a.active {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    transform: translateX(6px);
+.page-title{
+    font-size:26px;
+    font-weight:600;
+    color:#0a3d62;
 }
 
-/* ---------- MENU TOGGLE ---------- */
-.menu-toggle {
-    position: fixed;
-    top: 22px;
-    left: 22px;
-    width: 46px;
-    height: 46px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    cursor: pointer;
-    z-index: 2000;
+/* ================= CARD ================= */
+.card-box{
+    margin-top:30px;
+    background:rgba(255,255,255,.95);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 22px 45px rgba(0,0,0,.14);
 }
 
-/* ---------- MAIN ---------- */
-.main {
-    margin-left: 260px;
-    padding: 40px;
+/* ================= TABLE ================= */
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:16px;
 }
 
-/* ---------- TOP BAR ---------- */
-.top-bar {
-    background: var(--glass);
-    backdrop-filter: blur(14px);
-    border-radius: 20px;
-    padding: 18px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+th,td{
+    padding:16px 20px;
 }
 
-.section-title {
-    margin: 30px 0 15px;
-    font-size: 26px;
+th{
+    background:linear-gradient(135deg,#0a3d62,#1e6091);
+    color:#fff;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
 }
 
-/* ---------- SEARCH ---------- */
-.search-box {
-    margin: 20px 0;
+td{
+    font-size:14px;
+    color:#334155;
 }
 
-.search-box input {
-    width: 100%;
-    padding: 14px 18px;
-    border-radius: 14px;
-    border: none;
-    outline: none;
-    font-size: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+tr:nth-child(even){
+    background:#f8fbff;
 }
 
-/* ---------- TABLE CARD ---------- */
-.card {
-    background: var(--glass);
-    backdrop-filter: blur(14px);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.08);
-    overflow-x: auto;
+tr:hover{
+    background:#e0f2fe;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* ================= ACTION ================= */
+.actions{
+    margin-top:25px;
+    display:flex;
+    justify-content:flex-end;
 }
 
-th, td {
-    padding: 14px;
-    border-bottom: 1px solid #e5e7eb;
-    font-size: 14px;
+.back-btn{
+    padding:12px 28px;
+    background:linear-gradient(135deg,#0a3d62,#1e6091);
+    color:#fff;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:14px;
+    box-shadow:0 12px 30px rgba(10,61,98,.35);
+    transition:.25s;
 }
 
-th {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.back-btn:hover{
+    transform:translateY(-3px);
+    color:#fff;
 }
 
-tr:hover {
-    background: #eef6ff;
-}
+/* ================= RESPONSIVE ================= */
 
-tr.active {
-    background: #dbeafe;
-}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width: 900px) {
-    .menu-toggle {
-        display: flex;
+/* Tablet */
+@media (max-width: 992px){
+    .sidebar{
+        width:220px;
     }
-    .sidebar {
-        left: -280px;
-        transition: 0.4s;
+    .main{
+        padding:30px;
     }
-    .sidebar.active {
-        left: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .d-flex{
+        flex-direction:column;
+        min-height:100vh;
     }
-    .main {
-        margin-left: 0;
-        padding: 25px 20px;
+
+    /* Sidebar becomes top bar */
+    .sidebar{
+        width:100%;
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding-bottom:10px;
     }
-    .top-bar {
-        padding-left: 80px;
+
+    .sidebar h4{
+        width:100%;
+        text-align:center;
+        padding:18px 10px;
+        font-size:18px;
+    }
+
+    .sidebar a{
+        padding:10px 14px;
+        font-size:13px;
+    }
+
+    .sidebar a:hover{
+        padding-left:14px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .card-box{
+        padding:18px;
+        border-radius:16px;
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:600px;
+    }
+
+    th, td{
+        padding:10px 12px;
+        font-size:12px;
+        white-space:nowrap;
+    }
+
+    .actions{
+        justify-content:center;
+    }
+
+    .back-btn{
+        width:100%;
+        text-align:center;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px){
+
+    .sidebar a{
+        font-size:12px;
+        padding:8px 10px;
+    }
+
+    .page-title{
+        font-size:18px;
+    }
+
+    th, td{
+        font-size:11px;
     }
 }
 </style>
@@ -176,94 +229,62 @@ tr.active {
 
 <body>
 
-<!-- TOGGLE -->
-<div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+<div class="d-flex">
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <h1>🏦 Bank Dashboard</h1>
-    <a href="{{url_for('openaccount')}}">Open Account</a>
-    <a href="{{url_for('allaccounts')}}" class="active">All Accounts</a>
-    <a href="{{url_for('searchaccounts')}}">Search Account</a>
-    <a href="{{url_for('deposit')}}">Deposit Amount</a>
-    <a href="{{url_for('withdraw')}}">Withdraw Amount</a>
-    <a href="{{url_for('statements')}}">Account Statement</a>
-    <a href="{{url_for('logout')}}">Logout</a>
-</div>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h4>🏦 Smart Bank</h4>
+        <a href="{{url_for('openaccount')}}">Open Account</a>
+        <a href="{{url_for('allaccounts')}}">All Accounts</a>
+        <a href="{{url_for('searchaccounts')}}">Search Account</a>
+        <a href="{{url_for('deposit')}}">Deposit</a>
+        <a href="{{url_for('withdraw')}}">Withdraw</a>
+        <a href="{{url_for('statements')}}">Statements</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </div>
 
-<!-- MAIN -->
-<div class="main">
+    <!-- MAIN -->
+    <div class="main">
 
-    <div class="top-bar">
-        <div>
-            <strong>Welcome, Admin</strong><br>
-            <small id="time"></small>
+        <h2 class="page-title">All Customer Accounts</h2>
+        <p class="text-muted">Complete list of registered bank accounts</p>
+
+        <div class="card-box">
+
+            <table>
+                <tr>
+                    <th>Account No</th>
+                    <th>Name</th>
+                    <th>Account Type</th>
+                    <th>Balance</th>
+                </tr>
+
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>₹ {{ row[7] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="actions">
+                <a href="{{ url_for('home') }}" class="back-btn">
+                    ⬅ Back to Dashboard
+                </a>
+            </div>
+
         </div>
-        <div>🔔 👤</div>
+
     </div>
-
-    <h2 class="section-title">All Accounts</h2>
-
-    <!-- SEARCH -->
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 Search account, name or type...">
-    </div>
-
-    <!-- TABLE -->
-    <div class="card">
-        <table id="accountTable">
-            <tr>
-                <th>Acc No</th>
-                <th>Name</th>
-                <th>Account Type</th>
-                <th>Balance</th>
-            </tr>
-            {% for row in rows %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[6] }}</td>
-                <td>{{ row[7] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-
 </div>
-
-<script>
-/* Sidebar */
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("active");
-}
-
-/* Time */
-setInterval(() => {
-    document.getElementById("time").innerText = new Date().toLocaleString();
-}, 1000);
-
-/* Search Filter */
-document.getElementById("searchInput").addEventListener("keyup", function () {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll("#accountTable tr");
-
-    rows.forEach((row, index) => {
-        if (index === 0) return;
-        row.style.display = row.innerText.toLowerCase().includes(filter)
-            ? ""
-            : "none";
-    });
-});
-
-/* Row highlight on click */
-document.querySelectorAll("#accountTable tr").forEach((row, index) => {
-    if (index === 0) return;
-    row.addEventListener("click", () => {
-        document.querySelectorAll("#accountTable tr").forEach(r => r.classList.remove("active"));
-        row.classList.add("active");
-    });
-});
-</script>
 
 </body>
 </html>
+
+
+
+
+
+
