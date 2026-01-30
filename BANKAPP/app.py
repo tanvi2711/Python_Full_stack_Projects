@@ -21,8 +21,17 @@ def checklogin():
     
 @app.route("/home")
 def home():
-    return render_template("home.html")
-
+    conn=sqlite3.connect("bank.db")
+    cur=conn.cursor()
+    cur.execute("select count(*) from accmaster")
+    totolacc=cur.fetchone()[0]
+    cur.execute("select sum(balance) from accmaster")
+    totaldeposit=cur.fetchone()[0]
+    current=datetime.now()
+    current_date=current.strftime("%Y-%m-%d")
+    cur.execute("select count(*) from transactions where date_time like ? ",[current_date+'%'])
+    dailytran=cur.fetchone()[0]
+    return render_template("home.html",totalacc=totolacc,totaldeposit=totaldeposit,dailytran=dailytran)
 @app.route("/openaccount")
 def openaccount():
     return render_template("openaccount.html")
@@ -124,7 +133,6 @@ def statements():
 @app.route('/logout')
 def logout():
     return render_template('logout.html')
-
 
 
 
