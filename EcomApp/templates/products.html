@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ category }} | ShopNow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- ================= NAVBAR ================= -->
+<header>
+  <div class="flex items-center justify-between px-8 py-4 bg-blue-600 text-white shadow-md">
+
+    <div class="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition">
+      🛒 <span>💳ShopNow</span>
+    </div>
+
+    <ul class="flex gap-8 font-medium items-center">
+
+      <li class="hover:text-gray-200 transition">
+        <a href="/">Home</a>
+      </li>
+
+      {% for cat in categories %}
+      <li class="hover:text-gray-200 transition">
+        <a href="{% url 'storeproductscategory' cat.name %}">
+          {{ cat.name }}
+        </a>
+      </li>
+      {% endfor %}
+
+      {% if username %}
+        <li class="font-semibold">Hello, {{ username }}</li>
+        <li class="bg-white text-blue-600 px-4 py-1 rounded shadow hover:shadow-lg transition">
+          <a href="{% url 'storelogout' %}">Logout</a>
+        </li>
+      {% else %}
+        <li class="bg-white text-blue-600 px-4 py-1 rounded shadow hover:shadow-lg transition">
+          <a href="{% url 'storelogin' %}">Login</a>
+        </li>
+      {% endif %}
+
+    </ul>
+  </div>
+</header>
+
+<!-- ================= PAGE HEADING ================= -->
+<section class="max-w-7xl mx-auto mt-14 px-6">
+
+  <div class="text-center mb-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+      {{ category }}
+    </h1>
+    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+  </div>
+
+  <!-- ================= MESSAGES ================= -->
+  {% if messages %}
+  <div class="fixed top-5 right-5 z-50 space-y-3">
+    {% for message in messages %}
+      <div class="
+        px-5 py-4 rounded-xl shadow-lg flex items-center gap-3
+        {% if message.tags == 'success' %}
+          bg-green-100 border-l-4 border-green-500 text-green-800
+        {% elif message.tags == 'error' %}
+          bg-red-100 border-l-4 border-red-500 text-red-800
+        {% else %}
+          bg-blue-100 border-l-4 border-blue-500 text-blue-800
+        {% endif %}
+      ">
+        <span class="text-xl">
+          {% if message.tags == 'success' %}✅{% elif message.tags == 'error' %}❌{% else %}ℹ️{% endif %}
+        </span>
+        <p class="font-medium">{{ message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ================= PRODUCT GRID ================= -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+    {% for item in products %}
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition">
+
+      <!-- IMAGE -->
+      <div class="overflow-hidden rounded-t-2xl">
+        <img
+          src="{{ item.image.url }}"
+          alt="{{ item.name }}"
+          class="w-full h-56 object-cover hover:scale-110 transition duration-500"
+        />
+      </div>
+
+      <!-- CONTENT -->
+      <div class="p-5">
+        <h2 class="text-lg font-semibold text-gray-800 truncate">
+          {{ item.name }}
+        </h2>
+
+        <p class="text-sm text-gray-500 mb-2">
+          {{ item.category }}
+        </p>
+
+        <span class="text-xl font-bold text-blue-600 block mb-4">
+          ₹ {{ item.price }}
+        </span>
+
+        <!-- ================= BUTTONS ================= -->
+        <div class="flex gap-3">
+
+          <!-- ADD TO CART -->
+          <form method="POST" action="{% url 'addtocart' item.id %}" class="w-1/2">
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-2 rounded-lg
+                     hover:bg-blue-700 transition
+                     focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              Add to Cart
+            </button>
+          </form>
+
+          <!-- BUY NOW -->
+          <form method="POST" action="{% url 'billProduct' item.id %}" class="w-1/2">
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full bg-green-600 text-white py-2 rounded-lg
+                     hover:bg-green-700 transition
+                     focus:outline-none focus:ring-2 focus:ring-green-400"
+            >
+              Buy Now
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    {% empty %}
+      <p class="col-span-full text-center text-gray-500">
+        No products found in this category.⁉️
+      </p>
+    {% endfor %}
+
+  </div>
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
