@@ -1,0 +1,35 @@
+<html>
+        <title>Search |Shop Now</title>
+    <body>
+        <h1>Search Results or "{{ query }}"</h1>
+        {% if results %}
+            <ul>
+                {% for product in results %}
+                    <li>
+                        <h2>{{ product.name }}</h2>
+                        <p>Category: {{ product.category }}</p>
+                        <p>Price: ₹{{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}">View Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products found matching your search criteria.</p>
+
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
