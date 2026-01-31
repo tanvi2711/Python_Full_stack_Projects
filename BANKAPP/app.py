@@ -1,11 +1,16 @@
 from flask import *
 import sqlite3
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "bank.db")
+
+
 # DB init
-conn = sqlite3.connect("bank.db")
+conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
 cur.execute("""
@@ -229,4 +234,5 @@ def logout():
     return render_template('logout.html')
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
