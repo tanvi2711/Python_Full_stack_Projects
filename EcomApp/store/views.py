@@ -135,8 +135,25 @@ def cancelOrderView(request,order_id):
   order=models.OrderModelClass.objects.filter(id=order_id).update(orderstatus="Order Cancelled")
   return redirect("orderhistory")
 
+# def storeSearchView(request):
+#   return render(request,"search.html")
+from django.db.models import Q
+
 def storeSearchView(request):
-  return render(request,"search.html")
+    query = request.GET.get("q", "")
+    results = []
+
+    if query:
+        results = models.ProductModelClass.objects.filter(
+            Q(name__icontains=query) |
+            Q(category__name__icontains=query)
+        )
+
+    return render(request, "search.html", {
+        "query": query,
+        "results": results
+    })
+
 
 def billProductView(request, productid):
     if 'user_id' in request.session:
