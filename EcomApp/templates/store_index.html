@@ -72,6 +72,55 @@
 
     </div>
   </nav>
+  <!-- ================= MOBILE NAV ================= -->
+<div id="mobileMenu"
+     class="md:hidden hidden
+            bg-gradient-to-b from-[#020617] to-[#0f172a]
+            border-b border-white/10
+            shadow-xl">
+
+  <ul class="flex flex-col px-6 py-6 gap-4 text-slate-200 font-medium">
+
+    <li><a href="/" class="block py-2">Home</a></li>
+
+    {% for item in categories %}
+    <li>
+      <a href="{% url 'storeproductscategory' item.name %}"
+         class="block py-2">
+        {{ item.name }}
+      </a>
+    </li>
+    {% endfor %}
+
+    {% if username %}
+      <li class="pt-3 border-t border-white/10 opacity-80">
+        Hi, {{ username }}
+      </li>
+
+      <li>
+        <a href="{% url 'displaycart' %}"
+           class="block py-2">🛒 Cart</a>
+      </li>
+
+      <li>
+        <a href="{% url 'orderhistory' %}"
+           class="block py-2">📃 Orders</a>
+      </li>
+
+      <li>
+        <a href="{% url 'storelogout' %}"
+           class="block py-2 text-red-400">Logout</a>
+      </li>
+    {% else %}
+      <li>
+        <a href="{% url 'storelogin' %}"
+           class="block py-2">Login</a>
+      </li>
+    {% endif %}
+
+  </ul>
+</div>
+
 </header>
 
 <!-- ================= HERO CAROUSEL ================= -->
