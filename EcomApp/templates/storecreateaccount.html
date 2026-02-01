@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <title>Create Account | ShopNow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex items-center justify-center">
+<body class="min-h-screen grid place-items-center py-10
+             bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800">
 
-  <!-- Signup Card -->
-  <div
-    class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8
-           transform transition-all duration-700
-           animate-fade-in-scale"
-  >
+  <!-- ================= SIGNUP CARD ================= -->
+  <div class="bg-white w-full max-w-md rounded-[28px]
+              shadow-[0_30px_60px_rgba(15,23,42,0.2)]
+              p-8 animate-[fadeInScale_0.8s_ease-out]">
 
-    <!-- User Icon -->
-    <div class="flex justify-center -mt-20 mb-6">
-      <div
-        class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center
-               shadow-lg animate-bounce-slow"
-      >
+    <!-- ================= ICON ================= -->
+    <div class="flex justify-center mb-6">
+      <div class="w-24 h-24 rounded-full
+                  bg-slate-800 flex items-center justify-center
+                  shadow-lg animate-[bounceSlow_2s_infinite]">
         <svg xmlns="http://www.w3.org/2000/svg"
              class="w-12 h-12 text-white"
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,119 +32,84 @@
       </div>
     </div>
 
-    <!-- Heading -->
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+    <!-- ================= HEADING ================= -->
+    <h2 class="text-2xl font-extrabold text-center text-slate-900 mb-6">
       Create New Account
     </h2>
 
-    <!-- Signup Form -->
+    <!-- ================= FORM ================= -->
     <form method="post" class="space-y-4">
       {% csrf_token %}
 
-      <!-- Django Form Fields -->
       <div class="space-y-3">
         {{ form.as_p }}
       </div>
 
-      <!-- Sign Up Button -->
-      <button
-        type="submit"
-        class="w-full bg-blue-600 text-white py-3 rounded-lg
-               font-semibold text-lg
-               hover:bg-blue-700 transition
-               focus:outline-none focus:ring-2 focus:ring-blue-400
-               animate-pulse-slow"
-      >
+      <!-- ================= SUBMIT ================= -->
+      <button type="submit"
+              class="w-full py-3 rounded-xl font-semibold text-lg
+                     bg-gradient-to-r from-slate-800 to-slate-700
+                     text-white shadow-lg hover:shadow-xl
+                     hover:scale-[1.02] transition
+                     animate-[pulseSlow_2.5s_infinite]">
         Sign Up
       </button>
 
-      <!-- Back to Login -->
+      <!-- ================= FOOTER ================= -->
       <div class="text-center pt-4 border-t">
-        <p class="text-sm text-gray-600">
-          Already have an account?⁉️
+        <p class="text-sm text-slate-600">
+          Already have an account?
         </p>
-        <a
-          href="{% url 'storelogin' %}"
-          class="text-blue-600 font-semibold hover:underline"
-        >
+        <a href="{% url 'storelogin' %}"
+           class="text-slate-800 font-semibold hover:underline">
           Login here
         </a>
       </div>
-
     </form>
   </div>
 
-  <!-- Animations -->
-  <style>
-    @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+<!-- ================= STYLES ================= -->
+<style>
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
 
-    .animate-fade-in-scale {
-      animation: fadeInScale 0.8s ease-out forwards;
-    }
+  @keyframes bounceSlow {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 
-    @keyframes bounceSlow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+  @keyframes pulseSlow {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
 
-    .animate-bounce-slow {
-      animation: bounceSlow 2s infinite;
-    }
+  /* Django form styling */
+  form p {
+    margin-bottom: 0.75rem;
+  }
 
-    @keyframes pulseSlow {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-    }
+  form label {
+    display: block;
+    font-size: 0.875rem;
+    color: #475569;
+    margin-bottom: 0.25rem;
+  }
 
-    .animate-pulse-slow {
-      animation: pulseSlow 2.5s infinite;
-    }
+  form input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #cbd5f5;
+    border-radius: 0.75rem;
+    outline: none;
+  }
 
-    /* Django form field styling fix */
-    form p {
-      margin-bottom: 0.75rem;
-    }
-
-    form label {
-      display: block;
-      font-size: 0.875rem;
-      color: #4b5563;
-      margin-bottom: 0.25rem;
-    }
-
-    form input {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      outline: none;
-    }
-
-    form input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
-    }
-  </style>
+  form input:focus {
+    border-color: #334155;
+    box-shadow: 0 0 0 2px rgba(51,65,85,0.25);
+  }
+</style>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
