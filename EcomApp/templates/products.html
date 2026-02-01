@@ -8,69 +8,116 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800">
 
 <!-- ================= NAVBAR ================= -->
-<header>
-  <div class="flex items-center justify-between px-8 py-4 bg-blue-600 text-white shadow-md">
+<header class="sticky top-0 z-50">
 
-    <div class="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition">
-      🛒 <span>💳ShopNow</span>
+  <nav class="backdrop-blur-xl
+              bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#020617]
+              border-b border-white/10
+              shadow-[0_10px_30px_rgba(2,6,23,0.6)]">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <!-- Logo -->
+      <div class="text-2xl font-black tracking-wide
+                  text-white drop-shadow-[0_2px_6px_rgba(255,255,255,0.25)]">
+        🛒 ShopNow
+      </div>
+
+      <!-- Hamburger -->
+      <button id="menuBtn"
+              class="lg:hidden text-white text-2xl focus:outline-none">
+        ☰
+      </button>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden lg:flex gap-8 items-center font-medium text-slate-200">
+
+        <li class="nav-item"><a href="/">Home</a></li>
+
+        {% for cat in categories %}
+        <li class="nav-item">
+          <a href="{% url 'storeproductscategory' cat.name %}">
+            {{ cat.name }}
+          </a>
+        </li>
+        {% endfor %}
+
+        {% if username %}
+          <li class="opacity-80">Hi, {{ username }}</li>
+          <li class="btn">
+            <a href="{% url 'storelogout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="btn">
+            <a href="{% url 'storelogin' %}">Login</a>
+          </li>
+        {% endif %}
+
+      </ul>
     </div>
+  </nav>
 
-    <ul class="flex gap-8 font-medium items-center">
+  <!-- ================= MOBILE MENU ================= -->
+  <div id="mobileMenu"
+       class="lg:hidden hidden
+              bg-gradient-to-b from-[#020617] to-[#0f172a]
+              border-b border-white/10
+              shadow-xl">
 
-      <li class="hover:text-gray-200 transition">
-        <a href="/">Home</a>
-      </li>
+    <ul class="flex flex-col px-6 py-6 gap-4 text-slate-200 font-medium">
+      <li><a href="/" class="block py-2">Home</a></li>
 
       {% for cat in categories %}
-      <li class="hover:text-gray-200 transition">
-        <a href="{% url 'storeproductscategory' cat.name %}">
+      <li>
+        <a href="{% url 'storeproductscategory' cat.name %}"
+           class="block py-2">
           {{ cat.name }}
         </a>
       </li>
       {% endfor %}
 
       {% if username %}
-        <li class="font-semibold">Hello, {{ username }}</li>
-        <li class="bg-white text-blue-600 px-4 py-1 rounded shadow hover:shadow-lg transition">
-          <a href="{% url 'storelogout' %}">Logout</a>
+        <li class="pt-3 border-t border-white/10 opacity-80">
+          Hi, {{ username }}
+        </li>
+        <li>
+          <a href="{% url 'storelogout' %}"
+             class="block py-2 text-red-400">Logout</a>
         </li>
       {% else %}
-        <li class="bg-white text-blue-600 px-4 py-1 rounded shadow hover:shadow-lg transition">
-          <a href="{% url 'storelogin' %}">Login</a>
+        <li>
+          <a href="{% url 'storelogin' %}" class="block py-2">Login</a>
         </li>
       {% endif %}
-
     </ul>
   </div>
+
 </header>
 
 <!-- ================= PAGE HEADING ================= -->
-<section class="max-w-7xl mx-auto mt-14 px-6">
+<section class="max-w-7xl mx-auto mt-16 px-6">
 
-  <div class="text-center mb-12">
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+  <div class="text-center mb-14">
+    <h1 class="text-4xl font-extrabold text-slate-900">
       {{ category }}
     </h1>
-    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+    <div class="w-28 h-1 bg-slate-900 mx-auto mt-4 rounded-full"></div>
   </div>
 
   <!-- ================= MESSAGES ================= -->
   {% if messages %}
-  <div class="fixed top-5 right-5 z-50 space-y-3">
+  <div class="fixed top-6 right-6 z-50 space-y-3">
     {% for message in messages %}
-      <div class="
-        px-5 py-4 rounded-xl shadow-lg flex items-center gap-3
+      <div class="px-5 py-4 rounded-xl shadow-lg flex items-center gap-3
         {% if message.tags == 'success' %}
-          bg-green-100 border-l-4 border-green-500 text-green-800
+          bg-emerald-100 border-l-4 border-emerald-600 text-emerald-800
         {% elif message.tags == 'error' %}
-          bg-red-100 border-l-4 border-red-500 text-red-800
+          bg-red-100 border-l-4 border-red-600 text-red-800
         {% else %}
-          bg-blue-100 border-l-4 border-blue-500 text-blue-800
-        {% endif %}
-      ">
+          bg-sky-100 border-l-4 border-sky-600 text-sky-800
+        {% endif %}">
         <span class="text-xl">
           {% if message.tags == 'success' %}✅{% elif message.tags == 'error' %}❌{% else %}ℹ️{% endif %}
         </span>
@@ -81,59 +128,56 @@
   {% endif %}
 
   <!-- ================= PRODUCT GRID ================= -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 
     {% for item in products %}
-    <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition">
+    <div class="bg-white rounded-[28px]
+                shadow-[0_20px_40px_rgba(15,23,42,0.15)]
+                hover:shadow-[0_30px_60px_rgba(15,23,42,0.25)]
+                transition-all duration-500 hover:-translate-y-2">
 
       <!-- IMAGE -->
-      <div class="overflow-hidden rounded-t-2xl">
-        <img
-          src="{{ item.image.url }}"
-          alt="{{ item.name }}"
-          class="w-full h-56 object-cover hover:scale-110 transition duration-500"
-        />
+      <div class="relative overflow-hidden rounded-t-[28px]">
+        <img src="{{ item.image.url }}"
+             alt="{{ item.name }}"
+             class="w-full h-56 object-cover hover:scale-110 transition duration-500">
       </div>
 
       <!-- CONTENT -->
-      <div class="p-5">
-        <h2 class="text-lg font-semibold text-gray-800 truncate">
+      <div class="p-6">
+        <h2 class="text-lg font-semibold text-slate-900 truncate">
           {{ item.name }}
         </h2>
 
-        <p class="text-sm text-gray-500 mb-2">
+        <p class="text-sm text-slate-500 mb-2">
           {{ item.category }}
         </p>
 
-        <span class="text-xl font-bold text-blue-600 block mb-4">
+        <p class="text-xl font-extrabold
+                  bg-gradient-to-r from-slate-900 to-slate-700
+                  bg-clip-text text-transparent mb-5">
           ₹ {{ item.price }}
-        </span>
+        </p>
 
-        <!-- ================= BUTTONS ================= -->
+        <!-- BUTTONS -->
         <div class="flex gap-3">
 
-          <!-- ADD TO CART -->
           <form method="POST" action="{% url 'addtocart' item.id %}" class="w-1/2">
             {% csrf_token %}
-            <button
-              type="submit"
-              class="w-full bg-blue-600 text-white py-2 rounded-lg
-                     hover:bg-blue-700 transition
-                     focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
+            <button type="submit"
+                    class="w-full py-2 rounded-xl font-semibold
+                           bg-gradient-to-r from-slate-800 to-slate-700
+                           text-white shadow hover:shadow-lg transition">
               Add to Cart
             </button>
           </form>
 
-          <!-- BUY NOW -->
           <form method="POST" action="{% url 'billProduct' item.id %}" class="w-1/2">
             {% csrf_token %}
-            <button
-              type="submit"
-              class="w-full bg-green-600 text-white py-2 rounded-lg
-                     hover:bg-green-700 transition
-                     focus:outline-none focus:ring-2 focus:ring-green-400"
-            >
+            <button type="submit"
+                    class="w-full py-2 rounded-xl font-semibold
+                           bg-gradient-to-r from-emerald-600 to-green-700
+                           text-white shadow hover:shadow-lg transition">
               Buy Now
             </button>
           </form>
@@ -142,29 +186,68 @@
       </div>
     </div>
     {% empty %}
-      <p class="col-span-full text-center text-gray-500">
-        No products found in this category.⁉️
+      <p class="col-span-full text-center text-slate-500">
+        No products found in this category.
       </p>
     {% endfor %}
 
   </div>
 </section>
 
+<!-- ================= STYLES ================= -->
+<style>
+  .nav-item {
+    position: relative;
+    cursor: pointer;
+  }
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #38bdf8, #2563eb);
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+  }
+  .nav-item:hover::after {
+    width: 100%;
+  }
+
+  .btn {
+    background: white;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    color: #020617;
+    font-weight: 600;
+    border: 1px solid rgba(15,23,42,0.35);
+    box-shadow:
+      0 4px 10px rgba(0,0,0,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+
+  document.querySelectorAll("#mobileMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
