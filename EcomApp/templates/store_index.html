@@ -58,16 +58,7 @@
   </a>
 </li>
 
-<li>
-  <a href="{% url 'Logout' %}"
-     class="flex items-center justify-center
-            w-10 h-10 rounded-full
-            bg-white text-slate-900
-            border border-slate-700/40
-            shadow hover:shadow-lg transition">
-    Logout
-  </a>
-</li>
+<li class="btn"><a href="{% url 'storelogout' %}">Logout</a></li>
         {% else %}
           <li class="btn"><a href="{% url 'storelogin' %}">Login</a></li>
         {% endif %}
