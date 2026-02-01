@@ -3,23 +3,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ShopNow | Premium Shopping</title>
+  <title>ShopNow | Premium Navy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-gray-800">
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800">
 
 <!-- ================= NAVBAR ================= -->
 <header class="sticky top-0 z-50">
-  <nav class="backdrop-blur-xl bg-white/70 border-b border-white/30 shadow-md">
+  <nav class="backdrop-blur-xl bg-slate-900/80 border-b border-white/20 shadow-lg">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-      <div class="text-2xl font-black tracking-wide text-blue-700 hover:scale-105 transition">
+      <div class="text-2xl font-black tracking-wide text-white hover:scale-105 transition">
         🛒 ShopNow
       </div>
 
-      <ul class="hidden md:flex gap-8 items-center font-medium">
+      <ul class="hidden md:flex gap-8 items-center font-medium text-slate-200">
         <li class="nav-item"><a href="/">Home</a></li>
 
         {% for item in categories %}
@@ -31,7 +31,7 @@
         {% endfor %}
 
         {% if username %}
-          <li class="opacity-70">Hi, {{ username }}</li>
+          <li class="opacity-80">Hi, {{ username }}</li>
           <li class="btn"><a href="{% url 'displaycart' %}">🛒</a></li>
           <li class="btn"><a href="{% url 'orderhistory' %}">📃</a></li>
           <li class="btn"><a href="{% url 'storelogout' %}">Logout</a></li>
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
 
     <!-- Buttons -->
     <button onclick="prevSlide()" class="carousel-btn left-6">❮</button>
@@ -75,21 +75,21 @@
 <section class="max-w-7xl mx-auto mt-24 px-6">
 
   <div class="text-center mb-16">
-    <h1 class="text-4xl font-extrabold text-gray-800">
+    <h1 class="text-4xl font-extrabold text-slate-900">
       Latest Launched Products
     </h1>
-    <p class="text-gray-500 mt-3">
-      Premium quality · Exclusive deals
+    <p class="text-slate-500 mt-3">
+      Premium quality · Trusted brands
     </p>
-    <div class="w-32 h-1 bg-blue-600 mx-auto mt-5 rounded-full"></div>
+    <div class="w-32 h-1 bg-slate-900 mx-auto mt-5 rounded-full"></div>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
 
     {% for item in products %}
     <div class="group bg-white rounded-[28px]
-                shadow-[0_20px_40px_rgba(0,0,0,0.08)]
-                hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]
+                shadow-[0_20px_40px_rgba(15,23,42,0.15)]
+                hover:shadow-[0_30px_60px_rgba(15,23,42,0.25)]
                 transition-all duration-500 hover:-translate-y-4">
 
       <!-- IMAGE -->
@@ -100,15 +100,15 @@
 
       <!-- CONTENT -->
       <div class="p-6">
-        <h2 class="text-lg font-semibold truncate">
+        <h2 class="text-lg font-semibold truncate text-slate-900">
           {{ item.name }}
         </h2>
 
-        <p class="text-sm text-gray-500 mb-3">
+        <p class="text-sm text-slate-500 mb-3">
           {{ item.category }}
         </p>
 
-        <p class="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600
+        <p class="text-2xl font-extrabold bg-gradient-to-r from-slate-900 to-slate-700
                    bg-clip-text text-transparent mb-6">
           ₹ {{ item.price }}
         </p>
@@ -116,7 +116,7 @@
         <div class="flex gap-3">
           <a href="{% url 'addcart' item.id %}"
              class="w-1/2 text-center py-3 rounded-xl font-semibold
-                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    bg-gradient-to-r from-slate-900 to-slate-700
                     text-white shadow-lg hover:shadow-xl hover:scale-[1.03] transition">
             Add to Cart
           </a>
@@ -125,7 +125,7 @@
             {% csrf_token %}
             <button type="submit"
               class="w-full py-3 rounded-xl font-semibold
-                     bg-gradient-to-r from-emerald-500 to-green-600
+                     bg-gradient-to-r from-emerald-600 to-green-700
                      text-white shadow-lg hover:shadow-xl hover:scale-[1.03] transition">
               Buy Now
             </button>
@@ -152,7 +152,7 @@
     position: absolute;
     width: 0;
     height: 2px;
-    background: #2563eb;
+    background: white;
     left: 0;
     bottom: -5px;
     transition: 0.3s;
@@ -165,7 +165,7 @@
     background: white;
     padding: 6px 14px;
     border-radius: 9999px;
-    color: #2563eb;
+    color: #0f172a;
     font-weight: 500;
   }
 
@@ -174,7 +174,7 @@
     height: 480px;
     object-fit: cover;
     flex-shrink: 0;
-    filter: brightness(0.9);
+    filter: brightness(0.85);
   }
 
   .carousel-btn {
@@ -213,7 +213,7 @@
     position: absolute;
     top: 14px;
     left: 14px;
-    background: linear-gradient(to right, #2563eb, #4f46e5);
+    background: linear-gradient(to right, #0f172a, #334155);
     color: white;
     font-size: 11px;
     padding: 6px 14px;
