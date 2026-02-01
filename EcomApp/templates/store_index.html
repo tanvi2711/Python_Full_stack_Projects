@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ShopNow | Premium Navy</title>
+  <title>ShopNow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -156,7 +156,7 @@
 
 </header>
 
-<!-- ================= HERO CAROUSEL ================= -->
+{% comment %} <!-- ================= HERO CAROUSEL ================= -->
 <section class="max-w-7xl mx-auto mt-8 px-4">
   <div class="relative overflow-hidden rounded-[32px] shadow-2xl carousel-wrapper">
 
@@ -181,7 +181,42 @@
     </div>
 
   </div>
+</section> {% endcomment %}
+<!-- ================= PREMIUM RESPONSIVE CAROUSEL ================= -->
+<section class="max-w-7xl mx-auto mt-6 px-4">
+  <div class="relative overflow-hidden rounded-3xl shadow-2xl">
+
+    <!-- Slides -->
+    <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+      <img src="{% static 'images/b1.jpg' %}" class="carousel-img">
+      <img src="{% static 'images/b2.jpg' %}" class="carousel-img">
+      <img src="{% static 'images/b3.webp' %}" class="carousel-img">
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+
+    <!-- Navigation Buttons -->
+    <button onclick="prevSlide()"
+      class="carousel-btn left-3 md:left-6">
+      ❮
+    </button>
+
+    <button onclick="nextSlide()"
+      class="carousel-btn right-3 md:right-6">
+      ❯
+    </button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
 </section>
+
 
 <!-- ================= PRODUCTS ================= -->
 <section class="max-w-7xl mx-auto mt-24 px-6">
@@ -296,46 +331,67 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.35);
 }
 
+/* ================= CAROUSEL STYLES ================= */
 
 .carousel-img {
   width: 100%;
-  height: 480px; /* desktop */
+  height: 480px;        /* Desktop */
   object-fit: cover;
   flex-shrink: 0;
-  filter: brightness(0.85);
 }
 
-/* 📱 MOBILE */
+/* Tablet */
+@media (max-width: 1024px) {
+  .carousel-img {
+    height: 340px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 640px) {
   .carousel-img {
     height: 220px;
-    object-fit: cover;
   }
 }
 
-/* 📱📲 TABLET */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .carousel-img {
-    height: 320px;
-  }
-}
-@media (max-width: 640px) {
-  .carousel-wrapper {
-    border-radius: 20px;
-  }
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: all 0.3s ease;
 }
 
+.carousel-btn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+}
 
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.85);
-    padding: 12px;
-    border-radius: 9999px;
-    font-size: 22px;
-    z-index: 10;
-  }
+/* Dots */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: white;
+  opacity: 0.4;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  width: 18px;
+  opacity: 1;
+}
+
 
   .dot {
     width: 10px;
@@ -411,6 +467,31 @@
     }
   });
 </script>
+<script>
+  const carousel = document.getElementById("carousel");
+  const dots = document.querySelectorAll(".dot");
+  let index = 0;
+  const totalSlides = dots.length;
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  setInterval(nextSlide, 4500);
+</script>
+
 
 
 </body>
