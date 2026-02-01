@@ -137,6 +137,7 @@ def cancelOrderView(request,order_id):
 
 def storeSearchView(request):
   return render(request,"search.html")
+
 def billProductView(request, productid):
     if 'user_id' in request.session:
         user_id = int(request.session.get('user_id'))
