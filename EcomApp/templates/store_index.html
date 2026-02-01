@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ShopNow |Shop Now</title>
+  <title>ShopNow | Premium Shopping</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -11,94 +11,85 @@
 <body class="bg-gray-100">
 
 <!-- ================= NAVBAR ================= -->
-<header>
-  <div
-    id="navbar"
-    class="flex items-center justify-between px-8 py-4
-           bg-blue-600 text-white
-           shadow-md hover:shadow-xl
-           transition-shadow duration-300"
-  >
-    <div class="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition">
-      🛒 <span>ShopNow</span>
+<header class="sticky top-0 z-50">
+  <nav class="backdrop-blur-md bg-blue-600/90 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <div class="text-2xl font-extrabold flex items-center gap-2 text-white">
+        🛒 <span>ShopNow</span>
+      </div>
+
+      <ul class="hidden md:flex gap-8 items-center text-white font-medium">
+        <li class="nav-item"><a href="/">Home</a></li>
+
+        {% for item in categories %}
+        <li class="nav-item">
+          <a href="{% url 'storeproductscategory' item.name %}">
+            {{ item.name }}
+          </a>
+        </li>
+        {% endfor %}
+
+        {% if username %}
+          <li class="opacity-80">Hi, {{ username }}</li>
+          <li class="btn"><a href="{% url 'displaycart' %}">🛒</a></li>
+          <li class="btn"><a href="{% url 'orderhistory' %}">📃</a></li>
+          <li class="btn"><a href="{% url 'storelogout' %}">Logout</a></li>
+        {% else %}
+          <li class="btn"><a href="{% url 'storelogin' %}">Login</a></li>
+        {% endif %}
+      </ul>
+
     </div>
-
-    <ul class="flex gap-8 font-medium items-center">
-      <li class="nav-item"><a href="/">Home</a></li>
-
-      {% for item in categories %}
-      <li class="nav-item">
-        <a href="{% url 'storeproductscategory' item.name %}">
-          {{ item.name }}
-        </a>
-      </li>
-      {% endfor %}
-
-      {% if username %}
-        <li class="nav-item">Hello, {{ username }}</li>
-
-        <li class="btn">
-          <a href="{% url 'displaycart' %}">🛒</a>
-        </li>
-
-        <li class="btn">
-          <a href="{% url 'orderhistory' %}">📃 Orders</a>
-        </li>
-
-        <li class="btn">
-          <a href="{% url 'storelogout' %}">Logout</a>
-        </li>
-      {% else %}
-        <li class="btn">
-          <a href="{% url 'storelogin' %}">Login</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
+  </nav>
 </header>
 
-<!-- ================= CAROUSEL ================= -->
-<section class="max-w-6xl mx-auto mt-10 relative">
-  <div class="overflow-hidden rounded-xl shadow-lg h-[400px]">
-    <div id="carousel" class="flex transition-transform duration-500">
-      <img src="{% static 'images/b1.jpg' %}" class="w-full h-[400px] object-cover flex-shrink-0">
-      <img src="{% static 'images/b2.jpg' %}" class="w-full h-[400px] object-cover flex-shrink-0">
-      <img src="{% static 'images/b3.webp' %}" class="w-full h-[400px] object-cover flex-shrink-0">
+<!-- ================= HERO CAROUSEL ================= -->
+<section class="max-w-7xl mx-auto mt-8 px-4">
+  <div class="relative overflow-hidden rounded-3xl shadow-2xl">
+
+    <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+      <img src="{% static 'images/b1.jpg' %}" class="carousel-img">
+      <img src="{% static 'images/b2.jpg' %}" class="carousel-img">
+      <img src="{% static 'images/b3.webp' %}" class="carousel-img">
+    </div>
+
+    <!-- Buttons -->
+    <button onclick="prevSlide()" class="carousel-btn left-5">❮</button>
+    <button onclick="nextSlide()" class="carousel-btn right-5">❯</button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
-
-  <button onclick="prevSlide()" class="carousel-btn left-4">⬅</button>
-  <button onclick="nextSlide()" class="carousel-btn right-4">➡</button>
 </section>
 
-<!-- ================= LATEST PRODUCTS ================= -->
+<!-- ================= PRODUCTS ================= -->
 <section class="max-w-7xl mx-auto mt-20 px-6">
 
-  <div class="text-center mb-14">
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+  <div class="text-center mb-16">
+    <h1 class="text-4xl font-extrabold text-gray-800">
       Latest Launched Products
     </h1>
-    <p class="text-gray-500 mt-2">Fresh arrivals curated just for you</p>
-    <div class="w-28 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+    <p class="text-gray-500 mt-3">
+      Discover premium quality & exclusive deals
+    </p>
+    <div class="w-32 h-1 bg-blue-600 mx-auto mt-5 rounded-full"></div>
   </div>
 
-  <!-- PRODUCT GRID -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 
     {% for item in products %}
-    <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition">
+    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300">
 
-      <!-- IMAGE -->
-      <div class="relative overflow-hidden rounded-t-2xl">
-        <img
-          src="{{ item.image.url }}"
-          alt="{{ item.name }}"
-          class="w-full h-56 object-cover hover:scale-110 transition duration-500"
-        >
+      <div class="relative overflow-hidden rounded-t-3xl">
+        <img src="{{ item.image.url }}" class="product-img">
         <span class="badge">NEW</span>
       </div>
 
-      <!-- CONTENT -->
       <div class="p-5">
         <h2 class="text-lg font-semibold text-gray-800 truncate">
           {{ item.name }}
@@ -108,32 +99,21 @@
           {{ item.category }}
         </p>
 
-        <span class="text-xl font-bold text-blue-600 block mb-4">
+        <p class="text-2xl font-bold text-blue-600 mb-4">
           ₹ {{ item.price }}
-        </span>
+        </p>
 
-        <!-- BUTTONS -->
         <div class="flex gap-3">
-
-          <!-- ADD TO CART -->
-          <a href="{% url 'addcart' item.id %}"
-             class="w-1/2 text-center bg-blue-600 text-white py-2 rounded-lg
-                    hover:bg-blue-700 transition">
+          <a href="{% url 'addcart' item.id %}" class="btn-primary">
             Add to Cart
           </a>
 
-          <!-- BUY NOW -->
           <form method="POST" action="{% url 'billproduct' item.id %}" class="w-1/2">
             {% csrf_token %}
-            <button
-              type="submit"
-              class="w-full bg-green-600 text-white py-2 rounded-lg
-                     hover:bg-green-700 transition
-                     focus:outline-none focus:ring-2 focus:ring-green-400">
+            <button type="submit" class="btn-secondary">
               Buy Now
             </button>
           </form>
-
         </div>
       </div>
     </div>
@@ -145,55 +125,121 @@
 <!-- ================= STYLES ================= -->
 <style>
   .nav-item {
-    @apply relative cursor-pointer transition hover:text-gray-200
-    after:content-[''] after:absolute after:left-0 after:-bottom-1
-    after:w-0 after:h-[2px] after:bg-white
-    hover:after:w-full after:transition-all;
+    position: relative;
+  }
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: white;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+  }
+  .nav-item:hover::after {
+    width: 100%;
   }
 
   .btn {
-    @apply cursor-pointer px-4 py-1 rounded bg-white text-blue-600
-    shadow hover:shadow-lg transition;
+    background: white;
+    color: #2563eb;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-weight: 500;
   }
 
-  .badge {
-    @apply absolute top-3 left-3 bg-blue-600 text-white text-xs
-    font-semibold px-3 py-1 rounded-full;
+  .carousel-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   .carousel-btn {
-    @apply absolute top-1/2 -translate-y-1/2
-    bg-white/80 hover:bg-white p-2 rounded-full shadow transition;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    padding: 10px;
+    border-radius: 9999px;
+    font-size: 20px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: white;
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+  .dot.active {
+    opacity: 1;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    transition: 0.5s;
+  }
+  .product-img:hover {
+    transform: scale(1.12);
+  }
+
+  .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #2563eb;
+    color: white;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+
+  .btn-primary {
+    width: 50%;
+    text-align: center;
+    background: #2563eb;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    background: #16a34a;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
   }
 </style>
 
 <!-- ================= SCRIPT ================= -->
 <script>
   const carousel = document.getElementById("carousel");
+  const dots = document.querySelectorAll(".dot");
   let index = 0;
 
-  function showSlide() {
+  function updateCarousel() {
     carousel.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
   }
 
   function nextSlide() {
     index = (index + 1) % 3;
-    showSlide();
+    updateCarousel();
   }
 
   function prevSlide() {
     index = (index - 1 + 3) % 3;
-    showSlide();
+    updateCarousel();
   }
 
-  setInterval(nextSlide, 4000);
+  setInterval(nextSlide, 4500);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
