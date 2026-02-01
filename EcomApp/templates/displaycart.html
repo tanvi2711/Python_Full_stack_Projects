@@ -3,173 +3,243 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bill Cart | ShopNow</title>
+  <title>Cart | ShopNow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800 min-h-screen">
 
 <!-- ================= NAVBAR ================= -->
-<header>
-  <div
-    id="navbar"
-    class="flex items-center justify-between px-8 py-4
-           bg-blue-600 text-white
-           shadow-md hover:shadow-xl
-           transition-shadow duration-300"
-  >
-    <div
-      class="text-2xl font-bold flex items-center gap-2
-             transition-transform duration-300 hover:scale-105"
-    >
-      🛒 <span>ShopNow</span>
+<header class="sticky top-0 z-50">
+  <nav class="backdrop-blur-xl
+            bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#020617]
+            border-b border-white/10
+            shadow-[0_10px_30px_rgba(2,6,23,0.6)]">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <!-- Logo -->
+      <div class="text-2xl font-black tracking-wide
+            text-white drop-shadow-[0_2px_6px_rgba(255,255,255,0.25)]">
+        🛒 ShopNow
+      </div>
+
+      <!-- Mobile Menu Button -->
+<button id="menuBtn"
+        class="lg:hidden text-white text-2xl focus:outline-none">
+  ☰
+</button>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden lg:flex gap-8 items-center font-medium text-slate-200">
+        <li class="nav-item"><a href="/">Home</a></li>
+
+        {% for item in categories %}
+        <li class="nav-item">
+          <a href="{% url 'storeproductscategory' item.name %}">
+            {{ item.name }}
+          </a>
+        </li>
+        {% endfor %}
+
+        {% if username %}
+          <li class="opacity-80">Hi, {{ username }}</li>
+
+          <li>
+            <a href="{% url 'displaycart' %}"
+               class="flex items-center justify-center w-10 h-10 rounded-full
+                      bg-white text-slate-900 border border-slate-700/40 shadow">
+              🛒
+            </a>
+          </li>
+
+          <li class="btn"><a href="{% url 'storelogout' %}">Logout</a></li>
+        {% else %}
+          <li class="btn"><a href="{% url 'storelogin' %}">Login</a></li>
+        {% endif %}
+      </ul>
+
     </div>
+  </nav>
+  <!-- ================= MOBILE NAV ================= -->
+<div id="mobileMenu"
+     class="lg:hidden hidden
+            bg-gradient-to-b from-[#020617] to-[#0f172a]
+            border-b border-white/10
+            shadow-xl">
 
-    <ul class="flex gap-8 font-medium items-center">
-      <li class="nav-item"><a href="/">Home</a></li>
+  <ul class="flex flex-col px-6 py-6 gap-4 text-slate-200 font-medium">
 
-      {% for item in categories %}
-      <li class="nav-item">
-        <a href="{% url 'storeproductscategory' item.name %}">
-          {{ item.name }}
-        </a>
+    <li><a href="/" class="block py-2">Home</a></li>
+
+    {% for item in categories %}
+    <li>
+      <a href="{% url 'storeproductscategory' item.name %}"
+         class="block py-2">
+        {{ item.name }}
+      </a>
+    </li>
+    {% endfor %}
+
+    {% if username %}
+      <li class="pt-3 border-t border-white/10 opacity-80">
+        Hi, {{ username }}
       </li>
-      {% endfor %}
 
-      {% if username %}
-        <li class="nav-item">Hello, {{ username }}</li>
+      <li><a href="{% url 'displaycart' %}" class="block py-2">🛒 Cart</a></li>
+      <li><a href="{% url 'storelogout' %}" class="block py-2 text-red-400">Logout</a></li>
+    {% else %}
+      <li><a href="{% url 'storelogin' %}" class="block py-2">Login</a></li>
+    {% endif %}
 
-        <li class="cursor-pointer px-4 py-1 rounded bg-white text-blue-600 shadow">
-          <a href="{% url 'displaycart' %}">🛒</a>
-        </li>
+  </ul>
+</div>
 
-        <li class="cursor-pointer px-4 py-1 rounded bg-white text-blue-600 shadow">
-          <a href="{% url 'storelogout' %}">Logout</a>
-        </li>
-      {% else %}
-        <li class="cursor-pointer px-4 py-1 rounded bg-white text-blue-600 shadow">
-          <a href="{% url 'storelogin' %}">Login</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
 </header>
 
 <!-- ================= CART SECTION ================= -->
-<section class="max-w-6xl mx-auto px-6 py-12">
+<section class="max-w-6xl mx-auto px-6 py-16">
 
-  <!-- Header -->
-  <div class="text-center mb-10">
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
-      🛒 Your Cart Items
+  <!-- Title -->
+  <div class="text-center mb-14">
+    <h1 class="text-4xl font-extrabold text-slate-900">
+      🛒 Your Cart
     </h1>
-    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+    <p class="text-slate-500 mt-2">
+      Review items before checkout
+    </p>
+    <div class="w-28 h-1 bg-slate-900 mx-auto mt-4 rounded-full"></div>
   </div>
 
   {% if cartitems %}
-  <!-- ================= CART ITEMS ================= -->
-  <div class="space-y-6">
+
+  <!-- CART ITEMS -->
+  <div class="space-y-8">
 
     {% for cartitem in cartitems %}
-    <div
-      class="bg-white rounded-2xl shadow-md
-             hover:shadow-xl transition-all duration-300
-             flex flex-col md:flex-row gap-6 p-6 items-center"
-    >
+    <div class="bg-white rounded-[28px]
+                shadow-[0_20px_40px_rgba(15,23,42,0.15)]
+                hover:shadow-[0_30px_60px_rgba(15,23,42,0.25)]
+                transition-all duration-500
+                flex flex-col md:flex-row gap-6 p-6 items-center">
 
-      <!-- Product Image -->
+      <!-- Image -->
       <div class="w-32 h-32 overflow-hidden rounded-xl border">
-        <img
-          src="{{ cartitem.product.image.url }}"
-          alt="{{ cartitem.product.name }}"
-          class="w-full h-full object-cover
-                 hover:scale-110 transition-transform duration-500"
-        />
+        <img src="{{ cartitem.product.image.url }}"
+             alt="{{ cartitem.product.name }}"
+             class="w-full h-full object-cover hover:scale-110 transition">
       </div>
 
-      <!-- Product Details -->
+      <!-- Details -->
       <div class="flex-1 w-full">
-        <h2 class="text-lg font-semibold text-gray-800 mb-1">
+        <h2 class="text-lg font-semibold text-slate-900">
           {{ cartitem.product.name }}
         </h2>
-
-        <p class="text-sm text-gray-500 mb-2">
+        <p class="text-sm text-slate-500 mb-2">
           Category: {{ cartitem.product.category }}
         </p>
-
-        <p class="text-xl font-bold text-blue-600">
+        <p class="text-xl font-extrabold bg-gradient-to-r from-slate-900 to-slate-700
+                   bg-clip-text text-transparent">
           ₹ {{ cartitem.product.price }}
         </p>
       </div>
 
-      <!-- Remove Button -->
-      <div>
-        <a href="{% url 'deletecart' cartitem.id %}"
-           class="px-5 py-2 rounded-lg
-                  bg-red-500 text-white font-medium
-                  hover:bg-red-600 transition-all duration-300">
-          ❌ Remove
-        </a>
-      </div>
+      <!-- Remove -->
+      <a href="{% url 'deletecart' cartitem.id %}"
+         class="px-6 py-2 rounded-xl bg-red-600 text-white
+                shadow hover:bg-red-700 transition">
+        ❌ Remove
+      </a>
 
     </div>
     {% endfor %}
 
   </div>
 
-  <!-- ================= PLACE ORDER BUTTON ================= -->
-  <div class="flex justify-end mt-10">
-    <a href="{% url 'billcart' %}"><button
-      class="bg-orange-500 hover:bg-orange-600
-             text-white px-8 py-3
-             rounded-lg text-lg font-semibold
-             shadow-lg transition-all duration-300">
-      🛍 Place Order
-    </button>
+  <!-- PLACE ORDER -->
+  <div class="flex justify-end mt-14">
+    <a href="{% url 'billcart' %}">
+      <button
+        class="px-10 py-4 rounded-xl font-semibold text-lg
+               bg-gradient-to-r from-slate-800 to-slate-700
+               text-white shadow-lg hover:shadow-xl hover:scale-[1.02]
+               transition">
+        🛍 Place Order
+      </button>
     </a>
   </div>
 
   {% else %}
-  <!-- ================= EMPTY CART ================= -->
-  <div class="text-center py-20">
-    <p class="text-lg text-gray-500 mb-4">
+  <!-- EMPTY CART -->
+  <div class="text-center py-24">
+    <p class="text-lg text-slate-500 mb-6">
       Your cart is empty 😔
     </p>
-    <a
-      href="/"
-      class="inline-block px-6 py-3
-             bg-blue-600 text-white rounded-lg
-             hover:bg-blue-700 transition">
-    🛒  Continue Shopping
+    <a href="/"
+       class="inline-block px-8 py-3 rounded-xl
+              bg-gradient-to-r from-slate-800 to-slate-700
+              text-white font-semibold shadow hover:shadow-lg transition">
+      Continue Shopping
     </a>
   </div>
   {% endif %}
 
 </section>
 
-<!-- ================= NAV ITEM STYLE ================= -->
+<!-- ================= STYLES ================= -->
 <style>
   .nav-item {
-    @apply relative cursor-pointer transition-all duration-300 hover:text-gray-200
-    after:content-[''] after:absolute after:left-0 after:-bottom-1
-    after:w-0 after:h-[2px] after:bg-white
-    hover:after:w-full after:transition-all after:duration-300;
+    position: relative;
+    cursor: pointer;
+  }
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #38bdf8, #2563eb);
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+  }
+  .nav-item:hover::after {
+    width: 100%;
+  }
+
+  .btn {
+    background: white;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    color: #020617;
+    font-weight: 600;
+    border: 1px solid rgba(15,23,42,0.35);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.6);
   }
 </style>
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // Toggle menu
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu when resizing to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll("#mobileMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
