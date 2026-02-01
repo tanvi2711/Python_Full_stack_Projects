@@ -343,5 +343,22 @@
   setInterval(nextSlide, 4500);
 </script>
 
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Auto-close menu on resize (important)
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
+
+
 </body>
 </html>
