@@ -8,18 +8,18 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-gray-800">
 
 <!-- ================= NAVBAR ================= -->
 <header class="sticky top-0 z-50">
-  <nav class="backdrop-blur-md bg-blue-600/90 shadow-lg">
+  <nav class="backdrop-blur-xl bg-white/70 border-b border-white/30 shadow-md">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-      <div class="text-2xl font-extrabold flex items-center gap-2 text-white">
-        🛒 <span>ShopNow</span>
+      <div class="text-2xl font-black tracking-wide text-blue-700 hover:scale-105 transition">
+        🛒 ShopNow
       </div>
 
-      <ul class="hidden md:flex gap-8 items-center text-white font-medium">
+      <ul class="hidden md:flex gap-8 items-center font-medium">
         <li class="nav-item"><a href="/">Home</a></li>
 
         {% for item in categories %}
@@ -31,7 +31,7 @@
         {% endfor %}
 
         {% if username %}
-          <li class="opacity-80">Hi, {{ username }}</li>
+          <li class="opacity-70">Hi, {{ username }}</li>
           <li class="btn"><a href="{% url 'displaycart' %}">🛒</a></li>
           <li class="btn"><a href="{% url 'orderhistory' %}">📃</a></li>
           <li class="btn"><a href="{% url 'storelogout' %}">Logout</a></li>
@@ -46,7 +46,7 @@
 
 <!-- ================= HERO CAROUSEL ================= -->
 <section class="max-w-7xl mx-auto mt-8 px-4">
-  <div class="relative overflow-hidden rounded-3xl shadow-2xl">
+  <div class="relative overflow-hidden rounded-[32px] shadow-2xl">
 
     <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
       <img src="{% static 'images/b1.jpg' %}" class="carousel-img">
@@ -54,68 +54,85 @@
       <img src="{% static 'images/b3.webp' %}" class="carousel-img">
     </div>
 
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
     <!-- Buttons -->
-    <button onclick="prevSlide()" class="carousel-btn left-5">❮</button>
-    <button onclick="nextSlide()" class="carousel-btn right-5">❯</button>
+    <button onclick="prevSlide()" class="carousel-btn left-6">❮</button>
+    <button onclick="nextSlide()" class="carousel-btn right-6">❯</button>
 
     <!-- Dots -->
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
       <span class="dot active"></span>
       <span class="dot"></span>
       <span class="dot"></span>
     </div>
+
   </div>
 </section>
 
 <!-- ================= PRODUCTS ================= -->
-<section class="max-w-7xl mx-auto mt-20 px-6">
+<section class="max-w-7xl mx-auto mt-24 px-6">
 
   <div class="text-center mb-16">
     <h1 class="text-4xl font-extrabold text-gray-800">
       Latest Launched Products
     </h1>
     <p class="text-gray-500 mt-3">
-      Discover premium quality & exclusive deals
+      Premium quality · Exclusive deals
     </p>
     <div class="w-32 h-1 bg-blue-600 mx-auto mt-5 rounded-full"></div>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
 
     {% for item in products %}
-    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300">
+    <div class="group bg-white rounded-[28px]
+                shadow-[0_20px_40px_rgba(0,0,0,0.08)]
+                hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]
+                transition-all duration-500 hover:-translate-y-4">
 
-      <div class="relative overflow-hidden rounded-t-3xl">
+      <!-- IMAGE -->
+      <div class="relative overflow-hidden rounded-t-[28px]">
         <img src="{{ item.image.url }}" class="product-img">
         <span class="badge">NEW</span>
       </div>
 
-      <div class="p-5">
-        <h2 class="text-lg font-semibold text-gray-800 truncate">
+      <!-- CONTENT -->
+      <div class="p-6">
+        <h2 class="text-lg font-semibold truncate">
           {{ item.name }}
         </h2>
 
-        <p class="text-sm text-gray-500 mb-2">
+        <p class="text-sm text-gray-500 mb-3">
           {{ item.category }}
         </p>
 
-        <p class="text-2xl font-bold text-blue-600 mb-4">
+        <p class="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600
+                   bg-clip-text text-transparent mb-6">
           ₹ {{ item.price }}
         </p>
 
         <div class="flex gap-3">
-          <a href="{% url 'addcart' item.id %}" class="btn-primary">
+          <a href="{% url 'addcart' item.id %}"
+             class="w-1/2 text-center py-3 rounded-xl font-semibold
+                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    text-white shadow-lg hover:shadow-xl hover:scale-[1.03] transition">
             Add to Cart
           </a>
 
           <form method="POST" action="{% url 'billproduct' item.id %}" class="w-1/2">
             {% csrf_token %}
-            <button type="submit" class="btn-secondary">
+            <button type="submit"
+              class="w-full py-3 rounded-xl font-semibold
+                     bg-gradient-to-r from-emerald-500 to-green-600
+                     text-white shadow-lg hover:shadow-xl hover:scale-[1.03] transition">
               Buy Now
             </button>
           </form>
         </div>
       </div>
+
     </div>
     {% endfor %}
 
@@ -124,15 +141,18 @@
 
 <!-- ================= STYLES ================= -->
 <style>
+  * { scroll-behavior: smooth; }
+
   .nav-item {
     position: relative;
+    cursor: pointer;
   }
   .nav-item::after {
     content: "";
     position: absolute;
     width: 0;
     height: 2px;
-    background: white;
+    background: #2563eb;
     left: 0;
     bottom: -5px;
     transition: 0.3s;
@@ -143,17 +163,18 @@
 
   .btn {
     background: white;
-    color: #2563eb;
     padding: 6px 14px;
     border-radius: 9999px;
+    color: #2563eb;
     font-weight: 500;
   }
 
   .carousel-img {
     width: 100%;
-    height: 420px;
+    height: 480px;
     object-fit: cover;
     flex-shrink: 0;
+    filter: brightness(0.9);
   }
 
   .carousel-btn {
@@ -161,16 +182,17 @@
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255,255,255,0.85);
-    padding: 10px;
+    padding: 12px;
     border-radius: 9999px;
-    font-size: 20px;
+    font-size: 22px;
+    z-index: 10;
   }
 
   .dot {
     width: 10px;
     height: 10px;
     background: white;
-    opacity: 0.5;
+    opacity: 0.4;
     border-radius: 50%;
   }
   .dot.active {
@@ -179,40 +201,24 @@
 
   .product-img {
     width: 100%;
-    height: 230px;
+    height: 240px;
     object-fit: cover;
-    transition: 0.5s;
+    transition: transform 0.8s ease;
   }
-  .product-img:hover {
-    transform: scale(1.12);
+  .group:hover .product-img {
+    transform: scale(1.18);
   }
 
   .badge {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #2563eb;
+    top: 14px;
+    left: 14px;
+    background: linear-gradient(to right, #2563eb, #4f46e5);
     color: white;
-    font-size: 12px;
-    padding: 4px 10px;
+    font-size: 11px;
+    padding: 6px 14px;
     border-radius: 9999px;
-  }
-
-  .btn-primary {
-    width: 50%;
-    text-align: center;
-    background: #2563eb;
-    color: white;
-    padding: 10px;
-    border-radius: 12px;
-  }
-
-  .btn-secondary {
-    width: 100%;
-    background: #16a34a;
-    color: white;
-    padding: 10px;
-    border-radius: 12px;
+    letter-spacing: 1px;
   }
 </style>
 
