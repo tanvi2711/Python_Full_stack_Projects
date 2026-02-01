@@ -73,7 +73,7 @@
   </nav>
   <!-- ================= MOBILE NAV ================= -->
 <div id="mobileMenu"
-     class="md:hidden hidden
+     class="lg:hidden hidden
             bg-gradient-to-b from-[#020617] to-[#0f172a]
             border-b border-white/10
             shadow-xl">
@@ -352,7 +352,7 @@
 
   // Auto-close menu on resize (important)
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       mobileMenu.classList.add("hidden");
     }
   });
