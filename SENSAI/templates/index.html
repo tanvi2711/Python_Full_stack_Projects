@@ -261,6 +261,20 @@ background-color: #26262680;
   transform: rotate(180deg);
 }
 
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  transition: max-height 0.35s ease;
+  padding-right: 24px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 220px;
+  margin-bottom: 16px;
+}
 
   </style>
 
