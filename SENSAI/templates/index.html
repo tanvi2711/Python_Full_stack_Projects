@@ -354,6 +354,68 @@ background-color: #26262680;
   font-size: 14px;
   color: #d1d5db;
 }
+/* ================= RESPONSIVE FIXES ================= */
+
+.faq-container,
+.final-cta-box {
+  width: 100%;
+  max-width: 1373.82px;
+  padding: 0 16px;
+}
+
+.faq-section {
+  min-height: 632.36px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .stats-container,
+  .how-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-container,
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .final-cta-box h2 {
+    font-size: 26px;
+  }
+
+  .final-cta-box p {
+    font-size: 16px;
+  }
+}
+.sensai-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* SENS */
+.sensai-text {
+  color: #ffffff;
+}
+
+/* AI */
+.sensai-ai {
+  margin-left: 4px;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Optional glow for dark navbar */
+.sensai-logo {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
 
 
   </style>
