@@ -242,6 +242,25 @@ background-color: #26262680;
   cursor: pointer;
 }
 
+.faq-arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-arrow {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  transition: max-height 0.35s ease;
+  padding-right: 24px;
+}
+
 
 
 
