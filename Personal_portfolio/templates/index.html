@@ -1,0 +1,591 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Nishant's Portfolio</title>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+    }
+
+    html{
+        overflow-x: hidden;
+    }
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    color: #e5e7eb;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav{
+        width: 100%;
+        height: 10vh;
+        position: sticky;
+    }
+
+    .nav-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .logo{
+        font-size: 2rem;
+        font-weight: bolder;
+        color: #f9fafb;
+    }
+
+    .logo span{
+        color: #4f8cff;
+        text-shadow: 0 0 18px rgba(79,140,255,0.35);
+
+    }
+
+    .hamburg, .cancel{
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #f9fafb;
+        font-size: 2rem;
+        display: none;
+    }
+
+    .nav-container .links{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .nav-container .links a{
+        position: relative;
+        font-size: 1.1rem;
+        color: #e5e7eb;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s linear;
+    }
+
+    .nav-container .links a::before{
+        position: absolute;
+        content: "";
+        bottom: -3px;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background-color: #4f8cff;
+        transition: 0.2s linear;
+    }
+
+    .nav-container .links a:hover::before{
+        width: 100%;
+    }
+
+    .nav-container .links a:hover{
+        color: #4f8cff;
+    }
+
+    .nav-container .contact-btn{
+        background-color: transparent;
+        padding: 6px 22px;
+        border-radius: 20px;
+        border: 2px solid #4f8cff;
+        transition: 0.2s linear;
+    }
+
+    .nav-container .contact-btn a{
+        color: #f9fafb;
+    }
+
+    .nav-container .contact-btn:hover,
+    .nav-container .contact-btn:hover a{
+        background-color: #4f8cff;
+        color: #020617;
+    }
+
+    /* ================= DROPDOWN ================= */
+
+    .dropdown{
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        transform: translateY(-500px);
+        width: 100%;
+        height: auto;
+        backdrop-filter: blur(10px);
+        background: rgba(2,6,23,0.9);
+        box-shadow: 0 0 30px rgba(0,0,0,0.7);
+        transition: 0.25s ease;
+    }
+
+    .dropdown .links a{
+        color: #f9fafb;
+        display: flex;
+        text-decoration: none;
+        justify-content: center;
+        padding: 16px 0;
+        transition: 0.2s linear;
+    }
+
+    .dropdown .links a:hover{
+        background-color: #4f8cff;
+        color: #020617;
+    }
+
+    /* ================= HERO ================= */
+
+    section{
+        width: 100%;
+        height: 100vh;
+    }
+
+    .main-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .main-container .image{
+        z-index: -1;
+        width: 30%;
+    }
+
+    .main-container .image img{
+        width: 100%;
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    }
+
+    .main-container .content{
+        width: 40%;
+        min-height: 100px;
+    }
+
+    .content h1{
+        font-size: clamp(1rem, 2rem + 5vw, 3rem);
+        color: #f9fafb;
+    }
+
+    .content h1 span{
+        color: #4f8cff;
+        text-shadow: 0 0 18px rgba(79,140,255,0.35);
+
+    }
+
+    .content .typewriter{
+        font-weight: 600;
+        font-size: clamp(1rem, 1rem + 5vw, 2rem);
+        color: #e5e7eb;
+    }
+
+    .content .typewriter span{
+        color: #4f8cff;
+        font-size: 2.5rem;
+        text-shadow: 0 0 8px rgba(59,130,246,0.6);
+        position: relative;
+    }
+
+    .typewriter span::before{
+        content: "Developer";
+        animation: words 15s infinite;
+    }
+
+    .typewriter span::after{
+        content: "";
+        position: absolute;
+        width: calc(100% + 8px);
+        height: 100%;
+        border-left: 3px solid #f9fafb;
+        animation: cursor 0.6s linear infinite;
+    }
+
+    @keyframes cursor{
+        to{
+            border-left: 3px solid #4f8cff;
+        }
+    }
+
+    @keyframes words{
+        0%,33%{ content: "Developer"; }
+        34%,66%{ content: "Designer"; }
+        67%,100%{ content: "Programmer"; }
+    }
+
+    .content p{
+        font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+        margin: 12px 0;
+        color: #cbd5f5;
+    }
+
+    /* ================= SOCIAL ================= */
+
+    .social-links i{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        background-color: transparent;
+        border: 0.2rem solid #4f8cff;
+        border-radius: 50%;
+        color: #4f8cff;
+        margin: 5px 10px;
+        font-size: 1.5rem;
+        transition: 0.25s ease;
+    }
+
+    .social-links i:hover{
+        scale: 1.25;
+        color: #020617;
+        background-color: #4f8cff;
+        filter: drop-shadow(0 8px 20px rgba(79,140,255,0.45));
+
+    }
+
+    /* ================= BUTTON ================= */
+
+    .content button{
+        width: 40%;
+        height: 6vh;
+        margin: 30px;
+        background-color: #4f8cff;
+        color: #020617;
+        border: none;
+        font-size: 100%;
+        font-weight: 700;
+        border-radius: 6px;
+        transition: 0.25s ease;
+    }
+
+    .content button:hover{
+        scale: 1.1;
+        color: #4f8cff;
+        border: 2px solid #4f8cff;
+        background-color: transparent;
+        box-shadow: 0 10px 40px rgba(79,140,255,0.35);
+
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width:884px){
+        body{
+            overflow-y: visible;
+        }
+
+        nav .logo{
+            position: absolute;
+            top: 16px;
+            left: 15px;
+            font-size: 1.5rem;
+        }
+
+        .main-container{
+            flex-direction: column;
+        }
+
+        .nav-container .links{
+            display: none;
+        }
+
+        .hamburg,.cancel{
+            display: block;
+        }
+
+        .main-container .content{
+            width: 80%;
+        }
+
+        .social-links i{
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .cancel{
+            color: #f9fafb;
+        }
+
+        .main-container .image{
+            width: 80%;
+        }
+    }
+
+    .cvbtn{
+        color: inherit;
+        text-decoration: none;
+    }
+
+/* ================= NEXT PAGE BUTTON ================= */
+
+.next-page-btn{
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 14px 22px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #4f8cff, #2563eb);
+    color: #020617;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(79,140,255,0.35);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.next-page-btn i{
+    margin-left: 8px;
+}
+
+.next-page-btn:hover{
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 18px 45px rgba(79,140,255,0.55);
+}
+
+@media (max-width: 768px){
+    .next-page-btn{
+        right: 16px;
+        padding: 12px 18px;
+        font-size: 0.9rem;
+    }
+}
+/* ================= SCROLL DOWN INDICATOR ================= */
+
+.scroll-indicator{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.scroll-indicator span{
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #cbd5f5;
+}
+
+.mouse{
+    width: 26px;
+    height: 44px;
+    border: 2px solid #4f8cff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.mouse::before{
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    background: #4f8cff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.6s infinite;
+}
+
+@keyframes scrollWheel{
+    0%{ opacity: 0; transform: translate(-50%,0); }
+    30%{ opacity: 1; }
+    100%{ opacity: 0; transform: translate(-50%,12px); }
+}
+
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translate(-50%,10px); }
+    to{ opacity: 1; transform: translate(-50%,0); }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="page-card">
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+                <span>Nishant</span>
+            </div>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#">Home</a></div>
+                <a href="#about">About</a>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#">Education</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#">Projects</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#">Certificates</a></div>
+                <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#">Contact Us</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="/certifications/">Education</a>
+                <a href="">Projects</a>
+                <a href="">Certificates</a>
+                <a href="">Contact Us</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="main-container">
+            <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
+                <img src="{% static 'photo.png' %}" alt="Nishant" height="550">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Nishant</span></h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">I'm a <span></span></div>
+                <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">👋🏻Greetings...!! I'm Nishant Kadu a passionate individual with keen interest in technology.💡
+Eagerly preparing to step into professional world.💼
+
+A dedicated B.E IT student.🎓 Commited to tackle new problems ahead and pushing boundaries.🚀
+Exploring new opportunities for growth and learning.
+Let's connect and embark on this journey together…🤝</p>
+
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                    <a href="https://github.com/Nishant0225"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/nishant-kadu-109843290/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.hackerrank.com/profile/nishantkadu7020"><i class="fab fa-hackerrank"></i></a>
+                </div>
+
+                <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
+                    <button>
+                        <a class="cvbtn" href="resume.png">Download CV</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+      <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1200">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+</div>
+  
+    </section>
+{% include "about.html" %}
+{% include "education.html" %}
+{% include "projects.html" %}
+{% include "certifications.html" %}
+{% include "contact.html" %}
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+    offset: 120,
+    duration: 900,
+    easing: "ease-out-cubic",
+    once: false
+});
+
+        function hamburg(){
+            document.querySelector(".dropdown").style.transform = "translateY(0px)";
+        }
+        function cancel(){
+            document.querySelector(".dropdown").style.transform = "translateY(-500px)";
+        }
+    </script>
+    <script>
+(function () {
+    let startX = null;
+
+    function start(e) {
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function end(e) {
+        if (startX === null) return;
+
+        const endX = e.changedTouches
+            ? e.changedTouches[0].clientX
+            : e.clientX;
+
+        const diff = startX - endX;
+
+        // Swipe LEFT → About
+        if (diff > 60) {
+            window.location.href = "{% url 'about' %}";
+        }
+
+        startX = null;
+    }
+
+    // Touch (mobile)
+    document.addEventListener("touchstart", start, { passive: true });
+    document.addEventListener("touchend", end, { passive: true });
+
+    // Mouse (desktop testing)
+    document.addEventListener("mousedown", start);
+    document.addEventListener("mouseup", end);
+})();
+</script>
+<script>
+(function () {
+    let startX = null;
+    const card = document.querySelector(".page-card");
+
+    function start(e) {
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function end(e) {
+        if (startX === null) return;
+
+        const endX = e.changedTouches
+            ? e.changedTouches[0].clientX
+            : e.clientX;
+
+        const diff = startX - endX;
+
+        // Swipe RIGHT → Home (optional, for about page)
+        if (diff < -80) {
+            card.classList.add("swipe-right");
+            setTimeout(() => {
+                window.location.href = "{% url 'index' %}";
+            }, 400);
+        }
+
+        startX = null;
+    }
+
+    document.addEventListener("touchstart", start, { passive: true });
+    document.addEventListener("touchend", end, { passive: true });
+
+    document.addEventListener("mousedown", start);
+    document.addEventListener("mouseup", end);
+})();
+</script>
+</div>
+
+</body>
+</html>

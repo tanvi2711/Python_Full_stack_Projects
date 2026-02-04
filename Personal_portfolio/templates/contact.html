@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Nishant Kadu</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    color:#e5e7eb;
+}
+
+/* ================= PAGE ================= */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+h1 span{
+    color:#4f8cff;
+    text-shadow:0 0 18px rgba(79,140,255,0.35);
+}
+
+.subtitle{
+    max-width:750px;
+    color:#cbd5f5;
+    line-height:1.7;
+    margin-bottom:60px;
+}
+
+/* ================= GRID ================= */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:40px;
+}
+
+/* ================= INFO CARDS ================= */
+
+.info-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:18px;
+    padding:30px;
+    transition:0.35s ease;
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(79,140,255,0.35);
+}
+
+.info-item{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:20px;
+}
+
+.info-item i{
+    font-size:1.2rem;
+    color:#4f8cff;
+}
+
+.info-item span{
+    color:#cbd5f5;
+    font-size:0.95rem;
+}
+
+/* ================= FORM ================= */
+
+form{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:18px;
+    padding:30px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+input, textarea{
+    width:100%;
+    padding:14px 16px;
+    background:#020617;
+    border:1px solid rgba(79,140,255,0.35);
+    border-radius:10px;
+    color:#e5e7eb;
+    font-size:0.9rem;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus, textarea:focus{
+    border-color:#4f8cff;
+    box-shadow:0 0 12px rgba(79,140,255,0.25);
+}
+
+textarea{
+    resize:none;
+    min-height:140px;
+}
+
+/* ================= BUTTON ================= */
+
+.send-btn{
+    width:100%;
+    padding:14px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(135deg,#4f8cff,#2563eb);
+    color:#020617;
+    font-weight:600;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:0.35s;
+}
+
+.send-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 45px rgba(79,140,255,0.45);
+}
+
+/* ================= SOCIAL ================= */
+
+.socials{
+    margin-top:30px;
+    display:flex;
+    gap:16px;
+}
+
+.socials a{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #4f8cff;
+    color:#4f8cff;
+    transition:0.3s;
+}
+
+.socials a:hover{
+    background:#4f8cff;
+    color:#020617;
+    box-shadow:0 10px 25px rgba(79,140,255,0.4);
+}
+
+/* ================= BACK ================= */
+
+.back-btn{
+    margin-top:70px;
+    display:inline-block;
+    padding:12px 30px;
+    border-radius:30px;
+    border:2px solid #4f8cff;
+    color:#4f8cff;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#4f8cff;
+    color:#020617;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 data-aos="fade-right">Contact <span>Me</span></h1>
+    <p class="subtitle" data-aos="fade-up">
+        Feel free to reach out for collaborations, freelance projects, or just a friendly conversation.
+        I’m always open to discussing new ideas and opportunities.
+    </p>
+
+    <div class="contact-grid">
+
+        <!-- LEFT INFO -->
+        <div class="info-card" data-aos="fade-right">
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>nishantkadu7020@gmail.com</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>Available on request</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>India</span>
+            </div>
+
+            <div class="socials">
+                <a href="https://github.com/Nishant0225" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nishant-kadu-109843290/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.hackerrank.com/profile/nishantkadu7020" target="_blank"><i class="fab fa-hackerrank"></i></a>
+            </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <form data-aos="fade-left">
+            <div class="input-group">
+                <input type="text" placeholder="Your Name" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" placeholder="Your Email" required>
+            </div>
+
+            <div class="input-group">
+                <textarea placeholder="Your Message"></textarea>
+            </div>
+
+            <button class="send-btn" type="submit">
+                Send Message
+            </button>
+        </form>
+
+    </div>
+
+    <a href="{% url 'index' %}" class="back-btn">← Back to Home</a>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({
+    offset:120,
+    duration:900,
+    easing:"ease-out-cubic",
+    once:false
+});
+</script>
+
+</body>
+</html>

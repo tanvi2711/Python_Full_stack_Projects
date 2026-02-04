@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Nishant Kadu</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        body{
+            margin:0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+            color:#e5e7eb;
+        }
+
+        .container{
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        h1{
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        h1 span{
+            color:#4f8cff;
+            text-shadow: 0 0 18px rgba(79,140,255,0.35);
+        }
+
+        h2{
+            margin-top:50px;
+            margin-bottom:15px;
+            color:#4f8cff;
+        }
+
+        p{
+            color:#cbd5f5;
+            line-height:1.8;
+            max-width:900px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap:25px;
+            margin-top:25px;
+        }
+
+        .card{
+            background: rgba(255,255,255,0.03);
+            border:1px solid rgba(79,140,255,0.25);
+            border-radius:12px;
+            padding:20px;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(79,140,255,0.25);
+        }
+
+        ul{
+            padding-left:18px;
+        }
+
+        li{
+            margin-bottom:8px;
+            color:#cbd5f5;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1 data-aos="fade-up">About <span>Me</span></h1>
+
+    <p data-aos="fade-up" data-aos-delay="100">
+        I’m <strong>Nishant Madhusudan Kadu</strong>, a results-driven Web Developer specializing in
+        building secure, responsive, and scalable web applications using
+        <strong>Python, Django, Flask, JavaScript, HTML, and CSS</strong>.
+        I have a strong backend foundation and a practical approach to solving real-world problems
+        through clean and maintainable code.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="200">
+        Currently pursuing a <strong>Bachelor of Engineering in Information Technology</strong>,
+        I focus on full-stack development with hands-on experience in authentication systems,
+        CRUD operations, database design, and deployment.
+    </p>
+
+    <h2 data-aos="fade-up">Technical Skills</h2>
+    <div class="grid">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <strong>Languages</strong>
+            <ul>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>SQL</li>
+            </ul>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <strong>Frameworks</strong>
+            <ul>
+                <li>Django</li>
+                <li>Flask</li>
+            </ul>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <strong>Frontend</strong>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Bootstrap</li>
+                <li>Tailwind CSS</li>
+            </ul>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <strong>Databases & Tools</strong>
+            <ul>
+                <li>SQLite</li>
+                <li>MySQL</li>
+                <li>Git & GitHub</li>
+                <li>VS Code</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 data-aos="fade-up">Highlighted Projects</h2>
+    <div class="grid">
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <strong>Bank Management System (Flask)</strong>
+            <p>
+                Secure banking web application featuring authentication, account management,
+                deposits, withdrawals, transaction history, and an admin dashboard with analytics.
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <strong>E-Commerce Website (Django)</strong>
+            <p>
+                Full-stack e-commerce platform with product listings, cart, checkout,
+                order history, admin panel, and responsive UI using Tailwind CSS.
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <strong>iStoreX (Django)</strong>
+            <p>
+                Online store with product CRUD operations, secure authentication,
+                database integration, and Git-based workflow.
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <strong>SENSAI – Career Intelligence App</strong>
+            <p>
+                AI-powered career guidance platform offering resume builder,
+                cover letter generator, mock interviews, salary insights,
+                and performance tracking.
+            </p>
+        </div>
+
+    </div>
+
+    <h2 data-aos="fade-up">Strengths</h2>
+    <ul>
+        <li data-aos="fade-right" data-aos-delay="100">Strong problem-solving ability</li>
+        <li data-aos="fade-right" data-aos-delay="200">Fast learner and adaptable</li>
+        <li data-aos="fade-right" data-aos-delay="300">Clean code practices</li>
+        <li data-aos="fade-right" data-aos-delay="400">Team collaboration mindset</li>
+    </ul>
+
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({
+    offset: 120,
+    duration: 900,
+    easing: "ease-out-cubic",
+    once: false
+});
+</script>
+
+</body>
+</html>

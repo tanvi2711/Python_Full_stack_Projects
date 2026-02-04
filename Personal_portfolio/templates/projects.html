@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Nishant Kadu</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    color:#e5e7eb;
+    min-height:100vh;
+}
+
+/* ================= PAGE ================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+h1 span{
+    color:#4f8cff;
+    text-shadow:0 0 18px rgba(79,140,255,0.35);
+}
+
+.subtitle{
+    max-width:700px;
+    color:#cbd5f5;
+    margin-bottom:60px;
+    line-height:1.7;
+}
+
+/* ================= GRID ================= */
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:35px;
+    perspective:1200px;
+}
+
+/* ================= CARD ================= */
+
+.project-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:18px;
+    padding:24px;
+    min-height:340px;
+
+    transform: translateY(80px) rotateX(25deg);
+    opacity:0;
+
+    transition:
+        transform 0.9s cubic-bezier(.19,1,.22,1),
+        opacity 0.9s ease,
+        box-shadow 0.4s ease;
+}
+
+.project-card.show{
+    transform: translateY(0) rotateX(0deg);
+    opacity:1;
+}
+
+.project-card:hover{
+    transform: translateY(-12px) scale(1.03);
+    box-shadow:0 20px 50px rgba(79,140,255,0.35);
+}
+
+/* ================= IMAGE ================= */
+
+.project-img{
+    width:100%;
+    height:160px;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:18px;
+    background:#020617;
+}
+
+.project-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s ease;
+}
+
+.project-card:hover img{
+    transform:scale(1.08);
+}
+
+/* ================= CONTENT ================= */
+
+.project-card h3{
+    color:#f9fafb;
+    margin-bottom:10px;
+}
+
+.project-card p{
+    font-size:0.9rem;
+    color:#cbd5f5;
+    line-height:1.6;
+}
+
+/* ================= TAGS ================= */
+
+.tags{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tags span{
+    font-size:0.7rem;
+    padding:5px 10px;
+    border-radius:20px;
+    background:rgba(79,140,255,0.15);
+    border:1px solid rgba(79,140,255,0.4);
+    color:#cfe0ff;
+}
+
+/* ================= BUTTON ================= */
+
+.view-btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:8px 18px;
+    border-radius:20px;
+    border:2px solid #4f8cff;
+    color:#4f8cff;
+    text-decoration:none;
+    font-size:0.85rem;
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    background:#4f8cff;
+    color:#020617;
+}
+
+/* ================= BACK ================= */
+
+.back-btn{
+    margin-top:70px;
+    display:inline-block;
+    padding:12px 30px;
+    border-radius:30px;
+    border:2px solid #4f8cff;
+    color:#4f8cff;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#4f8cff;
+    color:#020617;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>My <span>Projects</span></h1>
+    <p class="subtitle">
+        A collection of my real-world projects with modern UI, clean backend logic,
+        and scalable architecture — animated just like the reference video.
+    </p>
+
+    <div class="projects-grid">
+
+        <!-- CARD 1 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="{% static 'projects/bank.jpg' %}">
+            </div>
+            <h3>Bank Management System</h3>
+            <p>
+                Secure Flask-based banking application with authentication,
+                transactions, admin dashboard, and analytics.
+            </p>
+            <div class="tags">
+                <span>Flask</span><span>Python</span><span>SQLite</span>
+            </div>
+            <a href="https://nishant0225.pythonanywhere.com/" class="view-btn">View Project</a>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="{% static 'projects/ecommerce.jpg' %}">
+            </div>
+            <h3>E-Commerce Website</h3>
+            <p>
+                Full-stack Django store with cart, checkout, authentication,
+                admin panel, and responsive UI.
+            </p>
+            <div class="tags">
+                <span>Django</span><span>HTML</span><span>CSS</span>
+            </div>
+            <a href="https://djangoecomapp.onrender.com" class="view-btn">View Project</a>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="{% static 'projects/istorex.jpg' %}">
+            </div>
+            <h3>iStoreX</h3>
+            <p>
+                Online store with CRUD products, authentication,
+                database integration, and clean UI.
+            </p>
+            <div class="tags">
+                <span>Django</span><span>Bootstrap</span>
+            </div>
+            <a href="https://istorex.onrender.com/" class="view-btn">View Project</a>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="{% static 'projects/sensai.jpg' %}">
+            </div>
+            <h3>SENSAI – Career AI</h3>
+            <p>
+                AI-powered career platform with resume builder,
+                interview prep, and performance insights.
+            </p>
+            <div class="tags">
+                <span>Django</span><span>Gemini Ai</span><span>Bootstrap</span>
+            </div>
+            <a href="https://github.com/Nishant0225/Python-Full-Stack-Projects/tree/main/tech_sensai" class="view-btn">View Project</a>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+const cards = document.querySelectorAll(".project-card");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+},{ threshold:0.2 });
+
+cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
