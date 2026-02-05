@@ -9,158 +9,158 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
-    color:#e5e7eb;
-}
-
-/* ================= PAGE ================= */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:80px 20px;
-}
-
-h1{
-    font-size:3rem;
-    margin-bottom:10px;
-}
-
-h1 span{
-    color:#4f8cff;
-    text-shadow:0 0 18px rgba(79,140,255,0.35);
-}
-
-.subtitle{
-    max-width:800px;
-    color:#cbd5f5;
-    line-height:1.7;
-    margin-bottom:60px;
-}
-
-/* ================= TIMELINE ================= */
-.timeline{
-    position:relative;
-    margin-top:40px;
-}
-
-.timeline::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:0;
-    width:2px;
-    height:100%;
-    background:rgba(79,140,255,0.25);
-    transform:translateX(-50%);
-}
-
-/* ================= CARD ================= */
-
-.edu-card{
-    width:45%;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(79,140,255,0.25);
-    border-radius:14px;
-    padding:22px;
-    position:relative;
-    transition:0.35s ease;
-}
-
-.edu-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 45px rgba(79,140,255,0.25);
-}
-
-.edu-card h3{
-    color:#f9fafb;
-    margin-bottom:6px;
-}
-
-.edu-card span{
-    font-size:0.85rem;
-    color:#4f8cff;
-}
-
-.edu-card p{
-    margin-top:10px;
-    color:#cbd5f5;
-    line-height:1.6;
-    font-size:0.95rem;
-}
-
-/* ================= POSITIONING ================= */
-
-.edu-left{
-    margin-right:auto;
-}
-
-.edu-right{
-    margin-left:auto;
-}
-
-.edu-card::before{
-    content:"";
-    position:absolute;
-    top:24px;
-    width:14px;
-    height:14px;
-    background:#4f8cff;
-    border-radius:50%;
-}
-
-.edu-left::before{
-    right:-38px;
-}
-
-.edu-right::before{
-    left:-38px;
-}
-
-/* ================= BACK BUTTON ================= */
-
-.back-btn{
-    margin-top:80px;
-    display:inline-block;
-    padding:12px 30px;
-    border-radius:30px;
-    border:2px solid #4f8cff;
-    color:#4f8cff;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.back-btn:hover{
-    background:#4f8cff;
-    color:#020617;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:900px){
-    .timeline::before{
-        left:8px;
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins',sans-serif;
     }
 
+    body{
+        background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+        color:#e5e7eb;
+    }
+
+    /* ================= PAGE ================= */
+    .container{
+        max-width:1100px;
+        margin:auto;
+        padding:80px 20px;
+    }
+
+    h1{
+        font-size:3rem;
+        margin-bottom:10px;
+    }
+
+    h1 span{
+        color:#4f8cff;
+        text-shadow:0 0 18px rgba(79,140,255,0.35);
+    }
+
+    .subtitle{
+        max-width:800px;
+        color:#cbd5f5;
+        line-height:1.7;
+        margin-bottom:60px;
+    }
+
+    /* ================= TIMELINE ================= */
+    .timeline{
+        position:relative;
+        margin-top:40px;
+    }
+
+    .timeline::before{
+        content:"";
+        position:absolute;
+        left:50%;
+        top:0;
+        width:2px;
+        height:100%;
+        background:rgba(79,140,255,0.25);
+        transform:translateX(-50%);
+    }
+
+    /* ================= CARD ================= */
+
     .edu-card{
-        width:100%;
-        margin-left:30px !important;
-        margin-right:0 !important;
+        width:45%;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(79,140,255,0.25);
+        border-radius:14px;
+        padding:22px;
+        position:relative;
+        transition:0.35s ease;
+    }
+
+    .edu-card:hover{
+        transform:translateY(-6px);
+        box-shadow:0 18px 45px rgba(79,140,255,0.25);
+    }
+
+    .edu-card h3{
+        color:#f9fafb;
+        margin-bottom:6px;
+    }
+
+    .edu-card span{
+        font-size:0.85rem;
+        color:#4f8cff;
+    }
+
+    .edu-card p{
+        margin-top:10px;
+        color:#cbd5f5;
+        line-height:1.6;
+        font-size:0.95rem;
+    }
+
+    /* ================= POSITIONING ================= */
+
+    .edu-left{
+        margin-right:auto;
+    }
+
+    .edu-right{
+        margin-left:auto;
     }
 
     .edu-card::before{
-        left:-30px !important;
+        content:"";
+        position:absolute;
+        top:24px;
+        width:14px;
+        height:14px;
+        background:#4f8cff;
+        border-radius:50%;
     }
-}
+
+    .edu-left::before{
+        right:-38px;
+    }
+
+    .edu-right::before{
+        left:-38px;
+    }
+
+    /* ================= BACK BUTTON ================= */
+
+    .back-btn{
+        margin-top:80px;
+        display:inline-block;
+        padding:12px 30px;
+        border-radius:30px;
+        border:2px solid #4f8cff;
+        color:#4f8cff;
+        text-decoration:none;
+        transition:0.3s;
+    }
+
+    .back-btn:hover{
+        background:#4f8cff;
+        color:#020617;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:900px){
+        .timeline::before{
+            left:8px;
+        }
+
+        .edu-card{
+            width:100%;
+            margin-left:30px !important;
+            margin-right:0 !important;
+        }
+
+        .edu-card::before{
+            left:-30px !important;
+        }
+    }
 </style>
 </head>
 
