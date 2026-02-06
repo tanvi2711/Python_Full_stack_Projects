@@ -226,23 +226,26 @@ textarea{
         </div>
 
         <!-- RIGHT FORM -->
-        <form data-aos="fade-left">
-            <div class="input-group">
-                <input type="text" placeholder="Your Name" required>
-            </div>
+        <form data-aos="fade-left" method="POST" action="{% url 'contact' %}">
+    {% csrf_token %}
 
-            <div class="input-group">
-                <input type="email" placeholder="Your Email" required>
-            </div>
+    <div class="input-group">
+        <input type="text" name="name" placeholder="Your Name" required>
+    </div>
 
-            <div class="input-group">
-                <textarea placeholder="Your Message"></textarea>
-            </div>
+    <div class="input-group">
+        <input type="email" name="email" placeholder="Your Email" required>
+    </div>
 
-            <button class="send-btn" type="submit">
-                Send Message
-            </button>
-        </form>
+    <div class="input-group">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+    </div>
+
+    <button class="send-btn" type="submit">
+        Send Message
+    </button>
+</form>
+
 
     </div>
 

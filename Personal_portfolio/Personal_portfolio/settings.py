@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -124,3 +125,15 @@ STATICFILES_DIRS = [BASE_DIR/"static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+env_path = BASE_DIR / ".env"
+print("Loading .env from:", env_path)
+
+load_dotenv(dotenv_path=env_path, override=True)
+
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+
+print("SETTINGS BOT:", TELEGRAM_BOT_TOKEN)
+print("SETTINGS CHAT:", TELEGRAM_CHAT_ID)

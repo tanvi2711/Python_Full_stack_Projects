@@ -439,7 +439,7 @@ body{
                 <a href="#about">About</a>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#">Education</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#">Projects</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#">Certificates</a></div>
+                {% comment %} <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#">Certificates</a></div> {% endcomment %}
                 <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#">Contact Us</a></div>
             </div>
             <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
@@ -460,7 +460,7 @@ body{
     <section>
         <div class="main-container">
             <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-                {% comment %} <img src="{% static 'photo.png' %}" alt="Tanvi" height="550"> {% endcomment %}
+                <img src="{% static 'photo.png' %}" alt="Tanvi" height="550">
             </div>
             <div class="content">
                 <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Tanvi</span></h1>
@@ -495,7 +495,7 @@ Let's connect and embark on this journey together…🤝</p>
 {% include "about.html" %}
 {% include "education.html" %}
 {% include "projects.html" %}
-{% include "certifications.html" %}
+{% comment %} {% include "certifications.html" %} {% endcomment %}
 {% include "contact.html" %}
 
 
