@@ -427,6 +427,46 @@ section{
 section{
     scroll-margin-top: 10vh; /* height of navbar */
 }
+/* LeetCode icon – aligned like Font Awesome */
+.leetcode-fa {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    border: 0.2rem solid #4f8cff;
+    border-radius: 50%;
+
+    margin: 5px 10px;
+    transition: 0.25s ease;
+
+    background-color: transparent;
+}
+
+/* SVG inside */
+.leetcode-fa::before {
+    content: "";
+    width: 1.45rem;
+    height: 1.45rem;
+    background: url("https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/leetcode.svg")
+        no-repeat center;
+    background-size: contain;
+    filter: invert(47%) sepia(92%) saturate(750%) hue-rotate(195deg);
+}
+
+/* Hover – EXACT same as others */
+.leetcode-fa:hover {
+    scale: 1.25;
+    background-color: #4f8cff;
+    filter: drop-shadow(0 8px 20px rgba(79,140,255,0.45));
+}
+
+.leetcode-fa:hover::before {
+    filter: invert(1);
+}
+
 
     </style>
 </head>
@@ -443,7 +483,7 @@ section{
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#about">About</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#education">Education</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#projects">Projects</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#certificates">Certificates</a></div>
+                {% comment %} <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#certificates">Certificates</a></div> {% endcomment %}
                 <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#contact">Contact Us</a></div>
             </div>
             <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
@@ -453,14 +493,13 @@ section{
                 <a href="#about" onclick="cancel()">About</a>
 <a href="#education" onclick="cancel()">Education</a>
 <a href="#projects" onclick="cancel()">Projects</a>
-<a href="#certificates" onclick="cancel()">Certificates</a>
+{% comment %} <a href="#certificates" onclick="cancel()">Certificates</a> {% endcomment %}
 <a href="#contact" onclick="cancel()">Contact Us</a>
 
                 <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
             </div>
         </div>
     </nav>
-
     <section id="home">
         <div class="main-container">
             <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
@@ -475,9 +514,13 @@ Eagerly preparing to step into professional world.💼
 A dedicated B.E IT student.🎓 Commited to tackle new problems ahead and pushing boundaries.🚀
 Exploring new opportunities for growth and learning.
 Let's connect and embark on this journey together…🤝</p>
-<div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
                     <a href="https://github.com/Tanvi2711"><i class="fa-brands fa-github"></i></a>
-                    {% comment %} <a href="#"><i class="fa-brands fa-facebook"></i></a> {% endcomment %}
+<a href="https://leetcode.com/u/Tanvi_2711/" target="_blank">
+    <span class="leetcode-fa"></span>
+</a>
+
                     <a href="https://www.linkedin.com/in/tanvi-jivatode-665139288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://www.hackerrank.com/profile/tanvijivatode271"><i class="fab fa-hackerrank"></i></a>
                 </div>

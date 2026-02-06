@@ -192,7 +192,9 @@ textarea{
 .glass-footer{
     width:100%;
     margin-top:100px;
+    min-height:140px;   /* gives breathing space */
     padding:28px 16px;
+
     background: linear-gradient(
         135deg,
         rgba(79,140,255,0.18),
@@ -207,8 +209,14 @@ textarea{
         0 -10px 35px rgba(79,140,255,0.25),
         inset 0 1px 0 rgba(255,255,255,0.15);
 
+    /* 🔥 CENTER MAGIC */
+    display:flex;
+    align-items:center;      /* vertical center */
+    justify-content:center;  /* horizontal center */
+
     text-align:center;
 }
+
 
 .footer-content{
     max-width:1200px;

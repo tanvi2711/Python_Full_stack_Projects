@@ -134,6 +134,3 @@ load_dotenv(dotenv_path=env_path, override=True)
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
-
-print("SETTINGS BOT:", TELEGRAM_BOT_TOKEN)
-print("SETTINGS CHAT:", TELEGRAM_CHAT_ID)
