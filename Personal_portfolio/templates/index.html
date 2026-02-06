@@ -38,6 +38,8 @@ body{
         width: 100%;
         height: 10vh;
         position: sticky;
+        top: 0;
+        z-index: 1000;
     }
 
     .nav-container{
@@ -152,13 +154,15 @@ body{
     }
 
     /* ================= HERO ================= */
-
-    section{
-        width: 100%;
-        height: 100vh;
-    }
+section{
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    scroll-margin-top: 10vh;
+}
 
     .main-container{
+        position: relative;
         width: 100%;
         height: 100%;
         display: flex;
@@ -167,7 +171,7 @@ body{
     }
 
     .main-container .image{
-        z-index: -1;
+        z-index: 1;
         width: 30%;
     }
 
@@ -180,7 +184,6 @@ body{
         width: 40%;
         min-height: 100px;
     }
-
     .content h1{
         font-size: clamp(1rem, 2rem + 5vw, 3rem);
         color: #f9fafb;
@@ -371,7 +374,6 @@ body{
     }
 }
 /* ================= SCROLL DOWN INDICATOR ================= */
-
 .scroll-indicator{
     position: absolute;
     bottom: 30px;
@@ -422,7 +424,9 @@ body{
     from{ opacity: 0; transform: translate(-50%,10px); }
     to{ opacity: 1; transform: translate(-50%,0); }
 }
-
+section{
+    scroll-margin-top: 10vh; /* height of navbar */
+}
 
     </style>
 </head>
@@ -435,32 +439,32 @@ body{
                 <span>Tanvi Jivatode</span>
             </div>
             <div class="links">
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#">Home</a></div>
-                <a href="#about">About</a>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#">Education</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#">Projects</a></div>
-                {% comment %} <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#">Certificates</a></div> {% endcomment %}
-                <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#">Contact Us</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#home">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#about">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#education">Education</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#projects">Projects</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#certificates">Certificates</a></div>
+                <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#contact">Contact Us</a></div>
             </div>
             <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
         </div>
         <div class="dropdown">
             <div class="links">
-                <a href="{% url 'index' %}">Home</a>
-                <a href="{% url 'about' %}">About</a>
-                <a href="/certifications/">Education</a>
-                <a href="">Projects</a>
-                <a href="">Certificates</a>
-                <a href="">Contact Us</a>
+                <a href="#about" onclick="cancel()">About</a>
+<a href="#education" onclick="cancel()">Education</a>
+<a href="#projects" onclick="cancel()">Projects</a>
+<a href="#certificates" onclick="cancel()">Certificates</a>
+<a href="#contact" onclick="cancel()">Contact Us</a>
+
                 <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
             </div>
         </div>
     </nav>
 
-    <section>
+    <section id="home">
         <div class="main-container">
             <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-                <img src="{% static 'photo.png' %}" alt="Tanvi" height="550">
+                <img src="{% static 'photo.png' %}" alt="Nishant" height="550">
             </div>
             <div class="content">
                 <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Tanvi</span></h1>
@@ -471,17 +475,16 @@ Eagerly preparing to step into professional world.💼
 A dedicated B.E IT student.🎓 Commited to tackle new problems ahead and pushing boundaries.🚀
 Exploring new opportunities for growth and learning.
 Let's connect and embark on this journey together…🤝</p>
-
-                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
-                    <a href="https://github.com/tanvi2711"><i class="fa-brands fa-github"></i></a>
-                    {% comment %} <a href="#"><i class="fa-brands fa-facebook"></i></a> {% endcomment %}
-                    <a href="https://www.linkedin.com/in/tanvi-jivatode-7020"><i class="fa-brands fa-linkedin"></i></a>
+<div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                    <a href="https://github.com/Tanvi2711"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/tanvi-jivatode-665139288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://www.hackerrank.com/profile/tanvijivatode271"><i class="fab fa-hackerrank"></i></a>
                 </div>
 
                 <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
                     <button>
-                        <a class="cvbtn" href="resume.png">Download CV</a>
+                        <a class="cvbtn" href="{% static 'C:\Users\ASUS\OneDrive\Desktop\Python-Full-Stack-Projects\Personal_portfolio\static\certificates\thumbs\resume.jpg' %}">Resume</a>
                     </button>
                 </div>
             </div>
@@ -492,11 +495,24 @@ Let's connect and embark on this journey together…🤝</p>
 </div>
   
     </section>
-{% include "about.html" %}
-{% include "education.html" %}
-{% include "projects.html" %}
-{% comment %} {% include "certifications.html" %} {% endcomment %}
-{% include "contact.html" %}
+    <section id="about">
+    {% include "about.html" %}
+</section>
+<section id="education">
+    {% include "education.html" %}
+</section>
+<section id="projects">
+    {% include "projects.html" %}
+</section>
+
+
+<section id="certificates">
+    {% include "certifications.html" %}
+</section>
+
+<section id="contact">
+    {% include "contact.html" %}
+</section>
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -515,76 +531,6 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
-    <script>
-(function () {
-    let startX = null;
-
-    function start(e) {
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-    }
-
-    function end(e) {
-        if (startX === null) return;
-
-        const endX = e.changedTouches
-            ? e.changedTouches[0].clientX
-            : e.clientX;
-
-        const diff = startX - endX;
-
-        // Swipe LEFT → About
-        if (diff > 60) {
-            window.location.href = "{% url 'about' %}";
-        }
-
-        startX = null;
-    }
-
-    // Touch (mobile)
-    document.addEventListener("touchstart", start, { passive: true });
-    document.addEventListener("touchend", end, { passive: true });
-
-    // Mouse (desktop testing)
-    document.addEventListener("mousedown", start);
-    document.addEventListener("mouseup", end);
-})();
-</script>
-<script>
-(function () {
-    let startX = null;
-    const card = document.querySelector(".page-card");
-
-    function start(e) {
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-    }
-
-    function end(e) {
-        if (startX === null) return;
-
-        const endX = e.changedTouches
-            ? e.changedTouches[0].clientX
-            : e.clientX;
-
-        const diff = startX - endX;
-
-        // Swipe RIGHT → Home (optional, for about page)
-        if (diff < -80) {
-            card.classList.add("swipe-right");
-            setTimeout(() => {
-                window.location.href = "{% url 'index' %}";
-            }, 400);
-        }
-
-        startX = null;
-    }
-
-    document.addEventListener("touchstart", start, { passive: true });
-    document.addEventListener("touchend", end, { passive: true });
-
-    document.addEventListener("mousedown", start);
-    document.addEventListener("mouseup", end);
-})();
-</script>
 </div>
 
 </body>
