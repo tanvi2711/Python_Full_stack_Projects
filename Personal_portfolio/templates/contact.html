@@ -144,31 +144,30 @@ textarea{
     box-shadow:0 18px 45px rgba(79,140,255,0.45);
 }
 
-/* ================= SOCIAL ================= */
+   /* ================= SOCIAL ================= */
 
-.socials{
-    margin-top:30px;
-    display:flex;
-    gap:16px;
-}
+    .social-links i{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        background-color: transparent;
+        border: 0.2rem solid #4f8cff;
+        border-radius: 50%;
+        color: #4f8cff;
+        margin: 5px 10px;
+        font-size: 1.5rem;
+        transition: 0.25s ease;
+    }
 
-.socials a{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:2px solid #4f8cff;
-    color:#4f8cff;
-    transition:0.3s;
-}
+    .social-links i:hover{
+        scale: 1.25;
+        color: #020617;
+        background-color: #4f8cff;
+        filter: drop-shadow(0 8px 20px rgba(79,140,255,0.45));
 
-.socials a:hover{
-    background:#4f8cff;
-    color:#020617;
-    box-shadow:0 10px 25px rgba(79,140,255,0.4);
-}
+    }
 
 /* ================= BACK ================= */
 
@@ -256,6 +255,45 @@ textarea{
         font-size:0.78rem;
     }
 }
+.leetcode-fa {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    border: 0.2rem solid #4f8cff;
+    border-radius: 50%;
+
+    margin: 5px 10px;
+    transition: 0.25s ease;
+
+    background-color: transparent;
+}
+
+/* SVG inside */
+.leetcode-fa::before {
+    content: "";
+    width: 1.45rem;
+    height: 1.45rem;
+    background: url("https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/leetcode.svg")
+        no-repeat center;
+    background-size: contain;
+    filter: invert(47%) sepia(92%) saturate(750%) hue-rotate(195deg);
+}
+
+/* Hover – EXACT same as others */
+.leetcode-fa:hover {
+    scale: 1.25;
+    background-color: #4f8cff;
+    filter: drop-shadow(0 8px 20px rgba(79,140,255,0.45));
+}
+
+.leetcode-fa:hover::before {
+    filter: invert(1);
+}
+
 
 </style>
 </head>
@@ -288,11 +326,16 @@ textarea{
                 <span>India</span>
             </div>
 
-            <div class="socials">
-                <a href="https://github.com/Nishant0225" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/nishant-kadu-109843290/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://www.hackerrank.com/profile/nishantkadu7020" target="_blank"><i class="fab fa-hackerrank"></i></a>
-            </div>
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                    <a href="https://github.com/Tanvi2711"><i class="fa-brands fa-github"></i></a>
+<a href="https://leetcode.com/u/Tanvi_2711/" target="_blank">
+    <span class="leetcode-fa"></span>
+</a>
+
+                    <a href="https://www.linkedin.com/in/tanvi-jivatode-665139288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.hackerrank.com/profile/tanvijivatode271"><i class="fab fa-hackerrank"></i></a>
+                </div>
+
         </div>
 
         <!-- RIGHT FORM -->
