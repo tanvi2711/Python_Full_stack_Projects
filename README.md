@@ -38,7 +38,7 @@ Backend: Python, Flask, Django
 
 Frontend: HTML, CSS, Bootstrap, JavaScript
 
-Database: SQLite
+Database: SQLite 
 
 Tools: Git, GitHub
 ___________________________________________________________________________________________________________________________________________________
