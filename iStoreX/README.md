@@ -3,6 +3,10 @@
 iStoreX is a production-ready e-commerce web application built with Django, showcasing real-world backend development and live deployment.
 ___________________________________________________________________________________________________________________________________________________
 
+🌐 Live Demo  
+🔗 https://istorex-3tdm.onrender.com/
+___________________________________________________________________________________________________________________________________________________
+
 📌 Overview
 
 A fully functional online store with dynamic product management, database integration, and server-side rendering.
