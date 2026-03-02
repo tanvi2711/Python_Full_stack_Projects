@@ -1,6 +1,6 @@
-# 🌐 TANVI — Personal Portfolio Website  
+# 🌐 Tanvi Jivatode — Python Full Stack Developer Portfolio  
 
-Tanvi Portfolio is a Django-based web application designed to professionally showcase projects, technical skills, certifications, and achievements through a clean interface and structured backend architecture.
+Tanvi Jivatode’s Portfolio is a Django-based web application built to showcase real-world projects, technical expertise, certifications, and development experience through a clean UI and scalable backend architecture.
 
 ---
 
