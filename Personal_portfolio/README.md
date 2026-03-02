@@ -2,8 +2,10 @@
 
 Tanvi Portfolio is a Django-based web application designed to professionally showcase projects, technical skills, certifications, and achievements through a clean interface and structured backend architecture.
 
-🔗 **Live Website:**  
-https://tanvis-portfolio.onrender.com/
+---
+
+🌐 **Live Demo:**  
+🔗 https://tanvis-portfolio.onrender.com/
 
 ---
 
