@@ -151,7 +151,7 @@ def storeSearchView(request):
 
     return render(request, "search.html", {
         "query": query,
-        "results": results
+        "results": results 
     })
 
 
