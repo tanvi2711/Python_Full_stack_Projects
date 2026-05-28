@@ -17,8 +17,8 @@ ________________________________________________________________________________
 
 - Flask – Applied to lightweight, logic-driven applications where minimal overhead is required 
 
-- Django – Used for scalable, structured, and feature-rich applications suitable for production environments  
-
+- Django – Used for scalable, structured, and feature-rich applications suitable for production environments
+  
 This reflects practical framework usage followed in professional development teams.
 ___________________________________________________________________________________________________________________________________________________
 
@@ -38,7 +38,7 @@ Backend: Python, Flask, Django
 
 Frontend: HTML, CSS, Bootstrap, JavaScript
 
-Database: SQLite
+Database: SQLite 
 
 Tools: Git, GitHub
 ___________________________________________________________________________________________________________________________________________________
