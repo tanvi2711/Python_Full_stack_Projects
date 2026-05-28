@@ -56,6 +56,7 @@ def storeCreateAccountView(request):
       error(request,"Error in Creating Account")
   form=forms.UserModelForm()
   return render(request,"storecreateaccount.html",{'form':form})
+
 def addcartView(request,product_id):
   product=models.ProductModelClass.objects.get(id=product_id)
   if 'user_id' in request.session:
@@ -66,7 +67,8 @@ def addcartView(request,product_id):
     return redirect("storeproductscategory",product.category.name)
   else:
     info(request,"Please Login to Add Products to Cart")
-    return redirect(f"storeproductscategory/{product.category.name}")
+    # return redirect(f"storeproductscategory/{product.category.name}")
+    return redirect("storelogin") 
 
 def displayCartView(request):
   if 'user_id' in request.session:
