@@ -82,6 +82,7 @@ def deleteCartView(request,cart_id):
   cartitem=models.cartModelClass.objects.get(id=cart_id).delete()
   info(request,"Cart Item Deleted Successfully")
   return redirect("displaycart")
+
 def billCartView(request):
   if 'user_id' in request.session:
     username=request.session.get('name')
