@@ -1,0 +1,18 @@
+import { useEffect, useMemo, useState } from "react";
+import { BriefcaseBusiness, Edit3, Eye, Plus, Search, Trash2, Users } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
+import RecruiterLayout from "./RecruiterLayout";
+import "./RecruiterJobs.css";
+
+export default function RecruiterJobs(){
+  const navigate=useNavigate(); const [jobs,setJobs]=useState([]); const [loading,setLoading]=useState(true); const [error,setError]=useState(""); const [search,setSearch]=useState(""); const [filter,setFilter]=useState("all");
+  const load=()=>{setLoading(true);api.get("/recruiter/jobs/").then(r=>setJobs(r.data.jobs||[])).catch(e=>setError(e.response?.data?.message||"Unable to load your jobs.")).finally(()=>setLoading(false));};
+  useEffect(load,[]);
+  const filtered=useMemo(()=>jobs.filter(j=>(filter==="all"||j.status===filter)&&j.title.toLowerCase().includes(search.toLowerCase())),[jobs,filter,search]);
+  const remove=async(job)=>{if(!window.confirm(`Delete “${job.title}”? This will also remove its applications.`))return;try{await api.delete(`/jobs/${job.id}/`);setJobs(v=>v.filter(x=>x.id!==job.id));}catch(e){alert(e.response?.data?.message||"Unable to delete job.");}};
+  return <RecruiterLayout title="My Jobs" subtitle="Create, manage and review every opening you have posted.">
+    <div className="jobs-toolbar"><div className="jobs-search"><Search size={17}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search your jobs…"/></div><div className="jobs-filter"><button className={filter==="all"?"active":""} onClick={()=>setFilter("all")}>All <b>{jobs.length}</b></button><button className={filter==="open"?"active":""} onClick={()=>setFilter("open")}>Open <b>{jobs.filter(j=>j.status==="open").length}</b></button><button className={filter==="closed"?"active":""} onClick={()=>setFilter("closed")}>Closed <b>{jobs.filter(j=>j.status==="closed").length}</b></button></div><Link className="primary-cta" to="/recruiter/jobs/new"><Plus size={16}/> Post job</Link></div>
+    {loading?<div className="recruiter-loading">Loading your job postings…</div>:error?<div className="recruiter-error">{error}</div>:filtered.length===0?<div className="jobs-empty"><BriefcaseBusiness size={28}/><h3>No matching jobs</h3><p>{jobs.length?"Try another search or filter.":"Create your first opening and start hiring."}</p>{!jobs.length&&<Link className="primary-cta" to="/recruiter/jobs/new"><Plus size={16}/> Post your first job</Link>}</div>:<div className="jobs-table-wrap"><table className="jobs-table"><thead><tr><th>JOB</th><th>STATUS</th><th>APPLICANTS</th><th>POSTED</th><th>ACTIONS</th></tr></thead><tbody>{filtered.map(job=><tr key={job.id}><td><div className="table-job"><div className="table-job-icon"><BriefcaseBusiness size={17}/></div><div><strong>{job.title}</strong><span>{job.location} · {job.job_type.replace("-"," ")}</span></div></div></td><td><span className={`job-status ${job.status}`}>{job.status}</span></td><td><Link className="applicant-link" to={`/recruiter/jobs/${job.id}/applicants`}><Users size={15}/>{job.applicant_count}</Link></td><td><span className="date-text">{new Date(job.created_at).toLocaleDateString()}</span></td><td><div className="table-actions"><button title="Applicants" onClick={()=>navigate(`/recruiter/jobs/${job.id}/applicants`)}><Eye size={15}/></button><button title="Edit" onClick={()=>navigate(`/recruiter/jobs/${job.id}/edit`)}><Edit3 size={15}/></button><button title="Delete" className="danger" onClick={()=>remove(job)}><Trash2 size={15}/></button></div></td></tr>)}</tbody></table></div>}
+  </RecruiterLayout>
+}

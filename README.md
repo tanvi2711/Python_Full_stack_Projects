@@ -1,57 +1,148 @@
-🚀 Python Full Stack Projects
+# 🚀 Python Full Stack Projects
 
-A collection of production-oriented full-stack web applications built using Python, Flask, and Django. This repository demonstrates backend engineering fundamentals, framework-driven decision making, and scalable application design aligned with real-world industry practices.
-___________________________________________________________________________________________________________________________________________________
+A collection of production-oriented full-stack web applications built using Python, Flask, Django, and React. This repository demonstrates practical backend development, database integration, authentication, CRUD operations, REST APIs, and frontend-backend integration through multiple real-world projects.
 
-📁 Overview
+---
 
-This repository highlights:
+## 📁 Overview
 
-- Development of production-style web applications
-- Hands-on experience with Flask and Django
-- Implementation of CRUD operations, authentication, and database integration
-- Selection of frameworks based on application complexity and scalability needs
-___________________________________________________________________________________________________________________________________________________
+This repository includes projects demonstrating:
 
-🧠 Framework Usage
+- Full-stack web application development
+- Python backend development using Flask and Django
+- REST API development
+- Authentication and authorization
+- CRUD operations and database integration
+- Role-based application workflows
+- Responsive frontend development
+- Framework selection based on application requirements
 
-- Flask – Applied to lightweight, logic-driven applications where minimal overhead is required 
+---
 
-- Django – Used for scalable, structured, and feature-rich applications suitable for production environments
-  
-This reflects practical framework usage followed in professional development teams.
-___________________________________________________________________________________________________________________________________________________
+## 🧠 Framework Usage
 
-🎯 Projects
+### Flask
 
-Project     | Framework | Description
------------ | --------- | -------------------------------------------------------
-BANKAPP     | Flask     | Banking system with account management and transactions
-EcomApp     | Django    | E-commerce platform with authentication and admin panel
-iStoreX     | Django    | Online store with product and order management
-SENSAI      | Django    | Structured Django application with modular design
-___________________________________________________________________________________________________________________________________________________
+Used for lightweight, logic-driven applications where minimal framework overhead is preferred.
 
-🛠️ Tech Stack
+### Django
 
-Backend: Python, Flask, Django
+Used for structured and feature-rich applications requiring authentication, database management, administration, and scalable backend architecture.
 
-Frontend: HTML, CSS, Bootstrap, JavaScript
+### React
 
-Database: SQLite 
+Used for modern, responsive frontend interfaces and integration with Django APIs.
 
-Tools: Git, GitHub
-___________________________________________________________________________________________________________________________________________________
+---
 
-🎯 Purpose
+## ⭐ Featured Project — HireFlow
 
-This repository is intended to demonstrate industry-relevant full-stack development skills suitable for entry-level Python developer and software engineering roles.
-___________________________________________________________________________________________________________________________________________________
+**HireFlow** is a full-stack job recruitment platform built using **React, Django, and MySQL**.
 
-👩‍💻 Author
+The platform provides separate workflows for candidates and recruiters, allowing users to manage the recruitment process through a single application.
 
-Tanvi Jivatode
+### Key Features
 
-Python Full Stack Developer
+- Candidate and recruiter authentication
+- Role-based access control
+- Candidate dashboard
+- Recruiter dashboard
+- Job creation and management
+- Job search and filtering
+- Resume and cover letter submission
+- Application tracking
+- Applicant management
+- Application status updates
+- Candidate and recruiter profiles
+- Django Admin
+- Responsive white, blue, and black UI
 
-GitHub: https://github.com/tanvi2711
+### Tech Stack
+
+**Frontend:** React, Vite, React Router, Axios, CSS3
+
+**Backend:** Python, Django, Django ORM, Django Authentication
+
+**Database:** MySQL
+
+**Tools:** Git, GitHub, VS Code, Postman
+
+### Recruitment Workflow
+
+```text
+                    H I R E F L O W
+                          │
+             ┌────────────┴────────────┐
+             │                         │
+         CANDIDATE                  RECRUITER
+             │                         │
+       Register/Login            Register/Login
+             │                         │
+        Browse Jobs              Create Jobs
+             │                         │
+        Apply for Jobs           Manage Jobs
+             │                         │
+     Track Applications          View Applicants
+             │                         │
+      Manage Profile             Update Status
+             │                         │
+             └────────────┬────────────┘
+                          │
+                     Django API
+                          │
+                        MySQL
+```
+
+---
+
+## 🎯 Other Projects
+
+| Project | Framework | Description |
+|---|---|---|
+| **BANKAPP** | Flask | Banking system with account management and transaction functionality |
+| **EcomApp** | Django | E-commerce platform with authentication and admin functionality |
+| **iStoreX** | Django | Online store with product and order management |
+| **SENSAI** | Django | Structured Django application with modular architecture |
+
+---
+
+## 🛠️ Tech Stack
+
+**Languages:** Python, JavaScript, HTML, CSS
+
+**Backend:** Flask, Django, Django ORM, REST APIs
+
+**Frontend:** React, Bootstrap, JavaScript, CSS3
+
+**Databases:** MySQL, SQLite
+
+**Tools:** Git, GitHub, VS Code, Postman
+
+---
+
+## 🎯 Purpose
+
+This repository demonstrates practical full-stack development experience through Python-based applications built with Flask and Django.
+
+The projects focus on:
+
+- Backend development
+- REST API development
+- Database-driven applications
+- Authentication and authorization
+- CRUD operations
+- Frontend-backend integration
+- Role-based workflows
+- Scalable application structure
+
+These projects are developed to demonstrate skills relevant to **Python Developer, Python Full Stack Developer, and Software Engineer** roles.
+
+---
+
+## 👩‍💻 Author
+
+**Tanvi Jivatode**
+
+**Python Full Stack Developer**
+
+🔗 GitHub: https://github.com/tanvi2711
