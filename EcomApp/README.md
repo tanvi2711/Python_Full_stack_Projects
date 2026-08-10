@@ -1,10 +1,10 @@
-🛒 EcomApp — Django E-Commerce Application
+🛒 ShopSphere — Django E-Commerce Application
 
-EcomApp is a Django-based e-commerce web application demonstrating backend development fundamentals, database-driven functionality, and clean project architecture.
+ShopSphere is a Django-based e-commerce web application demonstrating backend development fundamentals, database-driven functionality, and clean project architecture.
 ___________________________________________________________________________________________________________________________________________________
 
 🌐 Live Demo  
-🔗 https://ecomapp-8vx0.onrender.com/
+🔗 https://shopsphere-8vx0.onrender.com/
 ___________________________________________________________________________________________________________________________________________________
 
 📌 Overview
@@ -33,7 +33,7 @@ ________________________________________________________________________________
 
 git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
 
-cd Python_Full_stack_Projects/EcomApp
+cd Python_Full_stack_Projects/ShopSphere
 
 pip install -r requirements.txt
 

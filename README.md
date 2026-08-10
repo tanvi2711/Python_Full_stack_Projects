@@ -99,8 +99,8 @@ The platform provides separate workflows for candidates and recruiters, allowing
 
 | Project | Framework | Description |
 |---|---|---|
-| **BANKAPP** | Flask | Banking system with account management and transaction functionality |
-| **EcomApp** | Django | E-commerce platform with authentication and admin functionality |
+| **SECUREBANK** | Flask | Banking system with account management and transaction functionality |
+| **ShopSphere** | Django | E-commerce platform with authentication and admin functionality |
 | **iStoreX** | Django | Online store with product and order management |
 | **SENSAI** | Django | Structured Django application with modular architecture |
 

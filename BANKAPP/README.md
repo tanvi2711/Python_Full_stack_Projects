@@ -1,6 +1,6 @@
-🏦 BANKAPP – Flask Banking Web Application
+🏦 SECUREBANK – Flask Banking Web Application
 
-BANKAPP is a Flask-based banking web application that implements core banking workflows, including user authentication, account management, and secure financial transactions. The project follows backend best practices and mirrors real-world banking logic.
+SECUREBANK is a Flask-based banking web application that implements core banking workflows, including user authentication, account management, and secure financial transactions. The project follows backend best practices and mirrors real-world banking logic.
 ___________________________________________________________________________________________________________________________________________________
 
 🌐 Live Demo  
@@ -29,7 +29,7 @@ ________________________________________________________________________________
 
 git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
 
-cd Python_Full_stack_Projects/BANKAPP
+cd Python_Full_stack_Projects/SECUREBANK
 
 pip install -r requirements.txt
 
